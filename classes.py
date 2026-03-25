@@ -25,5 +25,5 @@ class Works(BaseModel):
     status: str
 
 class Update_work_status(BaseModel):
-    status = str
-    id = str
+    status: str
+    id: str

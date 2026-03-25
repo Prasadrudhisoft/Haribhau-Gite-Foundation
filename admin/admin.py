@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, APIRouter,Depends
 from connector import get_connection
 from decorators import get_current_user
 from tokens import create_token
-from classes import Register,Logins,Events
+from classes import Register,Logins,Events,Works,Update_work_status
 import uuid
 import pymysql
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -115,3 +115,121 @@ def events(events:Events, user=Depends(get_current_user)):
         cursor.close()
         conn.close()
 
+@admin.get('/get_events')
+def get_events(user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute('select * from events')
+        events = cursor.fetchall()
+        return{
+            'status':'success',
+            'message':'Events Fetched Successfully',
+            'events':events
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@admin.post('/works')
+def works(works:Works, user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+        id = str(uuid.uuid4())
+
+        cursor.execute("INSERT INTO WORKS(id,work_title,work_description,start_date,end_date,status,created_at,created_by) values(%s,%s,%s,%s,%s,%s,NOW(),%s)",(id,works.work_title,works.work_description,works.start_date,works.end_date,works.status,user['id']))
+        conn.commit()
+
+        return{
+            'status':'success',
+            'message':'work added successfully'
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+@admin.get('/get_works')
+def get_works(user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+        cursor.execute("select * from works where created_by = %s",(user['id']))
+        works = cursor.fetchall()
+
+        pragatipathavar = []
+        purn = []
+        pralambit = []
+        manjur = []
+        nakarlele = []
+        other = []
+
+        for i in works:
+            if i['status']=="प्रगतीपथावर":
+                pragatipathavar.append(i)
+            if i['status']=="पूर्ण झाले":
+                purn.append(i)
+            if i['status']=="प्रलंबित":
+                pralambit.append(i)
+            if i['status']=="मंजूर":
+                manjur.append(i)
+            if i['status']=="नाकारलेले":
+                nakarlele.append(i)
+            if i['status']=="इतर":
+                other.append(i)
+
+        return{
+            'status':'success',
+            'message':'Development Works Fetched Successfully.',
+            'pragatipathavar':pragatipathavar,
+            'purn':purn,
+            'pralambit':pralambit,
+            'manjur':manjur,
+            'nakarlele':nakarlele,
+            'other':other
+
+        }
+
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@admin.post('/update_works_status')
+def update_works_status(update_status:Update_work_status,user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+        cursor.execute("update works set status=%s where id = %s",(update_status.status,update_status.id))
+        conn.commit()
+        return{
+            'status':'success',
+            'message':f'Status Updated To {update_status.status}'
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()

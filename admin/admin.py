@@ -274,6 +274,8 @@ async def upload_image(
             (image_id, db_path, description, user["id"])
         )
 
+        conn.commit()
+
         return {
             "status": "success",
             "message": "Image uploaded successfully",
@@ -361,3 +363,5 @@ def get_schems(user=Depends(get_current_user)):
     finally:
         cursor.close()
         conn.close()
+
+

@@ -2,10 +2,13 @@ from fastapi import FastAPI, Request, APIRouter,Depends
 from connector import get_connection
 from decorators import get_current_user
 from tokens import create_token
-from classes import Register,Logins,Events,Works,Update_work_status
+from classes import Register,Logins,Events,Works,Update_work_status,Gov_schems
 import uuid
 import pymysql
 from werkzeug.security import generate_password_hash, check_password_hash
+from fastapi import UploadFile, File, Form
+import os
+from datetime import datetime
 
 admin = APIRouter(tags=["Admin"])
 
@@ -233,3 +236,101 @@ def update_works_status(update_status:Update_work_status,user=Depends(get_curren
     finally:
         cursor.close()
         conn.close()
+
+
+UPLOAD_DIR = "static/images"
+
+
+@admin.post("/upload_image")
+async def upload_image(
+    description: str = Form(...),
+    file: UploadFile = File(...),
+    user=Depends(get_current_user),
+):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        if file.content_type not in ["image/jpeg", "image/png", "image/jpg"]:
+            return{'status':'fail', 'message':'Only image files allowed'}
+
+    
+        file_ext = file.filename.split(".")[-1]
+        filename = f"{uuid.uuid4()}.{file_ext}"
+        file_path = os.path.join(UPLOAD_DIR, filename)
+
+        with open(file_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
+
+        db_path = f"/static/images/{filename}"
+
+        image_id = str(uuid.uuid4())
+
+        cursor.execute(
+            """INSERT INTO gallery(
+                id, photo_path, description, uploaded_at, uploaded_by
+            ) VALUES (%s,%s,%s,NOW(),%s)""",
+            (image_id, db_path, description, user["id"])
+        )
+
+        return {
+            "status": "success",
+            "message": "Image uploaded successfully",
+            "data": {
+                "image_url": db_path,
+                "description": description
+            }
+        }
+
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+@admin.get('/get_gallery')
+def get_gallery(user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+        cursor.execute("SELECT id, photo_path, description, uploaded_at, uploaded_by FROM gallery ORDER BY uploaded_at DESC")
+        images = cursor.fetchall()
+
+        return {
+            'status': 'success',
+            'message': 'Gallery Fetched Successfully',
+            'total': len(images),
+            'images': images
+        }
+
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+@admin.post('/gov_schems')
+def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+        scm_id = str(uuid.uuid4())
+
+        cursor.execute("insert into gov_schems(id,title,description,start_date,end_date,created_at,created_by) values(%s,%s,%s,%s,%s,NOW(),%s)",(scm_id,gov_schems.title, gov_schems.description,gov_schems.start_date,gov_schems.end_date,user['id']))
+        conn.commit()
+        return{
+            
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }

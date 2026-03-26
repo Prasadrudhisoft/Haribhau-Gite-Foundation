@@ -27,3 +27,9 @@ class Works(BaseModel):
 class Update_work_status(BaseModel):
     status: str
     id: str
+
+class Gov_schems(BaseModel):
+    title: str
+    description: str
+    start_date: date
+    end_date: date

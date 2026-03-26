@@ -38,4 +38,12 @@ CREATE TABLE works (
         ON DELETE SET NULL
 );
 
+CREATE TABLE images (
+    id VARCHAR(36) PRIMARY KEY,
+    photo_path TEXT,
+    description TEXT,
+    uploaded_at DATETIME,
+    uploaded_by VARCHAR(36)
+);
+
 

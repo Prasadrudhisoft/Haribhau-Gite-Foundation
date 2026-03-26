@@ -38,7 +38,7 @@ CREATE TABLE works (
         ON DELETE SET NULL
 );
 
-CREATE TABLE images (
+CREATE TABLE gallery (
     id VARCHAR(36) PRIMARY KEY,
     photo_path TEXT,
     description TEXT,
@@ -46,4 +46,12 @@ CREATE TABLE images (
     uploaded_by VARCHAR(36)
 );
 
-
+CREATE TABLE gov_schems (
+    id VARCHAR(36) PRIMARY KEY,
+    title TEXT,
+    description TEXT,
+    start_date date,
+    end_date date,
+    created_at timestamp,
+    created_by varchar(200)
+);

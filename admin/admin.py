@@ -317,6 +317,7 @@ def get_gallery(user=Depends(get_current_user)):
         cursor.close()
         conn.close()
 
+
 @admin.post('/gov_schems')
 def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
     try:
@@ -327,10 +328,36 @@ def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
         cursor.execute("insert into gov_schems(id,title,description,start_date,end_date,created_at,created_by) values(%s,%s,%s,%s,%s,NOW(),%s)",(scm_id,gov_schems.title, gov_schems.description,gov_schems.start_date,gov_schems.end_date,user['id']))
         conn.commit()
         return{
-            
+            'status':'success',
+            'message':'government scheme uploads successfully.'
         }
     except Exception as e:
         return{
             'status':'error',
             'message':str(e)
         }
+    finally:
+        cursor.close()
+        conn.close()
+
+@admin.get('/get_schems')
+def get_schems(user=Depends(get_current_user)):
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("select * from gov_schems ORDER BY start_date desc")
+        schems = cursor.fetchall()
+        return{
+            'status':'success',
+            'message':'Government Schems Fetched Successfully.',
+            'schems':schems
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        cursor.close()
+        conn.close()

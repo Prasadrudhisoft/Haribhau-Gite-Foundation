@@ -95,3 +95,66 @@ def user_works():
             cursor.close()
         if conn:
             cursor.close()
+
+
+@user.get('/user_get_gallery')
+def user_get_gallery():
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT id, photo_path, description, uploaded_at, uploaded_by FROM gallery ORDER BY uploaded_at DESC")
+        images = cursor.fetchall()
+
+        return {
+            'status': 'success',
+            'message': 'Gallery Fetched Successfully',
+            'total': len(images),
+            'images': images
+        }
+
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e)
+        }
+    
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+@user.get('/user_gov_schem')
+def user_gov_schem():
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("select title,description,start_date,end_date from gov_schems")
+        gov_schem = cursor.fetchall()
+
+        return{
+            'status':'success',
+            'message':'Government Schems Fetched Successfully',
+            'gov_scheme':gov_schem
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+

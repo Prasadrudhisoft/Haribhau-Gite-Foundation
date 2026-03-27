@@ -14,6 +14,9 @@ admin = APIRouter(tags=["Admin"])
 
 @admin.post('/register_admin')
 def register_admin(register:Register, request:Request):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -43,17 +46,20 @@ def register_admin(register:Register, request:Request):
         }
     
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 @admin.post('/login')
 def login(log:Logins):
     conn = None
     cursor = None
+
     try:
         conn = get_connection()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor = conn.cursor()
 
         cursor.execute("select * from users where username=%s",(log.uname,))
         user = cursor.fetchone()
@@ -89,13 +95,17 @@ def login(log:Logins):
         }
     
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
 
 @admin.post('/events')
 def events(events:Events, user=Depends(get_current_user)):
     conn = None
     cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -114,12 +124,19 @@ def events(events:Events, user=Depends(get_current_user)):
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
 
 @admin.get('/get_events')
 def get_events(user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -136,13 +153,19 @@ def get_events(user=Depends(get_current_user)):
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 @admin.post('/works')
 def works(works:Works, user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -160,17 +183,24 @@ def works(works:Works, user=Depends(get_current_user)):
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
 
 @admin.get('/get_works')
 def get_works(user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor = conn.cursor()
 
-        cursor.execute("select * from works where created_by = %s",(user['id']))
+        cursor.execute("select * from works where created_by = %s",(user['id'],))
         works = cursor.fetchall()
 
         pragatipathavar = []
@@ -211,16 +241,22 @@ def get_works(user=Depends(get_current_user)):
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 @admin.post('/update_works_status')
 def update_works_status(update_status:Update_work_status,user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor = conn.cursor()
 
         cursor.execute("update works set status=%s where id = %s",(update_status.status,update_status.id))
         conn.commit()
@@ -233,10 +269,13 @@ def update_works_status(update_status:Update_work_status,user=Depends(get_curren
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
-
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+            
 
 UPLOAD_DIR = "static/images"
 
@@ -247,6 +286,9 @@ async def upload_image(
     file: UploadFile = File(...),
     user=Depends(get_current_user),
 ):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -290,15 +332,22 @@ async def upload_image(
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
 
 @admin.get('/get_gallery')
 def get_gallery(user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor = conn.cursor()
 
         cursor.execute("SELECT id, photo_path, description, uploaded_at, uploaded_by FROM gallery ORDER BY uploaded_at DESC")
         images = cursor.fetchall()
@@ -315,13 +364,19 @@ def get_gallery(user=Depends(get_current_user)):
             'status': 'error',
             'message': str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 @admin.post('/gov_schems')
 def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -338,12 +393,20 @@ def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
 
 @admin.get('/get_schems')
 def get_schems(user=Depends(get_current_user)):
+
+    conn = None
+    cursor = None
+
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -360,8 +423,11 @@ def get_schems(user=Depends(get_current_user)):
             'status':'error',
             'message':str(e)
         }
+    
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 

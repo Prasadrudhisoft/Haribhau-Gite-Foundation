@@ -1,5 +1,10 @@
-from fastapi import FastAPI, request, APIRouter
+from fastapi import FastAPI, Request, APIRouter
 from connector import get_connection
+import uuid
+from fastapi import UploadFile, File, Form
+import os
+from datetime import datetime
+
 
 
 user = APIRouter(tags=["user"])
@@ -158,3 +163,102 @@ def user_gov_schem():
         if conn:
             conn.close()
 
+
+UPLOAD_DIR = "static/images"
+
+@user.post('/register_complain')
+async def register_complain(
+    name: str = Form(...),
+    mobile_number: str = Form(...),
+    Address: str = Form(...),
+    complain_type: str = Form(...),
+    description: str = Form(...),
+    file: UploadFile = File(...)
+):
+    conn = None
+    cursor = None
+
+    try:
+
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+        conn = get_connection()
+        cursor = conn.cursor()
+
+
+        if file.content_type not in ["image/jpeg", "image/png", "image/jpg"]:
+            return {
+                'status': 'fail',
+                'message': 'Only jpg, jpeg, png image files allowed'
+            }
+
+        file_ext = file.filename.split(".")[-1]
+        filename = f"{uuid.uuid4()}.{file_ext}"
+        file_path = os.path.join(UPLOAD_DIR, filename)
+
+        with open(file_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
+
+        photo_path = f"/static/images/{filename}"
+        status = "Not Accepted Yet"
+
+        id = str(uuid.uuid4())
+
+      
+        cursor.execute("""
+            SELECT complain_reg_no 
+            FROM complains 
+            ORDER BY created_at DESC 
+            LIMIT 1
+        """)
+        last_record = cursor.fetchone()
+
+        if last_record and last_record.get('complain_reg_no'):
+            last_no = last_record['complain_reg_no'].strip()
+            try:
+                number = int(last_no.split('-')[-1]) + 1
+            except:
+                number = 1
+        else:
+            number = 1
+
+        complain_no = f"HGF-{number:04d}"
+
+        cursor.execute("""
+            INSERT INTO complains(
+                id, person_name, complain_reg_no, mobile_no, address, 
+                complain_type, description, photo_path, created_at, status
+            ) 
+            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,NOW(),%s)
+        """, (
+            id,
+            name,
+            complain_no,
+            mobile_number,
+            Address,
+            complain_type,
+            description,
+            photo_path,
+            status
+        ))
+
+        conn.commit()
+
+        return {
+            'status': 'success',
+            'message': 'Complain Registered Successfully.',
+            'complain_no': complain_no
+        }
+
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e)
+        }
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()

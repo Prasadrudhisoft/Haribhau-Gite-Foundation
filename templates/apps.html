@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – मोबाइल ॲप्स</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root{--primary:#E65100;--primary-dark:#BF360C;--secondary:#1565C0;--secondary-dark:#0D47A1;--saffron:#FF9933;--white-flag:#FFFFFF;--green-flag:#138808;--accent:#2E7D32;--bg-light:#F5F5F5;--text-dark:#212121;--text-medium:#424242;--text-light:#757575;--border:#E0E0E0;--shadow:0 2px 12px rgba(0,0,0,0.1);--shadow-lg:0 8px 32px rgba(0,0,0,0.15);--radius:12px;--radius-sm:8px;--transition:all 0.3s ease;--font-main:'Noto Sans Devanagari',sans-serif;--font-heading:'Tiro Devanagari Marathi',serif}
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:var(--font-main);color:var(--text-dark);background:var(--bg-light);line-height:1.7;overflow-x:hidden}
+        .top-bar{background:linear-gradient(135deg,var(--saffron),var(--primary));color:white;padding:6px 0;font-size:0.82rem;font-weight:500}
+        .top-bar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+        .top-bar a{color:white;text-decoration:none;margin-left:15px;transition:var(--transition)}
+        .top-bar a:hover{opacity:0.8}
+        .tricolor-stripe{height:4px;background:linear-gradient(to right,var(--saffron) 33%,var(--white-flag) 33%,var(--white-flag) 66%,var(--green-flag) 66%)}
+        .header{background:white;box-shadow:0 2px 20px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000}
+        .header .container{display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+        .logo-section{display:flex;align-items:center;gap:15px}
+        .logo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--saffron),var(--primary));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;font-weight:800;font-family:var(--font-heading);box-shadow:0 4px 15px rgba(230,81,0,0.3)}
+        .logo-text h1{font-family:var(--font-heading);font-size:1.3rem;color:var(--primary-dark);line-height:1.3}
+        .logo-text p{font-size:0.78rem;color:var(--text-light);font-weight:500}
+        .nav-toggle{display:none;background:var(--primary);color:white;border:none;padding:10px 14px;border-radius:var(--radius-sm);font-size:1.3rem;cursor:pointer}
+        .main-nav{background:linear-gradient(135deg,var(--secondary-dark),var(--secondary))}
+        .main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center}
+        .main-nav a{display:block;color:white;text-decoration:none;padding:12px 16px;font-size:0.85rem;font-weight:500;transition:var(--transition);position:relative;white-space:nowrap}
+        .main-nav a:hover,.main-nav a.active{background:rgba(255,255,255,0.15)}
+        .main-nav a::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:3px;background:var(--saffron);transition:var(--transition);border-radius:3px 3px 0 0}
+        .main-nav a:hover::after,.main-nav a.active::after{width:80%}
+        .dropdown{position:relative}
+        .dropdown-menu{display:none;position:absolute;top:100%;left:0;background:white;box-shadow:var(--shadow-lg);border-radius:0 0 var(--radius-sm) var(--radius-sm);min-width:220px;z-index:100}
+        .dropdown:hover .dropdown-menu{display:block}
+        .dropdown-menu a{color:var(--text-dark);padding:10px 20px;border-bottom:1px solid var(--border);font-size:0.83rem;display:block;text-decoration:none}
+        .dropdown-menu a:hover{background:var(--bg-light);color:var(--primary)}
+        .container{max-width:1280px;margin:0 auto;padding:0 20px}
+        .page-banner{background:linear-gradient(135deg,var(--secondary-dark),var(--secondary),var(--primary));color:white;padding:50px 0;text-align:center;position:relative;overflow:hidden}
+        .page-banner::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>')}
+        .page-banner .container{position:relative;z-index:1}
+        .page-banner h2{font-family:var(--font-heading);font-size:2.2rem;margin-bottom:10px}
+        .page-banner p{font-size:1rem;opacity:0.92}
+        .breadcrumb{display:flex;justify-content:center;gap:8px;margin-top:14px;font-size:0.85rem;opacity:0.82}
+        .breadcrumb a{color:white;text-decoration:none}
+        .section{padding:60px 0}.section-alt{background:white}
+        .section-header{text-align:center;margin-bottom:45px}
+        .section-header h2{font-family:var(--font-heading);font-size:2rem;color:var(--primary-dark);margin-bottom:10px;position:relative;display:inline-block}
+        .section-header h2::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60px;height:4px;background:linear-gradient(to right,var(--saffron),var(--primary));border-radius:2px}
+        .section-header p{color:var(--text-light);margin-top:18px;font-size:1rem}
+
+        /* APP CARDS */
+        .app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+        .app-card{background:white;border-radius:var(--radius);padding:25px;box-shadow:var(--shadow);transition:var(--transition);border:1px solid var(--border);display:flex;flex-direction:column;gap:0}
+        .app-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+        .app-card-top{display:flex;gap:16px;align-items:flex-start;margin-bottom:15px}
+        .app-icon{width:65px;height:65px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:white;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+        .app-info{flex:1}
+        .app-info h4{font-family:var(--font-heading);font-size:1.1rem;margin-bottom:3px;color:var(--text-dark)}
+        .app-info .app-category{font-size:0.75rem;font-weight:700;padding:2px 9px;border-radius:12px;display:inline-block;margin-bottom:6px}
+        .app-info p{font-size:0.85rem;color:var(--text-light);line-height:1.6}
+        .app-features{list-style:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+        .app-features li{font-size:0.82rem;color:var(--text-medium);padding:4px 0;display:flex;align-items:center;gap:7px}
+        .app-features li i{color:var(--accent);font-size:0.75rem;flex-shrink:0}
+        .app-download-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+        .dl-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);font-size:0.78rem;font-weight:700;text-decoration:none;transition:var(--transition);border:1.5px solid}
+        .dl-android{background:#E8F5E9;color:#2E7D32;border-color:#A5D6A7}
+        .dl-android:hover{background:#2E7D32;color:white}
+        .dl-ios{background:#E3F2FD;color:#1565C0;border-color:#90CAF9}
+        .dl-ios:hover{background:#1565C0;color:white}
+        .dl-web{background:#FFF3E0;color:#E65100;border-color:#FFCC80}
+        .dl-web:hover{background:#E65100;color:white}
+
+        /* CATEGORY FILTER */
+        .tab-filter{display:flex;gap:10px;justify-content:center;margin-bottom:35px;flex-wrap:wrap}
+        .tab-btn{padding:8px 22px;border:2px solid var(--border);border-radius:30px;background:white;cursor:pointer;font-family:var(--font-main);font-size:0.85rem;font-weight:500;transition:var(--transition)}
+        .tab-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
+        .tab-btn:hover{border-color:var(--primary)}
+
+        /* DIGITAL INDIA STRIP */
+        .di-strip{background:linear-gradient(135deg,#1a237e,#283593);color:white;padding:40px 0;text-align:center}
+        .di-strip h3{font-family:var(--font-heading);font-size:1.5rem;margin-bottom:10px}
+        .di-strip p{opacity:0.85;max-width:600px;margin:0 auto 25px;font-size:0.95rem}
+        .di-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+        .di-badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius-sm);padding:12px 20px;display:flex;align-items:center;gap:10px;font-size:0.88rem;font-weight:600;transition:var(--transition)}
+        .di-badge:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+
+        .btn{padding:12px 30px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:var(--transition);display:inline-flex;align-items:center;gap:8px;border:none;font-family:var(--font-main);cursor:pointer}
+        .btn-sm{padding:8px 20px;font-size:0.85rem}
+        .footer{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#CCC;padding:50px 0 0}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:30px}
+        .footer h4{color:white;font-size:1.05rem;margin-bottom:18px;position:relative;padding-bottom:10px}
+        .footer h4::after{content:'';position:absolute;bottom:0;right:0;width:40px;height:3px;background:var(--saffron);border-radius:2px}
+        .footer p{font-size:0.85rem;line-height:1.8}
+        .footer-links{list-style:none}
+        .footer-links li{padding:5px 0}
+        .footer-links a{color:#CCC;text-decoration:none;font-size:0.85rem;transition:var(--transition)}
+        .footer-links a:hover{color:var(--saffron);padding-right:5px}
+        .footer-bottom{background:rgba(0,0,0,0.3);padding:15px 0;text-align:center;font-size:0.82rem}
+        .social-links{display:flex;gap:10px;margin-top:15px}
+        .social-links a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);color:white;display:flex;align-items:center;justify-content:center;transition:var(--transition);text-decoration:none}
+        .social-links a:hover{background:var(--saffron);transform:translateY(-3px)}
+        .whatsapp-float{position:fixed;bottom:25px;left:25px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;box-shadow:0 4px 15px rgba(37,211,102,0.4);z-index:999;text-decoration:none;animation:bounce 2s infinite}
+        @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}60%{transform:translateY(-5px)}}
+        .scroll-top{position:fixed;bottom:25px;right:25px;width:50px;height:50px;background:var(--primary);border-radius:50%;display:none;align-items:center;justify-content:center;color:white;font-size:1.2rem;cursor:pointer;z-index:999;border:none;box-shadow:var(--shadow);transition:var(--transition)}
+        .scroll-top.show{display:flex}
+        @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){.nav-toggle{display:block}.main-nav{display:none;position:absolute;width:100%;top:100%;left:0;z-index:999}.main-nav.show{display:block}.main-nav ul{flex-direction:column}.main-nav a{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.1)}.dropdown-menu{position:static;box-shadow:none}.app-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.section{padding:40px 0}.page-banner h2{font-size:1.7rem}}
+        @media(max-width:480px){.logo-text h1{font-size:1.05rem}.di-badges{flex-direction:column;align-items:center}}
+    </style>
+</head>
+<body>
+<div class="top-bar"><div class="container"><div><i class="fas fa-phone-alt"></i> हेल्पलाइन: # &nbsp;|&nbsp; <i class="fas fa-envelope"></i> info@haribhaugite.org</div><div><a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a><a href="/emergency"><i class="fas fa-ambulance"></i> आपत्कालीन</a></div></div></div>
+<div class="tricolor-stripe"></div>
+<header class="header"><div class="container">
+    <div class="logo-section"><div class="logo-icon">ह</div><div class="logo-text"><h1>हरिभाऊ गिते फाउंडेशन</h1><p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते</p></div></div>
+    <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+</div>
+<nav class="main-nav" id="mainNav"><div class="container"><ul>
+    <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li><li><a href="/foundation">फाउंडेशन</a></li><li><a href="/nagarsevak">नगरसेवक</a></li><li><a href="/prabhag">प्रभाग माहिती</a></li><li><a href="/events">कार्यक्रम</a></li><li><a href="/works">विकास कामे</a></li>
+    <li class="dropdown"><a href="/grievance">तक्रार निवारण ▾</a><div class="dropdown-menu"><a href="/grievance">तक्रार नोंदणी</a><a href="/complaint-status">तक्रार स्थिती</a></div></li>
+    <li><a href="/eservices">ई-सेवा</a></li><li><a href="/gallery">फोटो गॅलरी</a></li><li><a href="/news">बातम्या</a></li><li><a href="/schemes">शासकीय योजना</a></li><li><a href="/contact">संपर्क</a></li>
+</ul></div></nav></header>
+
+<div class="page-banner"><div class="container"><h2>उपयुक्त मोबाइल ॲप्स</h2><p>नागरिक सेवांसाठी उपयुक्त शासकीय व सामाजिक ॲप्लिकेशन्स</p><div class="breadcrumb"><a href="/">मुख्यपृष्ठ</a><span>/</span><span>मोबाइल ॲप्स</span></div></div></div>
+
+<section class="section section-alt"><div class="container">
+    <div class="section-header"><h2>शिफारस केलेले ॲप्स</h2><p>सरकारी सेवा, आरोग्य, वाहतूक आणि दैनंदिन जीवनासाठी उपयुक्त ॲप्स</p></div>
+
+    <div class="tab-filter">
+        <button class="tab-btn active" onclick="filterApps('all',this)">सर्व</button>
+        <button class="tab-btn" onclick="filterApps('sarkar',this)">शासकीय</button>
+        <button class="tab-btn" onclick="filterApps('arogya',this)">आरोग्य</button>
+        <button class="tab-btn" onclick="filterApps('vahatuk',this)">वाहतूक</button>
+        <button class="tab-btn" onclick="filterApps('arthik',this)">आर्थिक</button>
+    </div>
+
+    <div class="app-grid" id="appGrid">
+
+   <!-- DigiLocker -->
+<div class="app-card" data-cat="sarkar">
+    <a href="https://www.digilocker.gov.in/" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="app-card-top">
+            <div class="app-icon" style="background:linear-gradient(135deg,#E65100,#FF8A65)">
+                <i class="fas fa-id-badge"></i>
+            </div>
+            <div class="app-info">
+                <h4>DigiLocker</h4>
+                <span class="app-category" style="background:#FFF3E0;color:#E65100">डिजिटल कागदपत्रे</span>
+                <p>डिजिटल कागदपत्रे सुरक्षितपणे जतन करा. आधार, ड्रायव्हिंग लायसन्स, मार्कशीट सर्व एका ठिकाणी.</p>
+            </div>
+        </div>
+    </a>
+    <ul class="app-features">
+        <li><i class="fas fa-check"></i> आधार कार्ड डिजिटल</li>
+        <li><i class="fas fa-check"></i> शैक्षणिक प्रमाणपत्रे</li>
+        <li><i class="fas fa-check"></i> वाहन नोंदणी कागदपत्रे</li>
+    </ul>
+    <div class="app-download-row">
+        <a href="https://play.google.com/store/apps/details?id=com.digilocker.android" target="_blank" class="dl-btn dl-android"><i class="fab fa-android"></i> Android</a>
+        <a href="https://apps.apple.com/in/app/digilocker/id1320618078" target="_blank" class="dl-btn dl-ios"><i class="fab fa-apple"></i> iOS</a>
+        <a href="https://www.digilocker.gov.in/" target="_blank" class="dl-btn dl-web"><i class="fas fa-globe"></i> Web</a>
+    </div>
+</div>
+
+<!-- Aarogya Setu -->
+<div class="app-card" data-cat="arogya">
+    <a href="https://www.aarogyasetu.gov.in/" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="app-card-top">
+            <div class="app-icon" style="background:linear-gradient(135deg,#C62828,#EF5350)">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="app-info">
+                <h4>Aarogya Setu</h4>
+                <span class="app-category" style="background:#FFEBEE;color:#C62828">आरोग्य</span>
+                <p>आरोग्य सेवा, लस नोंदणी, Covid-19 माहिती, जवळच्या रुग्णालयांची यादी.</p>
+            </div>
+        </div>
+    </a>
+    <ul class="app-features">
+        <li><i class="fas fa-check"></i> लसीकरण प्रमाणपत्र</li>
+        <li><i class="fas fa-check"></i> जवळचे रुग्णालय शोधा</li>
+        <li><i class="fas fa-check"></i> आरोग्य सल्ला सेवा</li>
+    </ul>
+    <div class="app-download-row">
+        <a href="https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu" target="_blank" class="dl-btn dl-android"><i class="fab fa-android"></i> Android</a>
+        <a href="https://apps.apple.com/in/app/aarogyasetu/id1505825357" target="_blank" class="dl-btn dl-ios"><i class="fab fa-apple"></i> iOS</a>
+        <a href="https://www.aarogyasetu.gov.in/" target="_blank" class="dl-btn dl-web"><i class="fas fa-globe"></i> Web</a>
+    </div>
+</div>
+
+<!-- NMC App (Nashik) -->
+<div class="app-card" data-cat="sarkar">
+    <a href="https://nmc.gov.in/" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="app-card-top">
+            <div class="app-icon" style="background:linear-gradient(135deg,#1565C0,#42A5F5)">
+                <i class="fas fa-city"></i>
+            </div>
+            <div class="app-info">
+                <h4>NMC App (नाशिक)</h4>
+                <span class="app-category" style="background:#E3F2FD;color:#1565C0">महानगरपालिका</span>
+                <p>नाशिक महानगरपालिका सेवा – मालमत्ता कर, पाणीपट्टी, तक्रार नोंदणी सर्व एका ठिकाणी.</p>
+            </div>
+        </div>
+    </a>
+    <ul class="app-features">
+        <li><i class="fas fa-check"></i> मालमत्ता कर ऑनलाइन</li>
+        <li><i class="fas fa-check"></i> पाणी बिल भरणा</li>
+        <li><i class="fas fa-check"></i> नागरिक तक्रार</li>
+    </ul>
+    <div class="app-download-row">
+        <a href="https://play.google.com/store/search?q=nmc%20nashik&c=apps" target="_blank" class="dl-btn dl-android"><i class="fab fa-android"></i> Android</a>
+        <a href="https://nmc.gov.in/" target="_blank" class="dl-btn dl-web"><i class="fas fa-globe"></i> Web</a>
+    </div>
+</div>
+
+<!-- PM Kisan -->
+<div class="app-card" data-cat="arthik">
+    <a href="https://pmkisan.gov.in/" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="app-card-top">
+            <div class="app-icon" style="background:linear-gradient(135deg,#00695C,#4DB6AC)">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <div class="app-info">
+                <h4>PM Kisan</h4>
+                <span class="app-category" style="background:#E0F2F1;color:#00695C">शेतकरी योजना</span>
+                <p>पीएम किसान योजनेची माहिती, हप्त्यांची स्थिती, नोंदणी व eKYC प्रक्रिया.</p>
+            </div>
+        </div>
+    </a>
+    <ul class="app-features">
+        <li><i class="fas fa-check"></i> हप्ता स्थिती तपासा</li>
+        <li><i class="fas fa-check"></i> eKYC ऑनलाइन</li>
+        <li><i class="fas fa-check"></i> नोंदणी सुविधा</li>
+    </ul>
+    <div class="app-download-row">
+        <a href="https://play.google.com/store/search?q=pm%20kisan&c=apps" target="_blank" class="dl-btn dl-android"><i class="fab fa-android"></i> Android</a>
+        <a href="https://pmkisan.gov.in/" target="_blank" class="dl-btn dl-web"><i class="fas fa-globe"></i> Web</a>
+    </div>
+</div>
+
+<!-- BHIM UPI -->
+<div class="app-card" data-cat="arthik">
+    <a href="https://www.bhimupi.org.in/" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="app-card-top">
+            <div class="app-icon" style="background:linear-gradient(135deg,#1565C0,#0D47A1)">
+                <i class="fas fa-rupee-sign"></i>
+            </div>
+            <div class="app-info">
+                <h4>BHIM UPI</h4>
+                <span class="app-category" style="background:#E3F2FD;color:#1565C0">डिजिटल पेमेंट</span>
+                <p>सुरक्षित व जलद डिजिटल पेमेंट. UPI द्वारे कोणत्याही बँकेत पैसे पाठवा.</p>
+            </div>
+        </div>
+    </a>
+    <ul class="app-features">
+        <li><i class="fas fa-check"></i> QR कोड पेमेंट</li>
+        <li><i class="fas fa-check"></i> बँक खाते लिंक</li>
+        <li><i class="fas fa-check"></i> सरकारी सेवा पेमेंट</li>
+    </ul>
+    <div class="app-download-row">
+        <a href="https://play.google.com/store/apps/details?id=in.org.npci.upiapp" target="_blank" class="dl-btn dl-android"><i class="fab fa-android"></i> Android</a>
+        <a href="https://apps.apple.com/in/app/bhim-upi/id1190871938" target="_blank" class="dl-btn dl-ios"><i class="fab fa-apple"></i> iOS</a>
+    </div>
+</div>
+
+<!-- eShram -->
+<div class="app-card" data-cat="sarkar">
+    <a href="https://eshram.gov.in/" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="app-card-top">
+            <div class="app-icon" style="background:linear-gradient(135deg,#FF6F00,#FFB74D)">
+                <i class="fas fa-hard-hat"></i>
+            </div>
+            <div class="app-info">
+                <h4>eShram</h4>
+                <span class="app-category" style="background:#FFF8E1;color:#FF6F00">कामगार कल्याण</span>
+                <p>असंघटित कामगारांची नोंदणी. eSHRAM कार्ड, विमा आणि शासकीय लाभ मिळवा.</p>
+            </div>
+        </div>
+    </a>
+    <ul class="app-features">
+        <li><i class="fas fa-check"></i> eSHRAM कार्ड</li>
+        <li><i class="fas fa-check"></i> अपघात विमा लाभ</li>
+        <li><i class="fas fa-check"></i> सरकारी योजना</li>
+    </ul>
+    <div class="app-download-row">
+        <a href="https://eshram.gov.in/" target="_blank" class="dl-btn dl-web"><i class="fas fa-globe"></i> Web</a>
+        <a href="https://play.google.com/store/search?q=eshram&c=apps" target="_blank" class="dl-btn dl-android"><i class="fab fa-android"></i> Android</a>
+    </div>
+</div>
+    </div>
+</div></section>
+
+<!-- DIGITAL INDIA STRIP -->
+<div class="di-strip"><div class="container">
+    <h3>🇮🇳 डिजिटल इंडिया – नागरिक सेवा ऑनलाइन</h3>
+    <p>शासकीय सेवा आता मोबाइलवर उपलब्ध. कागदपत्रे, अर्ज आणि पेमेंट सर्व घरबसल्या करा.</p>
+    <div class="di-badges">
+        <div class="di-badge"><i class="fas fa-shield-alt" style="color:var(--saffron)"></i> १०० % सुरक्षित</div>
+        <div class="di-badge"><i class="fas fa-bolt" style="color:var(--saffron)"></i> जलद सेवा</div>
+        <div class="di-badge"><i class="fas fa-rupee-sign" style="color:var(--saffron)"></i> मोफत डाउनलोड</div>
+        <div class="di-badge"><i class="fas fa-language" style="color:var(--saffron)"></i> मराठीत उपलब्ध</div>
+    </div>
+</div></div>
+
+<footer class="footer"><div class="container"><div class="footer-grid">
+    <div><h4>हरिभाऊ गिते फाउंडेशन</h4><p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी कटिबद्ध.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+    <div><h4>द्रुत दुवे</h4><ul class="footer-links"><li><a href="/">मुख्यपृष्ठ</a></li><li><a href="/foundation">फाउंडेशन</a></li><li><a href="/nagarsevak">नगरसेवक</a></li><li><a href="/prabhag">प्रभाग माहिती</a></li></ul></div>
+    <div><h4>सेवा</h4><ul class="footer-links"><li><a href="/grievance">तक्रार नोंदणी</a></li><li><a href="/eservices">ई-सेवा</a></li><li><a href="/schemes">शासकीय योजना</a></li><li><a href="/news">बातम्या</a></li></ul></div>
+    <div><h4>संपर्क</h4><ul class="footer-links"><li><i class="fas fa-map-marker-alt" style="color:var(--saffron);margin-left:8px"></i> नाशिक, महाराष्ट्र</li><li><i class="fas fa-phone" style="color:var(--saffron);margin-left:8px"></i> #</li></ul><div style="margin-top:15px"><a href="/emergency" class="btn btn-sm" style="background:#C62828;color:white;font-size:0.8rem"><i class="fas fa-ambulance"></i> आपत्कालीन</a></div></div>
+</div></div><div class="footer-bottom"><div class="container"><p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव.</p></div></div></footer>
+
+<a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+<script>
+    function toggleNav(){document.getElementById('mainNav').classList.toggle('show')}
+    window.addEventListener('scroll',function(){document.getElementById('scrollTop').classList.toggle('show',window.scrollY>300)});
+    function filterApps(cat,btn){
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.app-card').forEach(card=>{
+            if(cat==='all'||card.dataset.cat===cat){card.style.display='flex'}
+            else{card.style.display='none'}
+        });
+    }
+</script>
+</body>
+</html>

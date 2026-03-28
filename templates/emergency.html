@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – आपत्कालीन संपर्क</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root{--primary:#E65100;--primary-dark:#BF360C;--secondary:#1565C0;--secondary-dark:#0D47A1;--saffron:#FF9933;--white-flag:#FFFFFF;--green-flag:#138808;--accent:#2E7D32;--bg-light:#F5F5F5;--text-dark:#212121;--text-medium:#424242;--text-light:#757575;--border:#E0E0E0;--shadow:0 2px 12px rgba(0,0,0,0.1);--shadow-lg:0 8px 32px rgba(0,0,0,0.15);--radius:12px;--radius-sm:8px;--transition:all 0.3s ease;--font-main:'Noto Sans Devanagari',sans-serif;--font-heading:'Tiro Devanagari Marathi',serif}
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:var(--font-main);color:var(--text-dark);background:var(--bg-light);line-height:1.7;overflow-x:hidden}
+        .top-bar{background:linear-gradient(135deg,var(--saffron),var(--primary));color:white;padding:6px 0;font-size:0.82rem;font-weight:500}
+        .top-bar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+        .top-bar a{color:white;text-decoration:none;margin-left:15px;transition:var(--transition)}
+        .top-bar a:hover{opacity:0.8}
+        .tricolor-stripe{height:4px;background:linear-gradient(to right,var(--saffron) 33%,var(--white-flag) 33%,var(--white-flag) 66%,var(--green-flag) 66%)}
+        .header{background:white;box-shadow:0 2px 20px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000}
+        .header .container{display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+        .logo-section{display:flex;align-items:center;gap:15px}
+        .logo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--saffron),var(--primary));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;font-weight:800;font-family:var(--font-heading);box-shadow:0 4px 15px rgba(230,81,0,0.3)}
+        .logo-text h1{font-family:var(--font-heading);font-size:1.3rem;color:var(--primary-dark);line-height:1.3}
+        .logo-text p{font-size:0.78rem;color:var(--text-light);font-weight:500}
+        .nav-toggle{display:none;background:var(--primary);color:white;border:none;padding:10px 14px;border-radius:var(--radius-sm);font-size:1.3rem;cursor:pointer}
+        .main-nav{background:linear-gradient(135deg,var(--secondary-dark),var(--secondary))}
+        .main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center}
+        .main-nav a{display:block;color:white;text-decoration:none;padding:12px 16px;font-size:0.85rem;font-weight:500;transition:var(--transition);position:relative;white-space:nowrap}
+        .main-nav a:hover,.main-nav a.active{background:rgba(255,255,255,0.15)}
+        .main-nav a::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:3px;background:var(--saffron);transition:var(--transition);border-radius:3px 3px 0 0}
+        .main-nav a:hover::after,.main-nav a.active::after{width:80%}
+        .dropdown{position:relative}
+        .dropdown-menu{display:none;position:absolute;top:100%;left:0;background:white;box-shadow:var(--shadow-lg);border-radius:0 0 var(--radius-sm) var(--radius-sm);min-width:220px;z-index:100}
+        .dropdown:hover .dropdown-menu{display:block}
+        .dropdown-menu a{color:var(--text-dark);padding:10px 20px;border-bottom:1px solid var(--border);font-size:0.83rem;display:block;text-decoration:none}
+        .dropdown-menu a:hover{background:var(--bg-light);color:var(--primary)}
+        .container{max-width:1280px;margin:0 auto;padding:0 20px}
+
+        /* EMERGENCY BANNER */
+        .emergency-banner{background:linear-gradient(135deg,#B71C1C,#C62828,#E53935);color:white;padding:50px 0;text-align:center;position:relative;overflow:hidden}
+        .emergency-banner::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>')}
+        .emergency-banner .container{position:relative;z-index:1}
+        .emergency-banner h2{font-family:var(--font-heading);font-size:2.3rem;margin-bottom:10px}
+        .emergency-banner p{font-size:1rem;opacity:0.92}
+        .breadcrumb{display:flex;justify-content:center;gap:8px;margin-top:14px;font-size:0.85rem;opacity:0.82}
+        .breadcrumb a{color:white;text-decoration:none}
+        .sos-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);border-radius:50px;padding:10px 28px;font-size:1.1rem;font-weight:800;margin-bottom:20px;animation:pulse-badge 1.5s infinite}
+        @keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0.4)}50%{box-shadow:0 0 0 12px rgba(255,255,255,0)}}
+
+        .section{padding:60px 0}.section-alt{background:white}
+        .section-header{text-align:center;margin-bottom:45px}
+        .section-header h2{font-family:var(--font-heading);font-size:2rem;color:var(--primary-dark);margin-bottom:10px;position:relative;display:inline-block}
+        .section-header h2::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60px;height:4px;background:linear-gradient(to right,var(--saffron),var(--primary));border-radius:2px}
+        .section-header p{color:var(--text-light);margin-top:18px;font-size:1rem}
+
+        /* MAIN EMERGENCY GRID */
+        .emergency-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+        .emergency-card{background:white;border-radius:var(--radius);padding:30px 22px;text-align:center;box-shadow:var(--shadow);border-top:5px solid;transition:var(--transition);position:relative;overflow:hidden}
+        .emergency-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:0 0 0 100%;opacity:0.06}
+        .emergency-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+        .emergency-card .card-icon{font-size:2.8rem;margin-bottom:14px;display:block}
+        .emergency-card h4{font-family:var(--font-heading);font-size:1.1rem;margin-bottom:5px}
+        .emergency-card .desc{font-size:0.83rem;color:var(--text-light);margin-bottom:15px;line-height:1.5}
+        .emergency-card .phone-link{display:inline-flex;align-items:center;gap:8px;font-size:1.8rem;font-weight:800;text-decoration:none;padding:10px 22px;border-radius:50px;color:white;transition:var(--transition);margin-top:5px}
+        .emergency-card .phone-link:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+        .available-badge{display:inline-block;background:#E8F5E9;color:#2E7D32;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:12px;margin-top:10px}
+
+        /* NATIONAL NUMBERS STRIP */
+        .nat-strip{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:40px 0}
+        .nat-strip h3{font-family:var(--font-heading);font-size:1.4rem;text-align:center;margin-bottom:25px;color:var(--saffron)}
+        .nat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+        .nat-item{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:16px 14px;text-align:center;transition:var(--transition)}
+        .nat-item:hover{background:rgba(255,255,255,0.14);transform:translateY(-3px)}
+        .nat-num{font-size:1.6rem;font-weight:800;color:var(--saffron);display:block}
+        .nat-lbl{font-size:0.8rem;opacity:0.85;margin-top:3px}
+        .nat-item a{text-decoration:none;color:inherit}
+
+        /* TIPS SECTION */
+        .tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+        .tip-card{background:white;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border-left:5px solid var(--saffron);transition:var(--transition)}
+        .tip-card:hover{box-shadow:var(--shadow-lg)}
+        .tip-card h4{font-family:var(--font-heading);font-size:1rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+        .tip-card p{font-size:0.85rem;color:var(--text-medium);line-height:1.7}
+        .tip-card ul{list-style:none;margin-top:10px}
+        .tip-card ul li{font-size:0.85rem;color:var(--text-medium);padding:4px 0;display:flex;align-items:flex-start;gap:8px}
+        .tip-card ul li::before{content:'→';color:var(--primary);flex-shrink:0;font-weight:700}
+
+        /* OFFICE CONTACT */
+        .office-contact{background:linear-gradient(135deg,var(--secondary-dark),var(--secondary));color:white;border-radius:var(--radius);padding:30px;display:flex;align-items:center;gap:25px;flex-wrap:wrap}
+        .office-icon{width:70px;height:70px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+        .office-info h3{font-family:var(--font-heading);font-size:1.3rem;margin-bottom:5px}
+        .office-info p{opacity:0.9;font-size:0.9rem;margin-bottom:12px}
+        .office-btns{display:flex;gap:10px;flex-wrap:wrap}
+        .o-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:30px;font-size:0.85rem;font-weight:700;text-decoration:none;transition:var(--transition)}
+        .o-btn-white{background:white;color:var(--primary)}
+        .o-btn-white:hover{background:var(--bg-light);transform:translateY(-2px)}
+        .o-btn-wa{background:#25D366;color:white}
+        .o-btn-wa:hover{background:#128C7E;transform:translateY(-2px)}
+
+        .btn-sm{padding:8px 20px;font-size:0.85rem}
+        .footer{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#CCC;padding:50px 0 0}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:30px}
+        .footer h4{color:white;font-size:1.05rem;margin-bottom:18px;position:relative;padding-bottom:10px}
+        .footer h4::after{content:'';position:absolute;bottom:0;right:0;width:40px;height:3px;background:var(--saffron);border-radius:2px}
+        .footer p{font-size:0.85rem;line-height:1.8}
+        .footer-links{list-style:none}
+        .footer-links li{padding:5px 0}
+        .footer-links a{color:#CCC;text-decoration:none;font-size:0.85rem;transition:var(--transition)}
+        .footer-links a:hover{color:var(--saffron);padding-right:5px}
+        .footer-bottom{background:rgba(0,0,0,0.3);padding:15px 0;text-align:center;font-size:0.82rem}
+        .social-links{display:flex;gap:10px;margin-top:15px}
+        .social-links a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);color:white;display:flex;align-items:center;justify-content:center;transition:var(--transition);text-decoration:none}
+        .social-links a:hover{background:var(--saffron);transform:translateY(-3px)}
+        .whatsapp-float{position:fixed;bottom:25px;left:25px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;box-shadow:0 4px 15px rgba(37,211,102,0.4);z-index:999;text-decoration:none;animation:bounce 2s infinite}
+        @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}60%{transform:translateY(-5px)}}
+        .scroll-top{position:fixed;bottom:25px;right:25px;width:50px;height:50px;background:var(--primary);border-radius:50%;display:none;align-items:center;justify-content:center;color:white;font-size:1.2rem;cursor:pointer;z-index:999;border:none;box-shadow:var(--shadow);transition:var(--transition)}
+        .scroll-top.show{display:flex}
+        @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){.nav-toggle{display:block}.main-nav{display:none;position:absolute;width:100%;top:100%;left:0;z-index:999}.main-nav.show{display:block}.main-nav ul{flex-direction:column}.main-nav a{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.1)}.dropdown-menu{position:static;box-shadow:none}.emergency-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr}.section{padding:40px 0}.emergency-banner h2{font-size:1.7rem}.office-contact{flex-direction:column;text-align:center}}
+        @media(max-width:480px){.logo-text h1{font-size:1.05rem}.emergency-grid{grid-template-columns:1fr}.nat-grid{grid-template-columns:repeat(2,1fr)}}
+    </style>
+</head>
+<body>
+<div class="top-bar"><div class="container"><div><i class="fas fa-phone-alt"></i> हेल्पलाइन: # &nbsp;|&nbsp; <i class="fas fa-envelope"></i> info@haribhaugite.org</div><div><a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a><a href="/emergency" class="active"><i class="fas fa-ambulance"></i> आपत्कालीन</a></div></div></div>
+<div class="tricolor-stripe"></div>
+<header class="header"><div class="container">
+    <div class="logo-section"><div class="logo-icon">ह</div><div class="logo-text"><h1>हरिभाऊ गिते फाउंडेशन</h1><p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते</p></div></div>
+    <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+</div>
+<nav class="main-nav" id="mainNav"><div class="container"><ul>
+    <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li><li><a href="/foundation">फाउंडेशन</a></li><li><a href="/nagarsevak">नगरसेवक</a></li><li><a href="/prabhag">प्रभाग माहिती</a></li><li><a href="/events">कार्यक्रम</a></li><li><a href="/works">विकास कामे</a></li>
+    <li class="dropdown"><a href="/grievance">तक्रार निवारण ▾</a><div class="dropdown-menu"><a href="/grievance">तक्रार नोंदणी</a><a href="/complaint-status">तक्रार स्थिती</a></div></li>
+    <li><a href="/eservices">ई-सेवा</a></li><li><a href="/gallery">फोटो गॅलरी</a></li><li><a href="/news">बातम्या</a></li><li><a href="/schemes">शासकीय योजना</a></li><li><a href="/contact">संपर्क</a></li>
+</ul></div></nav></header>
+
+<div class="emergency-banner"><div class="container">
+    <div class="sos-badge"><i class="fas fa-exclamation-triangle"></i> आपत्कालीन सेवा – २४/७ उपलब्ध</div>
+    <h2>⚠️ आपत्कालीन संपर्क</h2>
+    <p>तातडीच्या परिस्थितीत खालील क्रमांकावर तात्काळ संपर्क साधा</p>
+    <div class="breadcrumb"><a href="/">मुख्यपृष्ठ</a><span>/</span><span>आपत्कालीन संपर्क</span></div>
+</div></div>
+
+<!-- MAIN EMERGENCY CARDS -->
+<section class="section section-alt"><div class="container">
+    <div class="section-header"><h2>तातडीचे संपर्क क्रमांक</h2><p>एक क्लिकवर थेट कॉल करा</p></div>
+    <div class="emergency-grid">
+        <div class="emergency-card" style="border-top-color:#1565C0">
+            <i class="card-icon fas fa-shield-alt" style="color:#1565C0"></i>
+            <h4>पोलीस</h4><p class="desc">पोलीस नियंत्रण कक्ष<br>गुन्हे, सुरक्षा, आपत्कालीन</p>
+            <a href="tel:100" class="phone-link" style="background:linear-gradient(135deg,#1565C0,#0D47A1)"><i class="fas fa-phone-alt"></i> १००</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#C62828">
+            <i class="card-icon fas fa-fire-extinguisher" style="color:#C62828"></i>
+            <h4>अग्निशमन दल</h4><p class="desc">आग विझवणे व बचाव<br>तातडीची बचाव सेवा</p>
+            <a href="tel:101" class="phone-link" style="background:linear-gradient(135deg,#C62828,#B71C1C)"><i class="fas fa-phone-alt"></i> १०१</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#2E7D32">
+            <i class="card-icon fas fa-ambulance" style="color:#2E7D32"></i>
+            <h4>रुग्णवाहिका</h4><p class="desc">आपत्कालीन वैद्यकीय सेवा<br>मोफत रुग्णवाहिका</p>
+            <a href="tel:108" class="phone-link" style="background:linear-gradient(135deg,#2E7D32,#1B5E20)"><i class="fas fa-phone-alt"></i> १०८</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#E65100">
+            <i class="card-icon fas fa-building" style="color:#E65100"></i>
+            <h4>प्रभाग कार्यालय</h4><p class="desc">नगरसेवक कार्यालय<br>नागरी समस्या निवारण</p>
+            <a href="tel:#" class="phone-link" style="background:linear-gradient(135deg,#E65100,#BF360C)"><i class="fas fa-phone-alt"></i> #</a>
+            <div class="available-badge" style="background:#FFF3E0;color:#E65100">⏰ कार्यालय वेळेत</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#7B1FA2">
+            <i class="card-icon fas fa-female" style="color:#7B1FA2"></i>
+            <h4>महिला हेल्पलाइन</h4><p class="desc">महिला सुरक्षा<br>घरगुती हिंसा, उत्पीडन</p>
+            <a href="tel:1091" class="phone-link" style="background:linear-gradient(135deg,#7B1FA2,#4A148C)"><i class="fas fa-phone-alt"></i> १०९१</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#00695C">
+            <i class="card-icon fas fa-child" style="color:#00695C"></i>
+            <h4>बालसंरक्षण</h4><p class="desc">बाल सुरक्षा हेल्पलाइन<br>CHILDLINE सेवा</p>
+            <a href="tel:1098" class="phone-link" style="background:linear-gradient(135deg,#00695C,#004D40)"><i class="fas fa-phone-alt"></i> १०९८</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#37474F">
+            <i class="card-icon fas fa-bolt" style="color:#37474F"></i>
+            <h4>वीज आपत्कालीन</h4><p class="desc">वीज पुरवठा बंद<br>तातडीची दुरुस्ती</p>
+            <a href="tel:1912" class="phone-link" style="background:linear-gradient(135deg,#37474F,#263238)"><i class="fas fa-phone-alt"></i> १९१२</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+        <div class="emergency-card" style="border-top-color:#FF6F00">
+            <i class="card-icon fas fa-phone-alt" style="color:#FF6F00"></i>
+            <h4>आपत्ती व्यवस्थापन</h4><p class="desc">NDRF / SDRF<br>नैसर्गिक आपत्ती बचाव</p>
+            <a href="tel:112" class="phone-link" style="background:linear-gradient(135deg,#FF6F00,#E65100)"><i class="fas fa-phone-alt"></i> ११२</a>
+            <div class="available-badge">✅ २४/७ उपलब्ध</div>
+        </div>
+    </div>
+</div></section>
+
+<!-- NATIONAL NUMBERS -->
+<div class="nat-strip"><div class="container">
+    <h3>⚡ इतर महत्त्वाचे राष्ट्रीय हेल्पलाइन क्रमांक</h3>
+    <div class="nat-grid">
+        <div class="nat-item"><a href="tel:1800111565"><span class="nat-num">1800-111-565</span><div class="nat-lbl">वृद्ध नागरिक हेल्पलाइन</div></a></div>
+        <div class="nat-item"><a href="tel:14416"><span class="nat-num">14416</span><div class="nat-lbl">मानसिक आरोग्य (iCall)</div></a></div>
+        <div class="nat-item"><a href="tel:1800180166"><span class="nat-num">1800-180-1166</span><div class="nat-lbl">रेल्वे सुरक्षा</div></a></div>
+        <div class="nat-item"><a href="tel:1800115526"><span class="nat-num">1800-11-5526</span><div class="nat-lbl">दिव्यांग हेल्पलाइन</div></a></div>
+        <div class="nat-item"><a href="tel:1363"><span class="nat-num">1363</span><div class="nat-lbl">पर्यटक हेल्पलाइन</div></a></div>
+        <div class="nat-item"><a href="tel:14400"><span class="nat-num">14400</span><div class="nat-lbl">सायबर गुन्हे</div></a></div>
+        <div class="nat-item"><a href="tel:1905"><span class="nat-num">1905</span><div class="nat-lbl">अन्न सुरक्षा हेल्पलाइन</div></a></div>
+        <div class="nat-item"><a href="tel:104"><span class="nat-num">104</span><div class="nat-lbl">आरोग्य हेल्पलाइन</div></a></div>
+    </div>
+</div></div>
+
+<!-- SAFETY TIPS -->
+<section class="section section-alt"><div class="container">
+    <div class="section-header"><h2>आपत्कालीन टिप्स</h2><p>आपत्कालीन परिस्थितीत काय कराल?</p></div>
+    <div class="tips-grid">
+        <div class="tip-card" style="border-left-color:#C62828">
+            <h4><i class="fas fa-fire" style="color:#C62828"></i> आग लागल्यास</h4>
+            <ul><li>तात्काळ १०१ वर फोन करा</li><li>इमारतीतून बाहेर पडा – लिफ्ट वापरू नका</li><li>खाली वाकून धुरातून बाहेर पडा</li><li>दरवाजा बंद ठेवा – आग पसरण्यास अडथळा</li></ul>
+        </div>
+        <div class="tip-card" style="border-left-color:#1565C0">
+            <h4><i class="fas fa-heartbeat" style="color:#C62828"></i> वैद्यकीय आपत्कालीन</h4>
+            <ul><li>तात्काळ १०८ रुग्णवाहिका बोलवा</li><li>रुग्णाला हलवू नका (अपघात असल्यास)</li><li>श्वासोच्छ्वास तपासा – CPR आवश्यक असल्यास द्या</li><li>जवळच्या रुग्णालयात न्या</li></ul>
+        </div>
+        <div class="tip-card" style="border-left-color:#2E7D32">
+            <h4><i class="fas fa-cloud-rain" style="color:#1565C0"></i> पूर / पाऊस आपत्ती</h4>
+            <ul><li>सुरक्षित उंच ठिकाणी जा</li><li>विजेच्या खांबापासून दूर रहा</li><li>१०० किंवा ११२ वर फोन करा</li><li>पाण्याच्या प्रवाहात जाऊ नका</li></ul>
+        </div>
+        <div class="tip-card" style="border-left-color:#7B1FA2">
+            <h4><i class="fas fa-female" style="color:#7B1FA2"></i> महिला सुरक्षा</h4>
+            <ul><li>तात्काळ १०९१ वर फोन करा</li><li>मोबाइलवर 'शेक' करून SOS पाठवा</li><li>जवळच्या पोलीस स्टेशनला जा</li><li>विश्वासू व्यक्तीस माहिती द्या</li></ul>
+        </div>
+    </div>
+</div></section>
+
+<!-- OFFICE CONTACT -->
+<section class="section"><div class="container">
+    <div class="office-contact">
+        <div class="office-icon"><i class="fas fa-building"></i></div>
+        <div class="office-info" style="flex:1">
+            <h3>प्रभाग कार्यालय – हरिभाऊ गिते फाउंडेशन</h3>
+            <p>नाशिक, महाराष्ट्र | कार्यालय वेळ: सोमवार–शनिवार, सकाळी १० – संध्याकाळी ६</p>
+            <div class="office-btns">
+                <a href="tel:#" class="o-btn o-btn-white"><i class="fas fa-phone-alt"></i> # वर कॉल करा</a>
+                <a href="#" class="o-btn o-btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp करा</a>
+                <a href="/contact" class="o-btn" style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3)"><i class="fas fa-envelope"></i> संदेश पाठवा</a>
+            </div>
+        </div>
+    </div>
+</div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid">
+    <div><h4>हरिभाऊ गिते फाउंडेशन</h4><p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी कटिबद्ध.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+    <div><h4>द्रुत दुवे</h4><ul class="footer-links"><li><a href="/">मुख्यपृष्ठ</a></li><li><a href="/foundation">फाउंडेशन</a></li><li><a href="/nagarsevak">नगरसेवक</a></li><li><a href="/prabhag">प्रभाग माहिती</a></li></ul></div>
+    <div><h4>सेवा</h4><ul class="footer-links"><li><a href="/grievance">तक्रार नोंदणी</a></li><li><a href="/eservices">ई-सेवा</a></li><li><a href="/schemes">शासकीय योजना</a></li></ul></div>
+    <div><h4>संपर्क</h4><ul class="footer-links"><li><i class="fas fa-map-marker-alt" style="color:var(--saffron);margin-left:8px"></i> नाशिक, महाराष्ट्र</li><li><i class="fas fa-phone" style="color:var(--saffron);margin-left:8px"></i> #</li></ul></div>
+</div></div><div class="footer-bottom"><div class="container"><p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव.</p></div></div></footer>
+
+<a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+<script>
+    function toggleNav(){document.getElementById('mainNav').classList.toggle('show')}
+    window.addEventListener('scroll',function(){document.getElementById('scrollTop').classList.toggle('show',window.scrollY>300)});
+</script>
+</body>
+</html>

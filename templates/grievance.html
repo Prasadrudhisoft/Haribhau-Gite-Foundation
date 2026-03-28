@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – तक्रार नोंदणी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E65100; --primary-dark: #BF360C; --primary-light: #FF8A65;
+            --secondary: #1565C0; --secondary-dark: #0D47A1;
+            --saffron: #FF9933; --white-flag: #FFFFFF; --green-flag: #138808;
+            --accent: #2E7D32; --accent-light: #66BB6A;
+            --bg-light: #F5F5F5; --text-dark: #212121; --text-medium: #424242; --text-light: #757575;
+            --border: #E0E0E0; --shadow: 0 2px 12px rgba(0,0,0,0.1); --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --radius: 12px; --radius-sm: 8px; --transition: all 0.3s ease;
+            --font-main: 'Noto Sans Devanagari', sans-serif; --font-heading: 'Tiro Devanagari Marathi', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; overflow-x: hidden; }
+
+        .top-bar { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; padding: 6px 0; font-size: 0.82rem; font-weight: 500; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
+        .top-bar a:hover { opacity: 0.8; }
+        .tricolor-stripe { height: 4px; background: linear-gradient(to right, var(--saffron) 33%, var(--white-flag) 33%, var(--white-flag) 66%, var(--green-flag) 66%); }
+        .header { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); }
+        .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
+        .logo-text p { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+        .nav-toggle { display: none; background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 1.3rem; cursor: pointer; }
+        .main-nav { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; }
+        .main-nav a { display: block; color: white; text-decoration: none; padding: 12px 16px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); position: relative; white-space: nowrap; }
+        .main-nav a:hover, .main-nav a.active { background: rgba(255,255,255,0.15); }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--saffron); transition: var(--transition); border-radius: 3px 3px 0 0; }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 80%; }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: var(--shadow-lg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); min-width: 220px; z-index: 100; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { color: var(--text-dark); padding: 10px 20px; border-bottom: 1px solid var(--border); font-size: 0.83rem; display: block; text-decoration: none; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        .page-banner { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary), var(--primary)); color: white; padding: 50px 0; text-align: center; position: relative; overflow: hidden; }
+        .page-banner::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>'); }
+        .page-banner .container { position: relative; z-index: 1; }
+        .page-banner h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px; }
+        .page-banner p { font-size: 1rem; opacity: 0.92; }
+        .breadcrumb { display: flex; justify-content: center; gap: 8px; margin-top: 14px; font-size: 0.85rem; opacity: 0.82; }
+        .breadcrumb a { color: white; text-decoration: none; }
+        .section { padding: 60px 0; }
+        .section-alt { background: white; }
+
+        .grievance-layout { display: grid; grid-template-columns: 1fr 340px; gap: 30px; align-items: start; }
+
+        .form-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 35px; }
+        .form-card h3 { font-family: var(--font-heading); font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        .form-card h3 i { color: var(--primary); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text-dark); margin-bottom: 7px; }
+        .form-group label span { color: #C62828; }
+        .form-control { width: 100%; padding: 11px 15px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-main); font-size: 0.9rem; color: var(--text-dark); transition: var(--transition); background: white; }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(230,81,0,0.1); }
+        select.form-control { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23757575' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 14px center; padding-left: 35px; }
+        textarea.form-control { resize: vertical; min-height: 110px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .form-info { background: #E3F2FD; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.85rem; color: var(--secondary-dark); margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-start; }
+        .form-info i { margin-top: 3px; flex-shrink: 0; }
+
+        /* File upload note */
+        .file-note { color: var(--text-light); font-size: 0.78rem; margin-top: 5px; display: block; }
+
+        .btn-submit { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; border: none; border-radius: 50px; font-family: var(--font-main); font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-submit:hover:not(:disabled) { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,81,0,0.3); }
+        .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+        /* Spinner */
+        .spinner { width: 18px; height: 18px; border: 3px solid rgba(255,255,255,0.4); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
+        .btn-submit.loading .spinner { display: inline-block; }
+        .btn-submit.loading .btn-text { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Error message */
+        .error-msg { background: #FFEBEE; border: 1px solid #EF9A9A; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.88rem; color: #C62828; margin-bottom: 18px; display: none; align-items: flex-start; gap: 10px; }
+        .error-msg.show { display: flex; }
+        .error-msg i { flex-shrink: 0; margin-top: 2px; }
+
+        .priority-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .priority-tag { padding: 7px 18px; border-radius: 25px; border: 2px solid var(--border); background: white; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: var(--font-main); }
+        .priority-tag.selected-low { background: #E8F5E9; border-color: #2E7D32; color: #2E7D32; }
+        .priority-tag.selected-medium { background: #FFF3E0; border-color: #FF6F00; color: #FF6F00; }
+        .priority-tag.selected-high { background: #FFEBEE; border-color: #C62828; color: #C62828; }
+
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .side-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 25px; }
+        .side-card h4 { font-family: var(--font-heading); font-size: 1.05rem; margin-bottom: 15px; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
+        .side-card h4 i { color: var(--primary); }
+        .process-steps { list-style: none; }
+        .process-steps li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 0.87rem; color: var(--text-medium); }
+        .process-steps li:last-child { border-bottom: none; }
+        .step-num { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .contact-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 0.87rem; }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-item i { width: 30px; height: 30px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; flex-shrink: 0; }
+        .contact-item strong { display: block; font-size: 0.8rem; color: var(--text-light); }
+        .stat-mini { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 0.87rem; }
+        .stat-mini:last-child { border-bottom: none; }
+        .stat-mini .val { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-overlay.show { display: flex; }
+        .modal { background: white; border-radius: var(--radius); padding: 45px 35px; text-align: center; max-width: 420px; width: 90%; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+        .modal-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin: 0 auto 20px; }
+        .modal h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-dark); margin-bottom: 10px; }
+        .modal p { font-size: 0.95rem; color: var(--text-medium); margin-bottom: 20px; }
+        .complaint-id { background: var(--bg-light); border-radius: var(--radius-sm); padding: 12px; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+        .btn-modal { padding: 12px 35px; border-radius: 50px; background: var(--primary); color: white; border: none; font-family: var(--font-main); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .btn-modal:hover { background: var(--primary-dark); }
+
+        .footer { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #CCC; padding: 50px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer h4 { color: white; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; }
+        .footer h4::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 3px; background: var(--saffron); border-radius: 2px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .footer-links { list-style: none; }
+        .footer-links li { padding: 5px 0; }
+        .footer-links a { color: #CCC; text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--saffron); padding-right: 5px; }
+        .footer-bottom { background: rgba(0,0,0,0.3); padding: 15px 0; text-align: center; font-size: 0.82rem; }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
+        .whatsapp-float { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 60%{transform:translateY(-5px)} }
+        .scroll-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: none; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; z-index: 999; border: none; box-shadow: var(--shadow); transition: var(--transition); }
+        .scroll-top.show { display: flex; }
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 6px; }
+
+        @media (max-width: 1024px) { .grievance-layout { grid-template-columns: 1fr; } .sidebar { order: -1; } }
+        @media (max-width: 768px) { .nav-toggle { display: block; } .main-nav { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; } .main-nav.show { display: block; } .main-nav ul { flex-direction: column; } .main-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); } .dropdown-menu { position: static; box-shadow: none; } .form-row { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .logo-text h1 { font-size: 1.05rem; } .form-card { padding: 22px; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div><i class="fas fa-phone-alt"></i> हेल्पलाइन: # &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-envelope"></i> info@haribhaugite.org</div>
+            <div>
+                <a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a>
+                <a href="/emergency"><i class="fas fa-ambulance"></i> आपत्कालीन</a>
+            </div>
+        </div>
+    </div>
+    <div class="tricolor-stripe"></div>
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">ह</div>
+                <div class="logo-text">
+                    <h1>हरिभाऊ गिते फाउंडेशन</h1>
+                    <p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते</p>
+                </div>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="main-nav" id="mainNav">
+            <div class="container">
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li>
+                    <li><a href="/foundation">फाउंडेशन</a></li>
+                    <li><a href="/nagarsevak">नगरसेवक</a></li>
+                    <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                    <li><a href="/events">कार्यक्रम</a></li>
+                    <li><a href="/works">विकास कामे</a></li>
+                    <li class="dropdown">
+                        <a href="/grievance" class="active">तक्रार निवारण ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="/grievance">तक्रार नोंदणी</a>
+                            <a href="/complaint-status">तक्रार स्थिती</a>
+                        </div>
+                    </li>
+                    <li><a href="/eservices">ई-सेवा</a></li>
+                    <li><a href="/gallery">फोटो गॅलरी</a></li>
+                    <li><a href="/news">बातम्या</a></li>
+                    <li><a href="/schemes">शासकीय योजना</a></li>
+                    <li><a href="/contact">संपर्क</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <div class="container">
+            <h2>तक्रार नोंदणी</h2>
+            <p>आपली तक्रार नोंदवा – जलद व पारदर्शक निवारण</p>
+            <div class="breadcrumb">
+                <a href="/">मुख्यपृष्ठ</a> <span>/</span> <span>तक्रार नोंदणी</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="section section-alt">
+        <div class="container">
+            <div class="grievance-layout">
+
+                <!-- FORM -->
+                <div class="form-card">
+                    <h3><i class="fas fa-file-alt"></i> नवीन तक्रार नोंदवा</h3>
+                    <div class="form-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>सर्व * चिन्हांकित माहिती भरणे आवश्यक आहे. तक्रार नोंदणीनंतर आपल्याला एक तक्रार क्रमांक (ID) दिला जाईल.</span>
+                    </div>
+
+                    <!-- API Error Banner -->
+                    <div class="error-msg" id="errorMsg">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="errorText"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>पूर्ण नाव <span>*</span></label>
+                            <input type="text" class="form-control" id="fullName" placeholder="आपले पूर्ण नाव लिहा">
+                        </div>
+                        <div class="form-group">
+                            <label>मोबाइल नंबर <span>*</span></label>
+                            <input type="tel" class="form-control" id="mobile" placeholder="१०-अंकी मोबाइल नंबर" maxlength="10">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ईमेल (पर्यायी)</label>
+                            <input type="email" class="form-control" id="email" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>वार्ड / गल्ली क्रमांक <span>*</span></label>
+                            <input type="text" class="form-control" id="ward" placeholder="उदा. वार्ड क्र. ३, गल्ली क्र. ७">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>पत्ता (तक्रारीचे ठिकाण) <span>*</span></label>
+                        <input type="text" class="form-control" id="address" placeholder="तक्रारीशी संबंधित ठिकाणाचा पत्ता">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>तक्रारीचा प्रकार <span>*</span></label>
+                            <select class="form-control" id="category">
+                                <option value="">-- प्रकार निवडा --</option>
+                                <option>रस्त्याची समस्या (खड्डे, दुरुस्ती)</option>
+                                <option>पाणीपुरवठा समस्या</option>
+                                <option>ड्रेनेज / सांडपाणी</option>
+                                <option>पथदिवे बंद / खराब</option>
+                                <option>कचरा / स्वच्छता</option>
+                                <option>सार्वजनिक शौचालय</option>
+                                <option>अनधिकृत बांधकाम</option>
+                                <option>उद्यान / मैदान</option>
+                                <option>शाळा / आरोग्य सुविधा</option>
+                                <option>इतर</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>उपप्रकार</label>
+                            <select class="form-control" id="subcategory">
+                                <option value="">-- उपप्रकार निवडा --</option>
+                                <option>नवीन काम आवश्यक</option>
+                                <option>दुरुस्ती आवश्यक</option>
+                                <option>नियमित देखभाल</option>
+                                <option>तातडीची समस्या</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>प्राधान्यक्रम <span>*</span></label>
+                        <div class="priority-row">
+                            <button type="button" class="priority-tag" onclick="setPriority('कमी', 'selected-low', this)">🟢 कमी</button>
+                            <button type="button" class="priority-tag" onclick="setPriority('मध्यम', 'selected-medium', this)">🟡 मध्यम</button>
+                            <button type="button" class="priority-tag" onclick="setPriority('जास्त', 'selected-high', this)">🔴 जास्त (तातडी)</button>
+                        </div>
+                        <input type="hidden" id="priority" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label>तक्रारीचे तपशील <span>*</span></label>
+                        <textarea class="form-control" id="description" placeholder="आपली तक्रार सविस्तर लिहा. कधी झाली, काय समस्या आहे, किती लोकांना त्रास आहे हे नमूद करा..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>फोटो जोडा <span>*</span></label>
+                        <input type="file" class="form-control" id="attachment" accept="image/jpeg,image/jpg,image/png">
+                        <small class="file-note">केवळ JPG, JPEG, PNG – कमाल ५ MB (API साठी एक फोटो आवश्यक)</small>
+                    </div>
+
+                    <button class="btn-submit" id="submitBtn" onclick="submitComplaint()">
+                        <span class="spinner"></span>
+                        <span class="btn-text"><i class="fas fa-paper-plane"></i> तक्रार सादर करा</span>
+                    </button>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="sidebar">
+                    <div class="side-card">
+                        <h4><i class="fas fa-chart-bar"></i> तक्रार निवारण आकडेवारी</h4>
+                        <div class="stat-mini"><span>एकूण तक्रारी</span><span class="val">१,२३५</span></div>
+                        <div class="stat-mini"><span>निवारण झाले</span><span class="val">१,१७२</span></div>
+                        <div class="stat-mini"><span>प्रलंबित</span><span class="val">६३</span></div>
+                        <div class="stat-mini"><span>सरासरी निवारण वेळ</span><span class="val">४.२ दिवस</span></div>
+                        <div class="stat-mini"><span>निवारण दर</span><span class="val">९५%</span></div>
+                    </div>
+
+                    <div class="side-card">
+                        <h4><i class="fas fa-list-ol"></i> तक्रार प्रक्रिया</h4>
+                        <ul class="process-steps">
+                            <li><span class="step-num">१</span> तक्रार अर्ज भरा व सादर करा</li>
+                            <li><span class="step-num">२</span> तक्रार क्रमांक (ID) मिळवा</li>
+                            <li><span class="step-num">३</span> SMS/WhatsApp द्वारे पुष्टी</li>
+                            <li><span class="step-num">४</span> संबंधित विभागाकडे पाठवणे</li>
+                            <li><span class="step-num">५</span> कार्यवाही व निवारण</li>
+                            <li><span class="step-num">६</span> तुमच्या अभिप्रायाने बंद</li>
+                        </ul>
+                    </div>
+
+                    <div class="side-card">
+                        <h4><i class="fas fa-phone-alt"></i> संपर्क करा</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div><strong>हेल्पलाइन</strong>#</div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div><strong>WhatsApp</strong>#</div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div><strong>ईमेल</strong>info@haribhaugite.org</div>
+                        </div>
+                        <div style="margin-top:15px;">
+                            <a href="/complaint-status" style="display:flex; align-items:center; gap:8px; background:var(--bg-light); padding:12px 16px; border-radius:var(--radius-sm); text-decoration:none; color:var(--secondary); font-weight:600; font-size:0.9rem; transition:var(--transition);">
+                                <i class="fas fa-search"></i> तक्रार स्थिती तपासा
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-icon">✅</div>
+            <h3>तक्रार यशस्वीरीत्या नोंदली!</h3>
+            <p>आपली तक्रार प्राप्त झाली आहे. खालील क्रमांक लक्षात ठेवा:</p>
+            <div class="complaint-id" id="complaintId">HGF-0000</div>
+            <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:20px;">SMS/WhatsApp द्वारे पुष्टी पाठविली जाईल. सरासरी ४-७ कामकाजी दिवसांत निवारण होईल.</p>
+            <button class="btn-modal" onclick="closeModal()">ठीक आहे</button>
+            <br><br>
+            <a href="/complaint-status" style="color:var(--primary); font-size:0.9rem; font-weight:600; text-decoration:none;">तक्रार स्थिती तपासा →</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>हरिभाऊ गिते फाउंडेशन</h4>
+                    <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी कटिबद्ध.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>द्रुत दुवे</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">मुख्यपृष्ठ</a></li>
+                        <li><a href="/foundation">फाउंडेशन विषयी</a></li>
+                        <li><a href="/nagarsevak">नगरसेवक</a></li>
+                        <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                        <li><a href="/events">कार्यक्रम</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>सेवा</h4>
+                    <ul class="footer-links">
+                        <li><a href="/grievance">तक्रार नोंदणी</a></li>
+                        <li><a href="/complaint-status">तक्रार स्थिती</a></li>
+                        <li><a href="/eservices">ई-सेवा</a></li>
+                        <li><a href="/schemes">शासकीय योजना</a></li>
+                        <li><a href="/news">बातम्या</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>संपर्क</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt" style="color:var(--saffron);margin-left:8px;"></i> नाशिक, महाराष्ट्र</li>
+                        <li><i class="fas fa-phone" style="color:var(--saffron);margin-left:8px;"></i> #</li>
+                        <li><i class="fas fa-envelope" style="color:var(--saffron);margin-left:8px;"></i> info@haribhaugite.org</li>
+                    </ul>
+                    <div style="margin-top:15px;">
+                        <a href="/emergency" class="btn-sm" style="background:#C62828;color:white;font-size:0.8rem;"><i class="fas fa-ambulance"></i> आपत्कालीन संपर्क</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container"><p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव.</p></div>
+        </div>
+    </footer>
+
+    <a href="#" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        // ─── Nav ────────────────────────────────────────────────
+        function toggleNav() { document.getElementById('mainNav').classList.toggle('show'); }
+        window.addEventListener('scroll', () => {
+            document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300);
+        });
+
+        // ─── Priority selector ──────────────────────────────────
+        let selectedPriority = '';
+        function setPriority(val, cls, btn) {
+            selectedPriority = val;
+            document.getElementById('priority').value = val;
+            document.querySelectorAll('.priority-tag').forEach(t => t.className = 'priority-tag');
+            btn.classList.add(cls);
+        }
+
+        // ─── Show / hide inline error banner ───────────────────
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            document.getElementById('errorText').textContent = msg;
+            el.classList.add('show');
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        function hideError() {
+            document.getElementById('errorMsg').classList.remove('show');
+        }
+
+        // ─── Client-side validation ─────────────────────────────
+        function validate() {
+            const name     = document.getElementById('fullName').value.trim();
+            const mobile   = document.getElementById('mobile').value.trim();
+            const ward     = document.getElementById('ward').value.trim();
+            const address  = document.getElementById('address').value.trim();
+            const category = document.getElementById('category').value;
+            const desc     = document.getElementById('description').value.trim();
+            const fileInput = document.getElementById('attachment');
+
+            if (!name)           { showError('कृपया पूर्ण नाव भरा.'); return false; }
+            if (!mobile)         { showError('कृपया मोबाइल नंबर भरा.'); return false; }
+            if (!/^\d{10}$/.test(mobile)) { showError('कृपया योग्य १०-अंकी मोबाइल नंबर टाका.'); return false; }
+            if (!ward)           { showError('कृपया वार्ड / गल्ली क्रमांक भरा.'); return false; }
+            if (!address)        { showError('कृपया तक्रारीचे ठिकाण / पत्ता भरा.'); return false; }
+            if (!category)       { showError('कृपया तक्रारीचा प्रकार निवडा.'); return false; }
+            if (!selectedPriority) { showError('कृपया प्राधान्यक्रम निवडा.'); return false; }
+            if (!desc)           { showError('कृपया तक्रारीचे तपशील लिहा.'); return false; }
+            if (!fileInput.files || fileInput.files.length === 0) {
+                showError('कृपया किमान एक फोटो जोडा (JPG, JPEG किंवा PNG).'); return false;
+            }
+
+            const file = fileInput.files[0];
+            const allowed = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (!allowed.includes(file.type)) {
+                showError('केवळ JPG, JPEG, PNG फोटो स्वीकारले जातात.'); return false;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                showError('फोटोचा आकार ५ MB पेक्षा जास्त नसावा.'); return false;
+            }
+
+            return true;
+        }
+
+        // ─── Submit: POST to /register_complain ────────────────
+        async function submitComplaint() {
+            hideError();
+            if (!validate()) return;
+
+            const btn = document.getElementById('submitBtn');
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            // Build FormData matching the FastAPI parameters:
+            // name, mobile_number, Address, complain_type, description, file
+            const formData = new FormData();
+            formData.append('name',          document.getElementById('fullName').value.trim());
+            formData.append('mobile_number', document.getElementById('mobile').value.trim());
+
+            // Combine ward + address into Address field
+            const ward    = document.getElementById('ward').value.trim();
+            const address = document.getElementById('address').value.trim();
+            formData.append('Address', ward ? `${ward}, ${address}` : address);
+
+            formData.append('complain_type', document.getElementById('category').value);
+            formData.append('description',   document.getElementById('description').value.trim());
+            formData.append('file',          document.getElementById('attachment').files[0]);
+
+            try {
+                const response = await fetch('/register_complain', {
+                    method: 'POST',
+                    body: formData
+                    // Do NOT set Content-Type header; browser sets it with boundary automatically
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    // Show success modal with the complain_no returned by API
+                    document.getElementById('complaintId').textContent = data.complain_no;
+                    document.getElementById('successModal').classList.add('show');
+                } else {
+                    // API returned fail / error
+                    showError(data.message || 'तक्रार नोंदणी अयशस्वी. कृपया पुन्हा प्रयत्न करा.');
+                }
+
+            } catch (err) {
+                console.error('API error:', err);
+                showError('सर्व्हरशी संपर्क साधता आला नाही. कृपया इंटरनेट तपासा व पुन्हा प्रयत्न करा.');
+            } finally {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+            }
+        }
+
+        // ─── Close modal & reset form ───────────────────────────
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('show');
+            // Reset all form fields
+            document.querySelectorAll('.form-control').forEach(el => el.value = '');
+            document.querySelectorAll('.priority-tag').forEach(t => t.className = 'priority-tag');
+            selectedPriority = '';
+            hideError();
+        }
+    </script>
+</body>
+</html>

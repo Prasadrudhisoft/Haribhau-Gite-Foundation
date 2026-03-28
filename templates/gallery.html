@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – फोटो गॅलरी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E65100;
+            --primary-dark: #BF360C;
+            --primary-light: #FF8A65;
+            --secondary: #1565C0;
+            --secondary-dark: #0D47A1;
+            --saffron: #FF9933;
+            --white-flag: #FFFFFF;
+            --green-flag: #138808;
+            --accent: #2E7D32;
+            --accent-light: #66BB6A;
+            --bg-light: #F5F5F5;
+            --text-dark: #212121;
+            --text-medium: #424242;
+            --text-light: #757575;
+            --border: #E0E0E0;
+            --shadow: 0 2px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s ease;
+            --font-main: 'Noto Sans Devanagari', sans-serif;
+            --font-heading: 'Tiro Devanagari Marathi', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; overflow-x: hidden; }
+
+        /* ── TOP BAR ── */
+        .top-bar { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; padding: 6px 0; font-size: 0.82rem; font-weight: 500; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
+        .top-bar a:hover { opacity: 0.8; }
+
+        /* ── TRICOLOR ── */
+        .tricolor-stripe { height: 4px; background: linear-gradient(to right, var(--saffron) 33%, var(--white-flag) 33%, var(--white-flag) 66%, var(--green-flag) 66%); }
+
+        /* ── HEADER ── */
+        .header { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); flex-shrink: 0; }
+        .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
+        .logo-text p { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+        .nav-toggle { display: none; background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 1.3rem; cursor: pointer; }
+
+        /* ── NAV ── */
+        .main-nav { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; }
+        .main-nav a { display: block; color: white; text-decoration: none; padding: 12px 16px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); position: relative; white-space: nowrap; }
+        .main-nav a:hover, .main-nav a.active { background: rgba(255,255,255,0.15); }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--saffron); transition: var(--transition); border-radius: 3px 3px 0 0; }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 80%; }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: var(--shadow-lg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); min-width: 220px; z-index: 100; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { color: var(--text-dark); padding: 10px 20px; border-bottom: 1px solid var(--border); font-size: 0.83rem; display: block; text-decoration: none; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
+        .dropdown-menu a::after { display: none; }
+
+        /* ── LAYOUT ── */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── PAGE BANNER ── */
+        .page-banner { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary), var(--primary)); color: white; padding: 50px 0; text-align: center; position: relative; overflow: hidden; }
+        .page-banner::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>'); }
+        .page-banner .container { position: relative; z-index: 1; }
+        .page-banner h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px; }
+        .page-banner p { font-size: 1rem; opacity: 0.92; }
+        .breadcrumb { display: flex; justify-content: center; gap: 8px; margin-top: 14px; font-size: 0.85rem; opacity: 0.82; }
+        .breadcrumb a { color: white; text-decoration: none; }
+
+        /* ── SECTION ── */
+        .section { padding: 60px 0; }
+        .section-alt { background: white; }
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h2 { font-family: var(--font-heading); font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(to right, var(--saffron), var(--primary)); border-radius: 2px; }
+        .section-header p { color: var(--text-light); margin-top: 18px; font-size: 1rem; }
+
+        /* ── COUNT BADGE ── */
+        .gallery-meta { display: flex; justify-content: center; align-items: center; margin-bottom: 30px; min-height: 36px; }
+        .gallery-count-badge { background: linear-gradient(135deg, var(--primary), var(--saffron)); color: white; padding: 6px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+
+        /* ── MASONRY GRID ── */
+        .gallery-grid { columns: 4; column-gap: 15px; }
+        .gallery-item { break-inside: avoid; margin-bottom: 15px; border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; position: relative; background: white; box-shadow: var(--shadow); transition: var(--transition); }
+        .gallery-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* ── THUMB ── */
+        .gallery-thumb { width: 100%; display: block; object-fit: cover; background: #eee; }
+        .gallery-thumb-placeholder { width: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e8e8e8, #f5f5f5); color: #bbb; font-size: 2.5rem; }
+
+        /* ── OVERLAY ── */
+        .gallery-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transition: var(--transition); padding: 15px; text-align: center; pointer-events: none; }
+        .gallery-overlay i { color: white; font-size: 2rem; }
+        .gallery-overlay span { color: white; font-size: 0.82rem; font-weight: 500; }
+
+        /* ── CAPTION ── */
+        .gallery-caption { padding: 10px 14px; background: white; }
+        .gallery-caption h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gallery-caption span { font-size: 0.75rem; color: var(--text-light); }
+
+        /* ── LOADING ── */
+        .gallery-loading { text-align: center; padding: 70px 20px; }
+        .spinner { width: 48px; height: 48px; border: 4px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.85s linear infinite; margin: 0 auto 18px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .gallery-loading p { color: var(--text-light); font-size: 1rem; }
+
+        /* ── ERROR ── */
+        .gallery-error { text-align: center; padding: 70px 20px; }
+        .gallery-error .err-icon { font-size: 3.5rem; color: #C62828; margin-bottom: 16px; display: block; }
+        .gallery-error p { color: var(--text-medium); font-size: 1rem; margin-bottom: 20px; max-width: 400px; margin-left: auto; margin-right: auto; }
+        .retry-btn { padding: 11px 30px; background: var(--primary); color: white; border: none; border-radius: 30px; font-size: 0.92rem; font-family: var(--font-main); font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+        .retry-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+        /* ── EMPTY ── */
+        .gallery-empty { text-align: center; padding: 70px 20px; color: var(--text-light); }
+        .gallery-empty i { font-size: 3.5rem; margin-bottom: 16px; display: block; opacity: 0.5; }
+        .gallery-empty p { font-size: 1rem; }
+
+        /* ── LIGHTBOX ── */
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 3000; align-items: center; justify-content: center; flex-direction: column; gap: 22px; padding: 24px; }
+        .lightbox.show { display: flex; animation: lbFadeIn 0.25s ease; }
+        @keyframes lbFadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.4rem; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .lightbox-close:hover { background: var(--primary); }
+        .lightbox-img-wrap { max-width: min(85vw, 900px); max-height: 62vh; border-radius: var(--radius); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .lightbox-img-wrap img { max-width: 100%; max-height: 62vh; object-fit: contain; border-radius: var(--radius); display: block; }
+        .lightbox-placeholder { width: 260px; height: 260px; display: flex; align-items: center; justify-content: center; font-size: 5rem; background: rgba(255,255,255,0.07); border-radius: var(--radius); color: rgba(255,255,255,0.4); }
+        .lightbox-info { color: white; text-align: center; max-width: 640px; }
+        .lightbox-info h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 6px; line-height: 1.4; }
+        .lightbox-info p { font-size: 0.9rem; opacity: 0.75; line-height: 1.6; }
+        .lb-meta { display: flex; justify-content: center; gap: 22px; margin-top: 10px; font-size: 0.8rem; opacity: 0.55; flex-wrap: wrap; }
+        .lb-meta span { display: flex; align-items: center; gap: 5px; }
+
+        /* ── CTA ── */
+        .cta-banner { background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--saffron)); color: white; padding: 50px 0; text-align: center; }
+        .cta-banner h2 { font-family: var(--font-heading); font-size: 1.9rem; margin-bottom: 12px; }
+        .cta-banner p { font-size: 1rem; opacity: 0.95; margin-bottom: 25px; }
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; border: none; font-family: var(--font-main); cursor: pointer; }
+        .btn-white { background: white; color: var(--primary); }
+        .btn-white:hover { background: var(--bg-light); transform: translateY(-2px); }
+        .btn-white-outline { background: transparent; color: white; border: 2px solid white; }
+        .btn-white-outline:hover { background: white; color: var(--primary); transform: translateY(-2px); }
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
+
+        /* ── FOOTER ── */
+        .footer { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #CCC; padding: 50px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer h4 { color: white; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; }
+        .footer h4::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 3px; background: var(--saffron); border-radius: 2px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .footer-links { list-style: none; }
+        .footer-links li { padding: 5px 0; }
+        .footer-links a { color: #CCC; text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--saffron); padding-right: 5px; }
+        .footer-bottom { background: rgba(0,0,0,0.3); padding: 15px 0; text-align: center; font-size: 0.82rem; }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
+
+        /* ── FLOATING BUTTONS ── */
+        .whatsapp-float { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 60%{transform:translateY(-5px)} }
+        .scroll-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: none; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; z-index: 999; border: none; box-shadow: var(--shadow); transition: var(--transition); }
+        .scroll-top.show { display: flex; }
+        .scroll-top:hover { background: var(--primary-dark); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .gallery-grid { columns: 3; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .main-nav { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; }
+            .main-nav.show { display: block; }
+            .main-nav ul { flex-direction: column; }
+            .main-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .dropdown-menu { position: static; box-shadow: none; background: rgba(0,0,0,0.15); }
+            .dropdown-menu a { color: white; border-color: rgba(255,255,255,0.1); }
+            .gallery-grid { columns: 2; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .page-banner h2 { font-size: 1.7rem; }
+        }
+        @media (max-width: 480px) {
+            .logo-text h1 { font-size: 1.05rem; }
+            .gallery-grid { columns: 1; }
+            .lightbox-img-wrap { max-width: 95vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div>
+                <i class="fas fa-phone-alt"></i> हेल्पलाइन: #
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <i class="fas fa-envelope"></i> info@haribhaugite.org
+            </div>
+            <div>
+                <a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a>
+                <a href="/emergency"><i class="fas fa-ambulance"></i> आपत्कालीन</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="tricolor-stripe"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">ह</div>
+                <div class="logo-text">
+                    <h1>हरिभाऊ गिते फाउंडेशन</h1>
+                    <p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते &amp; दीपालीताई गिते</p>
+                </div>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="main-nav" id="mainNav">
+            <div class="container">
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li>
+                    <li><a href="/foundation">फाउंडेशन</a></li>
+                    <li><a href="/nagarsevak">नगरसेवक</a></li>
+                    <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                    <li><a href="/events">कार्यक्रम</a></li>
+                    <li><a href="/works">विकास कामे</a></li>
+                    <li class="dropdown">
+                        <a href="/grievance">तक्रार निवारण ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="/grievance">तक्रार नोंदणी</a>
+                            <a href="/complaint-status">तक्रार स्थिती</a>
+                        </div>
+                    </li>
+                    <li><a href="/eservices">ई-सेवा</a></li>
+                    <li><a href="/gallery" class="active">फोटो गॅलरी</a></li>
+                    <li><a href="/news">बातम्या</a></li>
+                    <li><a href="/schemes">शासकीय योजना</a></li>
+                    <li><a href="/contact">संपर्क</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <div class="container">
+            <h2>फोटो गॅलरी</h2>
+            <p>फाउंडेशनच्या कार्यक्रम व विकास कामांचे छायाचित्र संग्रह</p>
+            <div class="breadcrumb">
+                <a href="/">मुख्यपृष्ठ</a>
+                <span>/</span>
+                <span>फोटो गॅलरी</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY SECTION -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>छायाचित्र संग्रह</h2>
+                <p>कार्यक्रम, विकासकामे आणि सामाजिक उपक्रमांचे फोटो</p>
+            </div>
+
+            <!-- Total count badge (shown after API load) -->
+            <div class="gallery-meta">
+                <div class="gallery-count-badge" id="galleryCountBadge" style="display:none;">
+                    <i class="fas fa-images"></i>
+                    एकूण <span id="galleryTotalCount">0</span> फोटो
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div id="galleryLoading" class="gallery-loading">
+                <div class="spinner"></div>
+                <p>फोटो लोड होत आहेत...</p>
+            </div>
+
+            <!-- Error -->
+            <div id="galleryError" class="gallery-error" style="display:none;">
+                <i class="fas fa-exclamation-circle err-icon"></i>
+                <p id="galleryErrorMsg">फोटो लोड करताना त्रुटी आली. कृपया पुन्हा प्रयत्न करा.</p>
+                <button class="retry-btn" onclick="fetchGallery()">
+                    <i class="fas fa-redo"></i> पुन्हा प्रयत्न करा
+                </button>
+            </div>
+
+            <!-- Empty -->
+            <div id="galleryEmpty" class="gallery-empty" style="display:none;">
+                <i class="fas fa-photo-video"></i>
+                <p>सध्या कोणतेही फोटो उपलब्ध नाहीत.</p>
+            </div>
+
+            <!-- Masonry Grid (filled by JS) -->
+            <div class="gallery-grid" id="galleryGrid" style="display:none;"></div>
+
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>आपले फोटो पाठवा!</h2>
+            <p>प्रभागातील समस्या किंवा कार्यक्रमाचे फोटो WhatsApp वर पाठवा.</p>
+            <div class="cta-buttons">
+                <a href="/contact" class="btn btn-white">
+                    <i class="fab fa-whatsapp"></i> WhatsApp वर पाठवा
+                </a>
+                <a href="/events" class="btn btn-white-outline">
+                    <i class="fas fa-calendar-alt"></i> कार्यक्रम पहा
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="handleLightboxClick(event)">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="lightbox-img-wrap" id="lbImgWrap"></div>
+        <div class="lightbox-info">
+            <h3 id="lbTitle"></h3>
+            <p id="lbDesc"></p>
+            <div class="lb-meta" id="lbMeta"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>हरिभाऊ गिते फाउंडेशन</h4>
+                    <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी कटिबद्ध.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>द्रुत दुवे</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">मुख्यपृष्ठ</a></li>
+                        <li><a href="/foundation">फाउंडेशन विषयी</a></li>
+                        <li><a href="/nagarsevak">नगरसेवक</a></li>
+                        <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                        <li><a href="/events">कार्यक्रम</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>सेवा</h4>
+                    <ul class="footer-links">
+                        <li><a href="/grievance">तक्रार नोंदणी</a></li>
+                        <li><a href="/complaint-status">तक्रार स्थिती</a></li>
+                        <li><a href="/eservices">ई-सेवा</a></li>
+                        <li><a href="/schemes">शासकीय योजना</a></li>
+                        <li><a href="/news">बातम्या</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>संपर्क</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-map-marker-alt" style="color:var(--saffron);margin-left:8px;"></i>
+                            नाशिक, महाराष्ट्र
+                        </li>
+                        <li>
+                            <i class="fas fa-phone" style="color:var(--saffron);margin-left:8px;"></i> #
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope" style="color:var(--saffron);margin-left:8px;"></i>
+                            info@haribhaugite.org
+                        </li>
+                    </ul>
+                    <div style="margin-top:15px;">
+                        <a href="/emergency" class="btn btn-sm" style="background:#C62828;color:white;font-size:0.8rem;">
+                            <i class="fas fa-ambulance"></i> आपत्कालीन संपर्क
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS -->
+    <a href="#" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        /* =========================================================
+           CONFIG  –  change GALLERY_API to match your backend URL
+        ========================================================= */
+        const GALLERY_API = '/user_get_gallery';
+
+        /* ── Varying heights for masonry visual rhythm ── */
+        const HEIGHTS = [160, 175, 190, 200, 215, 165, 185, 205, 170, 195];
+        let heightIndex = 0;
+        function nextHeight() {
+            const h = HEIGHTS[heightIndex % HEIGHTS.length];
+            heightIndex++;
+            return h;
+        }
+
+        /* ── Format date (ISO / DB timestamp → readable Marathi date) ── */
+        function formatDate(raw) {
+            if (!raw) return '';
+            try {
+                return new Date(raw).toLocaleDateString('mr-IN', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
+            } catch (_) {
+                return raw;
+            }
+        }
+
+        /* ── Toggle mobile nav ── */
+        function toggleNav() {
+            document.getElementById('mainNav').classList.toggle('show');
+        }
+
+        /* ── Scroll-to-top button ── */
+        window.addEventListener('scroll', () => {
+            document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300);
+        });
+
+        /* =========================================================
+           RENDER ONE GALLERY CARD
+           API row: [id, photo_path, description, uploaded_at, uploaded_by]
+           The function safely handles both array rows and plain objects.
+        ========================================================= */
+        function renderCard(row) {
+            let id, photo_path, description, uploaded_at, uploaded_by;
+
+            if (Array.isArray(row)) {
+                // Python cursor.fetchall() → list of tuples → JS arrays
+                id          = row[0];
+                photo_path  = row[1] || '';
+                description = row[2] || '';
+                uploaded_at = row[3] || '';
+                uploaded_by = row[4] || '';
+            } else if (row && typeof row === 'object') {
+                // Plain JSON object (future-proof)
+                id          = row.id;
+                photo_path  = row.photo_path  || row.photoPath  || row.path   || '';
+                description = row.description || row.desc       || row.title  || '';
+                uploaded_at = row.uploaded_at || row.uploadedAt || row.date   || '';
+                uploaded_by = row.uploaded_by || row.uploadedBy || row.user   || '';
+            } else {
+                return null; // skip unknown shape
+            }
+
+            const title   = description || 'फोटो';
+            const dateStr = formatDate(uploaded_at);
+            const byStr   = uploaded_by || '';
+            const height  = nextHeight();
+
+            /* Build thumb HTML */
+            let thumbHTML;
+            if (photo_path) {
+                thumbHTML = `
+                    <img
+                        class="gallery-thumb"
+                        src="${photo_path}"
+                        alt="${title}"
+                        style="height:${height}px;"
+                        loading="lazy"
+                        onerror="this.style.display='none';
+                                 this.nextElementSibling.style.display='flex';"
+                    >
+                    <div class="gallery-thumb-placeholder" style="height:${height}px; display:none;">
+                        <i class="fas fa-image"></i>
+                    </div>`;
+            } else {
+                thumbHTML = `
+                    <div class="gallery-thumb-placeholder" style="height:${height}px;">
+                        <i class="fas fa-image"></i>
+                    </div>`;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'gallery-item';
+            card.innerHTML = `
+                ${thumbHTML}
+                <div class="gallery-overlay">
+                    <i class="fas fa-expand-alt"></i>
+                    <span>पाहण्यासाठी क्लिक करा</span>
+                </div>
+                <div class="gallery-caption">
+                    <h4 title="${title}">${title}</h4>
+                    <span>${dateStr}}</span>
+                </div>`;
+
+            card.addEventListener('click', () => openLightbox(photo_path, title, description, dateStr, byStr));
+            return card;
+        }
+
+        /* =========================================================
+           FETCH GALLERY  –  calls /user/user_get_gallery
+        ========================================================= */
+        async function fetchGallery() {
+            const loadingEl = document.getElementById('galleryLoading');
+            const errorEl   = document.getElementById('galleryError');
+            const emptyEl   = document.getElementById('galleryEmpty');
+            const gridEl    = document.getElementById('galleryGrid');
+            const badgeEl   = document.getElementById('galleryCountBadge');
+
+            /* Reset UI */
+            loadingEl.style.display = 'block';
+            errorEl.style.display   = 'none';
+            emptyEl.style.display   = 'none';
+            gridEl.style.display    = 'none';
+            badgeEl.style.display   = 'none';
+            gridEl.innerHTML        = '';
+            heightIndex             = 0;
+
+            try {
+                const res = await fetch(GALLERY_API);
+
+                if (!res.ok) throw new Error(`Server error ${res.status}: ${res.statusText}`);
+
+                const data = await res.json();
+
+                if (data.status !== 'success') throw new Error(data.message || 'API returned error status');
+
+                const images = Array.isArray(data.images) ? data.images : [];
+
+                loadingEl.style.display = 'none';
+
+                if (images.length === 0) {
+                    emptyEl.style.display = 'block';
+                    return;
+                }
+
+                /* Populate grid */
+                images.forEach(row => {
+                    const card = renderCard(row);
+                    if (card) gridEl.appendChild(card);
+                });
+
+                /* Show count badge */
+                document.getElementById('galleryTotalCount').textContent = data.total || images.length;
+                badgeEl.style.display = 'inline-flex';
+
+                gridEl.style.display = 'block';
+
+            } catch (err) {
+                loadingEl.style.display = 'none';
+                document.getElementById('galleryErrorMsg').textContent =
+                    'त्रुटी: ' + err.message;
+                errorEl.style.display = 'block';
+                console.error('[Gallery] Fetch error:', err);
+            }
+        }
+
+        /* =========================================================
+           LIGHTBOX
+        ========================================================= */
+        function openLightbox(photoPath, title, description, dateStr, uploadedBy) {
+            const wrap = document.getElementById('lbImgWrap');
+            wrap.innerHTML = '';
+
+            if (photoPath) {
+                const img = new Image();
+                img.alt   = title;
+                img.style.cssText = 'max-width:100%;max-height:62vh;object-fit:contain;border-radius:var(--radius);display:block;';
+                img.onerror = () => {
+                    wrap.innerHTML = `<div class="lightbox-placeholder"><i class="fas fa-image"></i></div>`;
+                };
+                img.src = photoPath;
+                wrap.appendChild(img);
+            } else {
+                wrap.innerHTML = `<div class="lightbox-placeholder"><i class="fas fa-image"></i></div>`;
+            }
+
+            document.getElementById('lbTitle').textContent = title || '';
+            document.getElementById('lbDesc').textContent  = (description && description !== title) ? description : '';
+
+            let meta = '';
+            if (dateStr)    meta += `<span><i class="fas fa-calendar-alt"></i> ${dateStr}</span>`;
+            // if (uploadedBy) meta += `<span><i class="fas fa-user"></i> ${uploadedBy}</span>`;
+            document.getElementById('lbMeta').innerHTML = meta;
+
+            document.getElementById('lightbox').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        /* Close on backdrop click but NOT on image click */
+        function handleLightboxClick(e) {
+            if (!e.target.closest('.lightbox-img-wrap') &&
+                !e.target.closest('.lightbox-info') &&
+                !e.target.closest('.lightbox-close')) {
+                closeLightbox();
+            }
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        /* ── Boot ── */
+        document.addEventListener('DOMContentLoaded', fetchGallery);
+    </script>
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – कार्यक्रम</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E65100; --primary-dark: #BF360C; --primary-light: #FF8A65;
+            --secondary: #1565C0; --secondary-dark: #0D47A1;
+            --saffron: #FF9933; --white-flag: #FFFFFF; --green-flag: #138808;
+            --accent: #2E7D32; --accent-light: #66BB6A;
+            --bg-light: #F5F5F5; --text-dark: #212121; --text-medium: #424242; --text-light: #757575;
+            --border: #E0E0E0; --shadow: 0 2px 12px rgba(0,0,0,0.1); --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --radius: 12px; --radius-sm: 8px; --transition: all 0.3s ease;
+            --font-main: 'Noto Sans Devanagari', sans-serif; --font-heading: 'Tiro Devanagari Marathi', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; overflow-x: hidden; }
+
+        .top-bar { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; padding: 6px 0; font-size: 0.82rem; font-weight: 500; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
+        .top-bar a:hover { opacity: 0.8; }
+        .tricolor-stripe { height: 4px; background: linear-gradient(to right, var(--saffron) 33%, var(--white-flag) 33%, var(--white-flag) 66%, var(--green-flag) 66%); }
+        .header { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); }
+        .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
+        .logo-text p { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+        .nav-toggle { display: none; background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 1.3rem; cursor: pointer; }
+        .main-nav { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; }
+        .main-nav a { display: block; color: white; text-decoration: none; padding: 12px 16px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); position: relative; white-space: nowrap; }
+        .main-nav a:hover, .main-nav a.active { background: rgba(255,255,255,0.15); }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--saffron); transition: var(--transition); border-radius: 3px 3px 0 0; }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 80%; }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: var(--shadow-lg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); min-width: 220px; z-index: 100; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { color: var(--text-dark); padding: 10px 20px; border-bottom: 1px solid var(--border); font-size: 0.83rem; display: block; text-decoration: none; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        .page-banner { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary), var(--primary)); color: white; padding: 50px 0; text-align: center; position: relative; overflow: hidden; }
+        .page-banner::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>'); }
+        .page-banner .container { position: relative; z-index: 1; }
+        .page-banner h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px; }
+        .page-banner p { font-size: 1rem; opacity: 0.92; }
+        .breadcrumb { display: flex; justify-content: center; gap: 8px; margin-top: 14px; font-size: 0.85rem; opacity: 0.82; flex-wrap: wrap; }
+        .breadcrumb a { color: white; text-decoration: none; }
+
+        .section { padding: 60px 0; }
+        .section-alt { background: white; }
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h2 { font-family: var(--font-heading); font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(to right, var(--saffron), var(--primary)); border-radius: 2px; }
+        .section-header p { color: var(--text-light); margin-top: 18px; font-size: 1rem; }
+
+        .summary-strip { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); color: white; padding: 30px 0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .summary-item { padding: 10px; border-left: 1px solid rgba(255,255,255,0.15); }
+        .summary-item:first-child { border-left: none; }
+        .summary-num { font-size: 2.2rem; font-weight: 800; color: var(--saffron); display: block; line-height: 1.2; }
+        .summary-label { font-size: 0.78rem; opacity: 0.9; margin-top: 4px; }
+
+        .upcoming-hero { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); border-radius: var(--radius); padding: 30px 35px; margin-bottom: 35px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; border: 2px solid var(--saffron); animation: fadeInUp 0.4s ease; }
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+        .upcoming-date-box { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; border-radius: var(--radius); padding: 18px 26px; text-align: center; }
+        .upcoming-date-box .day { font-size: 2.8rem; font-weight: 800; line-height: 1; }
+        .upcoming-date-box .month { font-size: 0.95rem; font-weight: 600; margin-top: 4px; }
+        .upcoming-date-box .year { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; }
+        .upcoming-badge { display: inline-block; background: var(--primary); color: white; padding: 3px 13px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+        .upcoming-info h3 { font-family: var(--font-heading); font-size: 1.45rem; color: var(--primary-dark); margin-bottom: 7px; }
+        .upcoming-info p { font-size: 0.92rem; color: var(--text-medium); margin-bottom: 12px; line-height: 1.75; }
+        .event-meta { display: flex; gap: 18px; flex-wrap: wrap; }
+        .event-meta-item { font-size: 0.83rem; color: var(--text-light); display: flex; align-items: center; gap: 5px; }
+        .event-meta-item i { color: var(--primary); }
+
+        .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 35px; }
+        .filter-tab { padding: 9px 22px; border-radius: 30px; border: 2px solid var(--border); background: white; color: var(--text-medium); font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: var(--font-main); }
+        .filter-tab:hover, .filter-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 24px; }
+        .event-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); border: 1px solid var(--border); animation: fadeInUp 0.4s ease both; }
+        .event-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .event-card-img { height: 155px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .event-date-pill { position: absolute; top: 12px; right: 12px; background: white; border-radius: var(--radius-sm); padding: 6px 11px; text-align: center; box-shadow: var(--shadow); }
+        .event-date-pill .d { font-size: 1.15rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .event-date-pill .m { font-size: 0.7rem; color: var(--text-light); font-weight: 600; }
+        .event-card-body { padding: 20px; }
+        .event-type-tag { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 0.74rem; font-weight: 700; margin-bottom: 9px; }
+        .event-card-body h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 7px; color: var(--text-dark); }
+        .event-card-body p { font-size: 0.86rem; color: var(--text-light); line-height: 1.7; margin-bottom: 13px; }
+        .event-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 6px; }
+        .event-card-footer span { font-size: 0.79rem; color: var(--text-light); display: flex; align-items: center; gap: 4px; }
+
+        .past-table-wrap { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+        .past-table { width: 100%; border-collapse: collapse; }
+        .past-table th { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); color: white; padding: 13px 18px; text-align: right; font-size: 0.88rem; font-weight: 600; }
+        .past-table td { padding: 12px 18px; border-bottom: 1px solid var(--border); font-size: 0.87rem; color: var(--text-medium); text-align: right; }
+        .past-table tr:last-child td { border-bottom: none; }
+        .past-table tr:hover td { background: #FFF8F5; }
+        .past-table td:first-child { font-weight: 600; color: var(--text-dark); }
+        .type-badge { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+
+        .loading-state { text-align: center; padding: 60px 20px; color: var(--text-light); }
+        .loading-state i { font-size: 2.5rem; margin-bottom: 15px; display: block; animation: spin 1s linear infinite; }
+        @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        .empty-state { text-align: center; padding: 60px 20px; background: white; border-radius: var(--radius); box-shadow: var(--shadow); }
+        .empty-state i { font-size: 3rem; margin-bottom: 15px; display: block; color: var(--border); }
+        .empty-state h3 { font-family: var(--font-heading); color: var(--text-medium); margin-bottom: 8px; }
+        .empty-state p { font-size: 0.9rem; color: var(--text-light); }
+        .error-state { text-align: center; padding: 40px 20px; background: #FFEBEE; border-radius: var(--radius); border: 1px solid #EF9A9A; color: #C62828; }
+        .error-state i { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+        .cta-banner { background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--saffron)); color: white; padding: 50px 0; text-align: center; }
+        .cta-banner h2 { font-family: var(--font-heading); font-size: 1.9rem; margin-bottom: 12px; }
+        .cta-banner p { font-size: 1rem; opacity: 0.95; margin-bottom: 25px; }
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; border: none; font-family: var(--font-main); cursor: pointer; }
+        .btn-white { background: white; color: var(--primary); }
+        .btn-white:hover { background: var(--bg-light); transform: translateY(-2px); }
+        .btn-white-outline { background: transparent; color: white; border: 2px solid white; }
+        .btn-white-outline:hover { background: white; color: var(--primary); transform: translateY(-2px); }
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
+
+        .footer { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #CCC; padding: 50px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer h4 { color: white; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; }
+        .footer h4::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 3px; background: var(--saffron); border-radius: 2px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .footer-links { list-style: none; }
+        .footer-links li { padding: 5px 0; }
+        .footer-links a { color: #CCC; text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--saffron); padding-right: 5px; }
+        .footer-bottom { background: rgba(0,0,0,0.3); padding: 15px 0; text-align: center; font-size: 0.82rem; }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
+        .whatsapp-float { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 60%{transform:translateY(-5px)} }
+        .scroll-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: none; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; z-index: 999; border: none; box-shadow: var(--shadow); transition: var(--transition); }
+        .scroll-top.show { display: flex; }
+
+        @media (max-width: 900px) { .summary-grid { grid-template-columns: repeat(2, 1fr); } .upcoming-hero { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) { .nav-toggle { display: block; } .main-nav { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; } .main-nav.show { display: block; } .main-nav ul { flex-direction: column; } .main-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); } .dropdown-menu { position: static; box-shadow: none; } .events-grid { grid-template-columns: 1fr; } .past-table-wrap { overflow-x: auto; } .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .logo-text h1 { font-size: 1.05rem; } .summary-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <div><i class="fas fa-phone-alt"></i> हेल्पलाइन: # &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-envelope"></i> info@haribhaugite.org</div>
+            <div>
+                <a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a>
+                <a href="/emergency"><i class="fas fa-ambulance"></i> आपत्कालीन</a>
+            </div>
+        </div>
+    </div>
+    <div class="tricolor-stripe"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">ह</div>
+                <div class="logo-text">
+                    <h1>हरिभाऊ गिते फाउंडेशन</h1>
+                    <p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते</p>
+                </div>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="main-nav" id="mainNav">
+            <div class="container">
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li>
+                    <li><a href="/foundation">फाउंडेशन</a></li>
+                    <li><a href="/nagarsevak">नगरसेवक</a></li>
+                    <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                    <li><a href="/events" class="active">कार्यक्रम</a></li>
+                    <li><a href="/works">विकास कामे</a></li>
+                    <li class="dropdown">
+                        <a href="/grievance">तक्रार निवारण ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="/grievance">तक्रार नोंदणी</a>
+                            <a href="/complaint-status">तक्रार स्थिती</a>
+                        </div>
+                    </li>
+                    <li><a href="/eservices">ई-सेवा</a></li>
+                    <li><a href="/gallery">फोटो गॅलरी</a></li>
+                    <li><a href="/news">बातम्या</a></li>
+                    <li><a href="/schemes">शासकीय योजना</a></li>
+                    <li><a href="/contact">संपर्क</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <div class="container">
+            <h2>कार्यक्रम व उपक्रम</h2>
+            <p>फाउंडेशनचे ताजे व आगामी सामाजिक कार्यक्रम</p>
+            <div class="breadcrumb">
+                <a href="/">मुख्यपृष्ठ</a> <span>/</span> <span>कार्यक्रम</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-strip">
+        <div class="container">
+            <div class="summary-grid">
+                <div class="summary-item"><span class="summary-num" id="sumTotal">—</span><div class="summary-label">एकूण कार्यक्रम</div></div>
+                <div class="summary-item"><span class="summary-num" id="sumUpcoming">—</span><div class="summary-label">आगामी कार्यक्रम</div></div>
+                <div class="summary-item"><span class="summary-num" id="sumPast">—</span><div class="summary-label">पूर्ण झालेले</div></div>
+                <div class="summary-item"><span class="summary-num" id="sumTypes">—</span><div class="summary-label">कार्यक्रम प्रकार</div></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>आगामी कार्यक्रम</h2>
+                <p>लवकरच होणारे महत्त्वाचे कार्यक्रम</p>
+            </div>
+
+            <div id="upcomingHero"></div>
+
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterEvents('all', this)">सर्व</button>
+                <button class="filter-tab" onclick="filterEvents('रक्तदान शिबिर', this)">🩸 रक्तदान शिबिर</button>
+                <button class="filter-tab" onclick="filterEvents('आरोग्य शिबिर', this)">🏥 आरोग्य शिबिर</button>
+                <button class="filter-tab" onclick="filterEvents('वृक्षारोपण', this)">🌳 वृक्षारोपण</button>
+                <button class="filter-tab" onclick="filterEvents('महिला सबलीकरण', this)">🤝 महिला सबलीकरण</button>
+                <button class="filter-tab" onclick="filterEvents('शैक्षणिक', this)">📚 शैक्षणिक</button>
+                <button class="filter-tab" onclick="filterEvents('इतर', this)">📌 इतर</button>
+            </div>
+
+            <div id="upcomingEventsContainer">
+                <div class="loading-state">
+                    <i class="fas fa-spinner"></i>
+                    <p>कार्यक्रम लोड होत आहेत...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>मागील कार्यक्रम</h2>
+                <p>यशस्वीरीत्या पार पडलेले कार्यक्रम</p>
+            </div>
+            <div id="pastEventsContainer">
+                <div class="loading-state">
+                    <i class="fas fa-spinner"></i>
+                    <p>मागील कार्यक्रम लोड होत आहेत...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h2>कार्यक्रमात सहभागी व्हा!</h2>
+            <p>आगामी कार्यक्रमांची माहिती WhatsApp वर मिळवण्यासाठी नोंदणी करा.</p>
+            <div class="cta-buttons">
+                <a href="/contact" class="btn btn-white"><i class="fab fa-whatsapp"></i> WhatsApp नोंदणी</a>
+                <a href="/grievance" class="btn btn-white-outline"><i class="fas fa-edit"></i> तक्रार नोंदवा</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>हरिभाऊ गिते फाउंडेशन</h4>
+                    <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी कटिबद्ध.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>द्रुत दुवे</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">मुख्यपृष्ठ</a></li>
+                        <li><a href="/foundation">फाउंडेशन विषयी</a></li>
+                        <li><a href="/nagarsevak">नगरसेवक</a></li>
+                        <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                        <li><a href="/events">कार्यक्रम</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>सेवा</h4>
+                    <ul class="footer-links">
+                        <li><a href="/grievance">तक्रार नोंदणी</a></li>
+                        <li><a href="/complaint-status">तक्रार स्थिती</a></li>
+                        <li><a href="/eservices">ई-सेवा</a></li>
+                        <li><a href="/schemes">शासकीय योजना</a></li>
+                        <li><a href="/news">बातम्या</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>संपर्क</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt" style="color:var(--saffron);margin-left:8px;"></i> नाशिक, महाराष्ट्र</li>
+                        <li><i class="fas fa-phone" style="color:var(--saffron);margin-left:8px;"></i> #</li>
+                        <li><i class="fas fa-envelope" style="color:var(--saffron);margin-left:8px;"></i> info@haribhaugite.org</li>
+                    </ul>
+                    <div style="margin-top:15px;">
+                        <a href="/emergency" class="btn btn-sm" style="background:#C62828;color:white;font-size:0.8rem;"><i class="fas fa-ambulance"></i> आपत्कालीन संपर्क</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container"><p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव.</p></div>
+        </div>
+    </footer>
+
+    <a href="#" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+    // ===== CONFIG =====
+    const API_BASE = 'http://127.0.0.1:8000';
+
+    // ===== STATE =====
+    let allEventsData = [];
+
+    // ===== NAV =====
+    function toggleNav() { document.getElementById('mainNav').classList.toggle('show'); }
+    window.addEventListener('scroll', () => document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300));
+
+    // ===== HELPERS =====
+    function formatDate(dateStr) {
+        if (!dateStr) return '—';
+        try {
+            const d = new Date(dateStr);
+            if (isNaN(d)) return dateStr;
+            return d.toLocaleDateString('mr-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+        } catch(e) { return dateStr; }
+    }
+
+    function getDateParts(dateStr) {
+        if (!dateStr) return { day: '--', month: '---', year: '----' };
+        try {
+            const d = new Date(dateStr);
+            if (isNaN(d)) return { day: '--', month: '---', year: '----' };
+            const months = ['जाने','फेब्रु','मार्च','एप्रि','मे','जून','जुलै','ऑग','सप्टे','ऑक्टो','नोव्हे','डिसे'];
+            return { day: String(d.getDate()).padStart(2,'0'), month: months[d.getMonth()], year: d.getFullYear() };
+        } catch(e) { return { day: '--', month: '---', year: '----' }; }
+    }
+
+    function getMonthFull(dateStr) {
+        if (!dateStr) return '—';
+        try {
+            const d = new Date(dateStr);
+            if (isNaN(d)) return dateStr;
+            const months = ['जानेवारी','फेब्रुवारी','मार्च','एप्रिल','मे','जून','जुलै','ऑगस्ट','सप्टेंबर','ऑक्टोबर','नोव्हेंबर','डिसेंबर'];
+            return months[d.getMonth()] + ' ' + d.getFullYear();
+        } catch(e) { return dateStr; }
+    }
+
+    // Is event upcoming? (event_date >= today)
+    function isUpcoming(event) {
+        if (!event.event_date) return false;
+        try {
+            const eventDate = new Date(event.event_date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return eventDate >= today;
+        } catch(e) { return false; }
+    }
+
+    function getTypeTheme(type) {
+        const themes = {
+            'रक्तदान शिबिर':  { icon: '🩸', bg: 'linear-gradient(135deg,#C62828,#EF5350)',  tagBg: '#FFEBEE', tagColor: '#C62828' },
+            'आरोग्य शिबिर':   { icon: '🏥', bg: 'linear-gradient(135deg,#1565C0,#42A5F5)', tagBg: '#E3F2FD', tagColor: '#1565C0' },
+            'वृक्षारोपण':     { icon: '🌳', bg: 'linear-gradient(135deg,#2E7D32,#66BB6A)', tagBg: '#E8F5E9', tagColor: '#2E7D32' },
+            'महिला सबलीकरण': { icon: '🤝', bg: 'linear-gradient(135deg,#7B1FA2,#BA68C8)', tagBg: '#F3E5F5', tagColor: '#7B1FA2' },
+            'शैक्षणिक':       { icon: '📚', bg: 'linear-gradient(135deg,#FF6F00,#FFB74D)', tagBg: '#FFF8E1', tagColor: '#FF6F00' },
+            'इतर':            { icon: '📌', bg: 'linear-gradient(135deg,#E65100,#FF8A65)',  tagBg: '#FFF3E0', tagColor: '#E65100' },
+        };
+        return themes[type] || themes['इतर'];
+    }
+
+    // ===== MAP DB ROW → EVENT OBJECT =====
+    // Handles both dict (object) and tuple (array) responses
+    // Dict keys match the backend SELECT:
+    //   id, event_title, event_description, event_date,
+    //   event_location, event_type, start_time, end_time
+    // Tuple order must match the same sequence
+    function mapEvent(row) {
+        if (Array.isArray(row)) {
+            return {
+                id:                row[0] ?? null,
+                event_title:       row[1] ?? '',
+                event_description: row[2] ?? '',
+                event_date:        row[3] ?? null,
+                event_location:    row[4] ?? '',
+                event_type:        row[5] ?? 'इतर',
+                start_time:        row[6] ?? '',
+                end_time:          row[7] ?? '',
+            };
+        }
+        // Dict / object response (preferred — backend now returns dicts)
+        return {
+            id:                row.id                ?? null,
+            event_title:       row.event_title       ?? row.title       ?? '',
+            event_description: row.event_description ?? row.description ?? '',
+            event_date:        row.event_date        ?? row.date        ?? null,
+            event_location:    row.event_location    ?? row.location    ?? '',
+            event_type:        row.event_type        ?? row.type        ?? 'इतर',
+            start_time:        row.start_time        ?? '',
+            end_time:          row.end_time          ?? '',
+        };
+    }
+
+    // ===== BUILD EVENT CARD =====
+    function buildEventCard(event, index) {
+        const theme = getTypeTheme(event.event_type);
+        const dp    = getDateParts(event.event_date);
+        const time  = event.start_time && event.end_time
+                        ? `${event.start_time} – ${event.end_time}`
+                        : event.start_time || '';
+        return `
+        <div class="event-card" data-type="${event.event_type || ''}" style="animation-delay:${index * 0.06}s">
+            <div class="event-card-img" style="background:${theme.bg};">
+                <span style="font-size:3.2rem;">${theme.icon}</span>
+                <div class="event-date-pill">
+                    <div class="d">${dp.day}</div>
+                    <div class="m">${dp.month}</div>
+                </div>
+            </div>
+            <div class="event-card-body">
+                <span class="event-type-tag" style="background:${theme.tagBg};color:${theme.tagColor};">${event.event_type || 'इतर'}</span>
+                <h3>${event.event_title || '—'}</h3>
+                <p>${event.event_description || '—'}</p>
+                <div class="event-card-footer">
+                    <span><i class="fas fa-clock"></i> ${time || formatDate(event.event_date)}</span>
+                    ${event.event_location ? `<span><i class="fas fa-map-marker-alt"></i> ${event.event_location}</span>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }
+
+    // ===== RENDER UPCOMING HERO =====
+    function renderUpcomingHero(event) {
+        const container = document.getElementById('upcomingHero');
+        if (!event) { container.innerHTML = ''; return; }
+        const dp   = getDateParts(event.event_date);
+        const time = event.start_time && event.end_time
+                       ? `${event.start_time} – ${event.end_time}`
+                       : event.start_time || '';
+        container.innerHTML = `
+        <div class="upcoming-hero">
+            <div class="upcoming-date-box">
+                <div class="day">${dp.day}</div>
+                <div class="month">${dp.month}</div>
+                <div class="year">${dp.year}</div>
+            </div>
+            <div class="upcoming-info">
+                <span class="upcoming-badge">🔔 लवकरच येत आहे</span>
+                <h3>${event.event_title || '—'}</h3>
+                <p>${event.event_description || ''}</p>
+                <div class="event-meta">
+                    ${time                 ? `<span class="event-meta-item"><i class="fas fa-clock"></i> ${time}</span>` : ''}
+                    ${event.event_location ? `<span class="event-meta-item"><i class="fas fa-map-marker-alt"></i> ${event.event_location}</span>` : ''}
+                    ${event.event_type     ? `<span class="event-meta-item"><i class="fas fa-tag"></i> ${event.event_type}</span>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }
+
+    // ===== RENDER UPCOMING CARDS =====
+    function renderUpcomingEvents(events) {
+        const container = document.getElementById('upcomingEventsContainer');
+        if (!events || events.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>सध्या कोणतेही आगामी कार्यक्रम नाहीत</h3>
+                    <p>नवीन कार्यक्रम जाहीर झाल्यावर येथे दिसतील.</p>
+                </div>`;
+            return;
+        }
+        container.innerHTML = `<div class="events-grid" id="eventsGrid">${events.map((e, i) => buildEventCard(e, i)).join('')}</div>`;
+    }
+
+    // ===== RENDER PAST EVENTS TABLE =====
+    function renderPastEvents(events) {
+        const container = document.getElementById('pastEventsContainer');
+        if (!events || events.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-history"></i>
+                    <h3>अद्याप कोणतेही मागील कार्यक्रम नाहीत</h3>
+                    <p>पूर्ण झालेले कार्यक्रम येथे दिसतील.</p>
+                </div>`;
+            return;
+        }
+        const rows = events.map(ev => {
+            const theme = getTypeTheme(ev.event_type);
+            return `
+            <tr>
+                <td>${ev.event_title || '—'}</td>
+                <td><span class="type-badge" style="background:${theme.tagBg};color:${theme.tagColor};">${ev.event_type || '—'}</span></td>
+                <td>${getMonthFull(ev.event_date)}</td>
+                <td>${ev.event_location || '—'}</td>
+            </tr>`;
+        }).join('');
+        container.innerHTML = `
+            <div class="past-table-wrap">
+                <table class="past-table">
+                    <thead>
+                        <tr>
+                            <th>कार्यक्रम</th>
+                            <th>प्रकार</th>
+                            <th>दिनांक</th>
+                            <th>ठिकाण</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>`;
+    }
+
+    // ===== FILTER =====
+    function filterEvents(type, btn) {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        const grid = document.getElementById('eventsGrid');
+        if (!grid) return;
+        grid.querySelectorAll('.event-card').forEach((card, i) => {
+            const show = (type === 'all') || (card.dataset.type === type);
+            card.style.display = show ? 'block' : 'none';
+            if (show) card.style.animationDelay = (i * 0.05) + 's';
+        });
+    }
+
+    // ===== ERROR STATE =====
+    function showError(msg) {
+        const html = `
+            <div class="error-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>माहिती लोड होऊ शकली नाही</strong>
+                <p style="margin-top:8px;font-size:0.9rem;">${msg}</p>
+            </div>`;
+        document.getElementById('upcomingEventsContainer').innerHTML = html;
+        document.getElementById('pastEventsContainer').innerHTML = html;
+        document.getElementById('upcomingHero').innerHTML = '';
+    }
+
+    // ===== MAIN: FETCH EVENTS (PUBLIC — NO AUTH REQUIRED) =====
+    async function loadEvents() {
+        try {
+            // ✅ FIX: No token check, no Authorization header — this is a public endpoint
+            const res = await fetch(`${API_BASE}/user_get_events`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            // ✅ FIX: No 401 / auth redirect — public pages don't need login
+            if (!res.ok) {
+                showError(`सर्व्हर त्रुटी: ${res.status}. कृपया नंतर पुन्हा प्रयत्न करा.`);
+                return;
+            }
+
+            const data = await res.json();
+
+            if (data.status !== 'success') {
+                showError(data.message || 'कार्यक्रम लोड होऊ शकले नाहीत.');
+                return;
+            }
+
+            // ✅ Map all rows to consistent event objects (handles dict or tuple)
+            allEventsData = (data.events || []).map(mapEvent);
+
+            // Split upcoming vs past
+            const upcoming = allEventsData
+                .filter(isUpcoming)
+                .sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
+
+            const past = allEventsData
+                .filter(e => !isUpcoming(e))
+                .sort((a, b) => new Date(b.event_date) - new Date(a.event_date));
+
+            // Unique event types
+            const uniqueTypes = [...new Set(allEventsData.map(e => e.event_type).filter(Boolean))];
+
+            // Update summary strip
+            document.getElementById('sumTotal').textContent    = allEventsData.length;
+            document.getElementById('sumUpcoming').textContent = upcoming.length;
+            document.getElementById('sumPast').textContent     = past.length;
+            document.getElementById('sumTypes').textContent    = uniqueTypes.length;
+
+            // Render
+            renderUpcomingHero(upcoming[0] || null);
+            renderUpcomingEvents(upcoming);
+            renderPastEvents(past);
+
+        } catch (err) {
+            console.error('Events fetch error:', err);
+            showError('सर्व्हरशी कनेक्ट होता आले नाही. कृपया नंतर पुन्हा प्रयत्न करा.');
+        }
+    }
+
+    // ===== INIT =====
+    window.addEventListener('load', loadEvents);
+    </script>
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – तक्रार स्थिती</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E65100; --primary-dark: #BF360C; --primary-light: #FF8A65;
+            --secondary: #1565C0; --secondary-dark: #0D47A1;
+            --saffron: #FF9933; --white-flag: #FFFFFF; --green-flag: #138808;
+            --accent: #2E7D32; --accent-light: #66BB6A;
+            --bg-light: #F5F5F5; --text-dark: #212121; --text-medium: #424242; --text-light: #757575;
+            --border: #E0E0E0; --shadow: 0 2px 12px rgba(0,0,0,0.1); --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --radius: 12px; --radius-sm: 8px; --transition: all 0.3s ease;
+            --font-main: 'Noto Sans Devanagari', sans-serif; --font-heading: 'Tiro Devanagari Marathi', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; overflow-x: hidden; }
+
+        .top-bar { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; padding: 6px 0; font-size: 0.82rem; font-weight: 500; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
+        .top-bar a:hover { opacity: 0.8; }
+        .tricolor-stripe { height: 4px; background: linear-gradient(to right, var(--saffron) 33%, var(--white-flag) 33%, var(--white-flag) 66%, var(--green-flag) 66%); }
+        .header { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); }
+        .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
+        .logo-text p { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+        .nav-toggle { display: none; background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 1.3rem; cursor: pointer; }
+        .main-nav { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; }
+        .main-nav a { display: block; color: white; text-decoration: none; padding: 12px 16px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); position: relative; white-space: nowrap; }
+        .main-nav a:hover, .main-nav a.active { background: rgba(255,255,255,0.15); }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--saffron); transition: var(--transition); border-radius: 3px 3px 0 0; }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 80%; }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: var(--shadow-lg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); min-width: 220px; z-index: 100; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { color: var(--text-dark); padding: 10px 20px; border-bottom: 1px solid var(--border); font-size: 0.83rem; display: block; text-decoration: none; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        .page-banner { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary), var(--primary)); color: white; padding: 50px 0; text-align: center; position: relative; overflow: hidden; }
+        .page-banner::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>'); }
+        .page-banner .container { position: relative; z-index: 1; }
+        .page-banner h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px; }
+        .page-banner p { font-size: 1rem; opacity: 0.92; }
+        .breadcrumb { display: flex; justify-content: center; gap: 8px; margin-top: 14px; font-size: 0.85rem; opacity: 0.82; }
+        .breadcrumb a { color: white; text-decoration: none; }
+        .section { padding: 60px 0; }
+        .section-alt { background: white; }
+
+        .search-box { background: white; border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 35px; max-width: 700px; margin: 0 auto 40px; }
+        .search-box h3 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 6px; text-align: center; }
+        .search-box .sub-hint { text-align: center; font-size: 0.82rem; color: var(--text-light); margin-bottom: 22px; }
+
+        .search-tabs { display: flex; gap: 0; margin-bottom: 22px; border-radius: var(--radius-sm); overflow: hidden; border: 1.5px solid var(--border); }
+        .search-tab { flex: 1; padding: 10px; text-align: center; font-size: 0.83rem; font-weight: 600; cursor: pointer; background: var(--bg-light); color: var(--text-light); border: none; font-family: var(--font-main); transition: var(--transition); }
+        .search-tab.active { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; }
+
+        .search-panel { display: none; }
+        .search-panel.active { display: block; }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-medium); margin-bottom: 5px; }
+        .form-row { display: flex; gap: 12px; }
+        .form-control { width: 100%; padding: 13px 18px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-main); font-size: 0.95rem; color: var(--text-dark); transition: var(--transition); }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(230,81,0,0.1); }
+        .btn-search { width: 100%; padding: 14px 28px; background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; border: none; border-radius: var(--radius-sm); font-family: var(--font-main); font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 6px; }
+        .btn-search:hover:not(:disabled) { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); transform: translateY(-1px); }
+        .btn-search:disabled { opacity: 0.65; cursor: not-allowed; }
+
+        .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .alert { padding: 14px 18px; border-radius: var(--radius-sm); margin-bottom: 16px; font-size: 0.9rem; display: none; }
+        .alert.show { display: block; }
+        .alert-error { background: #FFEBEE; color: #C62828; border: 1px solid #EF9A9A; }
+        .alert-warning { background: #FFF8E1; color: #E65100; border: 1px solid #FFE082; }
+
+        .result-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; display: none; max-width: 900px; margin: 0 auto; }
+        .result-card.show { display: block; animation: slideIn 0.4s ease; }
+        @keyframes slideIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .result-header { padding: 25px 30px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+        .result-id { font-size: 0.85rem; color: var(--text-light); font-weight: 600; }
+        .result-title { font-family: var(--font-heading); font-size: 1.3rem; color: var(--text-dark); margin: 5px 0; }
+        .result-cat { font-size: 0.85rem; color: var(--text-medium); }
+
+        .status-resolved { background: #E8F5E9; color: #2E7D32; padding: 7px 18px; border-radius: 25px; font-size: 0.88rem; font-weight: 700; }
+        .status-progress { background: #E3F2FD; color: #1565C0; padding: 7px 18px; border-radius: 25px; font-size: 0.88rem; font-weight: 700; }
+        .status-pending { background: #FFF3E0; color: #E65100; padding: 7px 18px; border-radius: 25px; font-size: 0.88rem; font-weight: 700; }
+
+        .complaints-list { max-width: 900px; margin: 0 auto; }
+        .complaint-item { background: white; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; overflow: hidden; animation: slideIn 0.3s ease; }
+        .complaint-item-header { padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; cursor: pointer; }
+        .complaint-item-header:hover { background: #FFFAF7; }
+        .complaint-item-title { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+        .complaint-item-id { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+        .complaint-item-body { padding: 0 22px 20px; border-top: 1px solid var(--border); display: none; }
+        .complaint-item-body.open { display: block; }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+        .detail-cell { background: var(--bg-light); border-radius: var(--radius-sm); padding: 10px 14px; }
+        .detail-cell label { font-size: 0.72rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 3px; }
+        .detail-cell span { font-size: 0.9rem; color: var(--text-dark); font-weight: 500; }
+        .photo-link { display: inline-flex; align-items: center; gap: 6px; color: var(--secondary); font-size: 0.85rem; text-decoration: none; margin-top: 10px; font-weight: 600; }
+        .photo-link:hover { color: var(--primary); }
+
+        .status-timeline { margin-top: 16px; }
+        .timeline-title { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 14px; }
+        .timeline-step { display: flex; gap: 12px; margin-bottom: 18px; }
+        .tl-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; flex-shrink: 0; position: relative; }
+        .tl-dot.done { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; }
+        .tl-dot.active { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; animation: pulse 2s infinite; }
+        .tl-dot.waiting { background: var(--border); color: var(--text-light); }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+        .tl-line { position: absolute; left: 50%; top: 32px; width: 2px; height: 18px; transform: translateX(-50%); }
+        .tl-content { flex: 1; padding-top: 4px; }
+        .tl-content strong { display: block; font-size: 0.88rem; color: var(--text-dark); }
+        .tl-content span { font-size: 0.76rem; color: var(--text-light); }
+
+        .empty-state { text-align: center; padding: 50px 20px; color: var(--text-light); max-width: 900px; margin: 0 auto; }
+        .empty-state i { font-size: 3.5rem; opacity: 0.25; margin-bottom: 16px; }
+        .empty-state p { font-size: 1rem; }
+
+        .recent-table { width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+        .recent-table th { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); color: white; padding: 13px 18px; text-align: right; font-size: 0.88rem; font-weight: 600; }
+        .recent-table td { padding: 12px 18px; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--text-medium); }
+        .recent-table tr:last-child td { border-bottom: none; }
+        .recent-table tr:hover td { background: #FFF8F5; }
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+        .badge-done { background: #E8F5E9; color: #2E7D32; }
+        .badge-prog { background: #E3F2FD; color: #1565C0; }
+        .badge-pend { background: #FFF3E0; color: #E65100; }
+
+        .recent-table-loading { text-align: center; padding: 30px; color: var(--text-light); font-size: 0.9rem; }
+
+        .footer { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #CCC; padding: 50px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer h4 { color: white; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; }
+        .footer h4::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 3px; background: var(--saffron); border-radius: 2px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .footer-links { list-style: none; }
+        .footer-links li { padding: 5px 0; }
+        .footer-links a { color: #CCC; text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--saffron); padding-right: 5px; }
+        .footer-bottom { background: rgba(0,0,0,0.3); padding: 15px 0; text-align: center; font-size: 0.82rem; }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
+        .whatsapp-float { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 60%{transform:translateY(-5px)} }
+        .scroll-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: none; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; z-index: 999; border: none; box-shadow: var(--shadow); transition: var(--transition); }
+        .scroll-top.show { display: flex; }
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 6px; }
+        .section-header { text-align: center; margin-bottom: 35px; }
+        .section-header h2 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--primary-dark); position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(to right, var(--saffron), var(--primary)); border-radius: 2px; }
+        .section-header p { color: var(--text-light); margin-top: 18px; font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; } .main-nav { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; } .main-nav.show { display: block; } .main-nav ul { flex-direction: column; } .main-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); } .dropdown-menu { position: static; box-shadow: none; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .recent-table { display: block; overflow-x: auto; }
+            .form-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) { .logo-text h1 { font-size: 1.05rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SITE CONFIG  –  edit this object; nothing else needs changing
+    ═══════════════════════════════════════════════════════════════ -->
+    <script>
+    const SITE = {
+        /* ── API ──────────────────────────────────────────────── */
+        apiBase: '',                          // e.g. 'https://api.example.com'
+
+        /* ── Organisation ─────────────────────────────────────── */
+        orgName:      'हरिभाऊ गिते फाउंडेशन',
+        orgSubtitle:  'प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते',
+        orgLogoChar:  'ह',
+        orgEmail:     'info@haribhaugite.org',
+        orgPhone:     '',                     // display phone, e.g. '+91 98765 43210'
+        orgAddress:   'नाशिक, महाराष्ट्र',
+        orgCopyYear:  '२०२५',
+
+        /* ── External links ───────────────────────────────────── */
+        whatsappUrl:  '',                     // e.g. 'https://wa.me/919876543210'
+
+        /* ── Social media ─────────────────────────────────────── */
+        social: {
+            facebook:  '',
+            twitter:   '',
+            instagram: '',
+            youtube:   '',
+            whatsapp:  '',
+        },
+
+        /* ── Navigation ───────────────────────────────────────── */
+        nav: [
+            { label: 'मुख्यपृष्ठ',       href: '/',                icon: 'fas fa-home' },
+            { label: 'फाउंडेशन',          href: '/foundation' },
+            { label: 'नगरसेवक',           href: '/nagarsevak' },
+            { label: 'प्रभाग माहिती',     href: '/prabhag' },
+            { label: 'कार्यक्रम',         href: '/events' },
+            { label: 'विकास कामे',  href: '/works' },
+            {
+                label: 'तक्रार निवारण',   href: '/grievance', active: true,
+                children: [
+                    { label: 'तक्रार नोंदणी', href: '/grievance' },
+                    { label: 'तक्रार स्थिती', href: '/complaint-status' },
+                ]
+            },
+            { label: 'ई-सेवा',            href: '/eservices' },
+            { label: 'फोटो गॅलरी',        href: '/gallery' },
+            { label: 'बातम्या',            href: '/news' },
+            { label: 'शासकीय योजना',      href: '/schemes' },
+            { label: 'संपर्क',             href: '/contact' },
+        ],
+
+        /* ── Footer quick-links (two columns) ────────────────── */
+        footerLinksCol1: [
+            { label: 'मुख्यपृष्ठ',         href: '/' },
+            { label: 'फाउंडेशन विषयी',     href: '/foundation' },
+            { label: 'नगरसेवक',            href: '/nagarsevak' },
+            { label: 'प्रभाग माहिती',      href: '/prabhag' },
+            { label: 'कार्यक्रम',          href: '/events' },
+        ],
+        footerLinksCol2: [
+            { label: 'तक्रार नोंदणी',  href: '/grievance' },
+            { label: 'तक्रार स्थिती',  href: '/complaint-status' },
+            { label: 'ई-सेवा',         href: '/eservices' },
+            { label: 'शासकीय योजना',   href: '/schemes' },
+            { label: 'बातम्या',         href: '/news' },
+        ],
+
+        /* ── Top-bar utility links ────────────────────────────── */
+        topbarLinks: [
+            { label: 'ॲडमिन',       href: '/admin',      icon: 'fas fa-user-shield' },
+            { label: 'आपत्कालीन',   href: '/emergency',  icon: 'fas fa-ambulance' },
+        ],
+    };
+    </script>
+    <!-- ════════════════════════════════════════════════════════════ -->
+
+    <!-- TOP BAR (rendered by JS) -->
+    <div class="top-bar">
+        <div class="container">
+            <div id="topbarContact"></div>
+            <div id="topbarLinks"></div>
+        </div>
+    </div>
+    <div class="tricolor-stripe"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon" id="logoChar"></div>
+                <div class="logo-text">
+                    <h1 id="orgName"></h1>
+                    <p id="orgSubtitle"></p>
+                </div>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="main-nav" id="mainNav">
+            <div class="container">
+                <ul id="mainNavList"></ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- BANNER -->
+    <div class="page-banner">
+        <div class="container">
+            <h2>तक्रार स्थिती तपासा</h2>
+            <p>आपल्या तक्रारीची सद्यस्थिती व प्रगती पहा</p>
+            <div class="breadcrumb">
+                <a href="/">मुख्यपृष्ठ</a> <span>/</span>
+                <a href="/grievance">तक्रार निवारण</a> <span>/</span>
+                <span>तक्रार स्थिती</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="search-box">
+                <h3><i class="fas fa-search" style="color:var(--primary);margin-left:8px;"></i> तक्रार शोधा</h3>
+                <p class="sub-hint">तक्रार क्रमांक किंवा मोबाईल नंबर व नाव वापरून शोधा</p>
+                <div class="search-tabs">
+                    <button class="search-tab active" onclick="switchTab('tab-id')">
+                        <i class="fas fa-hashtag"></i> तक्रार क्रमांक
+                    </button>
+                    <button class="search-tab" onclick="switchTab('tab-mobile')">
+                        <i class="fas fa-mobile-alt"></i> मोबाईल व नाव
+                    </button>
+                </div>
+                <div class="alert alert-error" id="alertMsg"></div>
+                <div class="search-panel active" id="tab-id">
+                    <div class="form-group">
+                        <label>तक्रार नोंदणी क्रमांक</label>
+                        <input type="text" class="form-control" id="inputCompId" placeholder="उदा. HGF-2025-1234" maxlength="20">
+                    </div>
+                    <button class="btn-search" id="btnSearchId" onclick="searchById()">
+                        <i class="fas fa-search"></i> तक्रार शोधा
+                    </button>
+                </div>
+                <div class="search-panel" id="tab-mobile">
+                    <div class="form-row">
+                        <div class="form-group" style="flex:1;">
+                            <label>मोबाईल नंबर</label>
+                            <input type="tel" class="form-control" id="inputMobile" placeholder="१०-अंकी मोबाईल नंबर" maxlength="10">
+                        </div>
+                        <div class="form-group" style="flex:1;">
+                            <label>तक्रारदाराचे नाव</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="पूर्ण नाव">
+                        </div>
+                    </div>
+                    <button class="btn-search" id="btnSearchMobile" onclick="searchByMobile()">
+                        <i class="fas fa-search"></i> तक्रारी शोधा
+                    </button>
+                </div>
+            </div>
+            <div id="resultsArea"></div>
+        </div>
+    </section>
+
+    <!-- RECENT COMPLAINTS (loaded from API) -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>अलीकडील तक्रारी</h2>
+                <p>ताज्या नोंदणीकृत तक्रारींचा आढावा</p>
+            </div>
+            <div id="recentTableWrap">
+                <div class="recent-table-loading">
+                    <div class="spinner" style="border-color:rgba(0,0,0,0.15);border-top-color:var(--primary);margin:0 auto 10px;"></div>
+                    लोड होत आहे...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (rendered by JS) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 id="footerOrgName"></h4>
+                    <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी कटिबद्ध.</p>
+                    <div class="social-links" id="footerSocial"></div>
+                </div>
+                <div>
+                    <h4>द्रुत दुवे</h4>
+                    <ul class="footer-links" id="footerCol1"></ul>
+                </div>
+                <div>
+                    <h4>सेवा</h4>
+                    <ul class="footer-links" id="footerCol2"></ul>
+                </div>
+                <div>
+                    <h4>संपर्क</h4>
+                    <ul class="footer-links" id="footerContact"></ul>
+                    <div style="margin-top:15px;" id="footerEmergencyBtn"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container"><p id="footerCopy"></p></div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS (rendered by JS) -->
+    <div id="whatsappFloat"></div>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+  <script>
+/* ═══════════════════════════════════════════════════════════════
+   BOOTSTRAP  –  render all dynamic sections from SITE config
+═══════════════════════════════════════════════════════════════ */
+(function bootstrap() {
+
+    /* ── Top bar ── */
+    const contactParts = [];
+    if (SITE.orgPhone) contactParts.push(`<i class="fas fa-phone-alt"></i> ${escHtml(SITE.orgPhone)}`);
+    if (SITE.orgEmail) contactParts.push(`<i class="fas fa-envelope"></i> ${escHtml(SITE.orgEmail)}`);
+    document.getElementById('topbarContact').innerHTML = contactParts.join('&nbsp;&nbsp;|&nbsp;&nbsp;');
+
+    document.getElementById('topbarLinks').innerHTML =
+        SITE.topbarLinks.map(l =>
+            `<a href="${escHtml(l.href)}"><i class="${escHtml(l.icon)}"></i> ${escHtml(l.label)}</a>`
+        ).join('');
+
+    /* ── Header ── */
+    document.getElementById('logoChar').textContent    = SITE.orgLogoChar;
+    document.getElementById('orgName').textContent     = SITE.orgName;
+    document.getElementById('orgSubtitle').textContent = SITE.orgSubtitle;
+
+    /* ── Main nav ── */
+    document.getElementById('mainNavList').innerHTML = SITE.nav.map(item => {
+        if (item.children && item.children.length) {
+            const childLinks = item.children.map(c =>
+                `<a href="${escHtml(c.href)}">${escHtml(c.label)}</a>`
+            ).join('');
+            return `
+                <li class="dropdown">
+                    <a href="${escHtml(item.href)}"${item.active ? ' class="active"' : ''}>${escHtml(item.label)} ▾</a>
+                    <div class="dropdown-menu">${childLinks}</div>
+                </li>`;
+        }
+        const icon = item.icon ? `<i class="${escHtml(item.icon)}"></i> ` : '';
+        return `<li><a href="${escHtml(item.href)}"${item.active ? ' class="active"' : ''}>${icon}${escHtml(item.label)}</a></li>`;
+    }).join('');
+
+    /* ── Footer org name ── */
+    document.getElementById('footerOrgName').textContent = SITE.orgName;
+
+    /* ── Footer social ── */
+    const socialIcons = [
+        { key: 'facebook',  icon: 'fab fa-facebook-f' },
+        { key: 'twitter',   icon: 'fab fa-twitter' },
+        { key: 'instagram', icon: 'fab fa-instagram' },
+        { key: 'youtube',   icon: 'fab fa-youtube' },
+        { key: 'whatsapp',  icon: 'fab fa-whatsapp' },
+    ];
+    document.getElementById('footerSocial').innerHTML = socialIcons
+        .filter(s => SITE.social[s.key])
+        .map(s => `<a href="${escHtml(SITE.social[s.key])}" target="_blank" rel="noopener"><i class="${s.icon}"></i></a>`)
+        .join('');
+
+    /* ── Footer link columns ── */
+    const buildLinks = (items) =>
+        items.map(l => `<li><a href="${escHtml(l.href)}">${escHtml(l.label)}</a></li>`).join('');
+    document.getElementById('footerCol1').innerHTML = buildLinks(SITE.footerLinksCol1);
+    document.getElementById('footerCol2').innerHTML = buildLinks(SITE.footerLinksCol2);
+
+    /* ── Footer contact ── */
+    const contactItems = [];
+    if (SITE.orgAddress) contactItems.push(`<li><i class="fas fa-map-marker-alt" style="color:var(--saffron);margin-left:8px;"></i> ${escHtml(SITE.orgAddress)}</li>`);
+    if (SITE.orgPhone)   contactItems.push(`<li><i class="fas fa-phone" style="color:var(--saffron);margin-left:8px;"></i> ${escHtml(SITE.orgPhone)}</li>`);
+    if (SITE.orgEmail)   contactItems.push(`<li><i class="fas fa-envelope" style="color:var(--saffron);margin-left:8px;"></i> ${escHtml(SITE.orgEmail)}</li>`);
+    document.getElementById('footerContact').innerHTML = contactItems.join('');
+
+    /* ── Footer emergency button ── */
+    const emergencyLink = SITE.topbarLinks.find(l => l.href === '/emergency');
+    if (emergencyLink) {
+        document.getElementById('footerEmergencyBtn').innerHTML =
+            `<a href="${escHtml(emergencyLink.href)}" class="btn-sm" style="background:#C62828;color:white;font-size:0.8rem;">
+                <i class="${escHtml(emergencyLink.icon)}"></i> आपत्कालीन संपर्क
+            </a>`;
+    }
+
+    /* ── Footer copyright ── */
+    document.getElementById('footerCopy').textContent =
+        `© ${SITE.orgCopyYear} ${SITE.orgName}. सर्व हक्क राखीव.`;
+
+    /* ── WhatsApp float ── */
+    if (SITE.whatsappUrl) {
+        document.getElementById('whatsappFloat').innerHTML =
+            `<a href="${escHtml(SITE.whatsappUrl)}" target="_blank" class="whatsapp-float">
+                <i class="fab fa-whatsapp"></i>
+            </a>`;
+    }
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL-TO-TOP
+═══════════════════════════════════════════════════════════════ */
+window.addEventListener('scroll', () =>
+    document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300));
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV TOGGLE
+═══════════════════════════════════════════════════════════════ */
+function toggleNav() { document.getElementById('mainNav').classList.toggle('show'); }
+
+/* ═══════════════════════════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════════════════════════ */
+function switchTab(tabId) {
+    document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.classList.add('active');
+    hideAlert();
+    clearResults();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ALERT HELPERS
+═══════════════════════════════════════════════════════════════ */
+function showAlert(msg) {
+    const el = document.getElementById('alertMsg');
+    el.textContent = msg;
+    el.classList.add('show');
+}
+function hideAlert() {
+    document.getElementById('alertMsg').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING STATE
+═══════════════════════════════════════════════════════════════ */
+function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    if (loading) {
+        btn.disabled = true;
+        btn.innerHTML = '<div class="spinner"></div> शोधत आहे...';
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-search"></i> तक्रार शोधा';
+    }
+}
+
+function clearResults() {
+    document.getElementById('resultsArea').innerHTML = '';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API CALLS
+═══════════════════════════════════════════════════════════════ */
+async function fetchComplaints(payload) {
+    const params = new URLSearchParams({
+        comp_id:     payload.comp_id     || '',
+        mobile_no:   payload.mobile_no   || '',
+        person_name: payload.person_name || ''
+    });
+    const res = await fetch(`${SITE.apiBase}/user_get_complains?${params}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (!res.ok) throw new Error(`Server error: ${res.status}`);
+    return res.json();
+}
+
+async function fetchRecentComplaints() {
+    const res = await fetch(`${SITE.apiBase}/recent_complains`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (!res.ok) throw new Error(`Server error: ${res.status}`);
+    return res.json();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RECENT COMPLAINTS TABLE
+═══════════════════════════════════════════════════════════════ */
+async function loadRecentComplaints() {
+    const wrap = document.getElementById('recentTableWrap');
+    try {
+        const data = await fetchRecentComplaints();
+        const rows = data.complains || [];
+
+        if (!rows.length) {
+            wrap.innerHTML = `<p style="text-align:center;color:var(--text-light);padding:30px 0;">कोणतीही अलीकडील तक्रार आढळली नाही.</p>`;
+            return;
+        }
+
+        const tbody = rows.map(c => {
+            const { label, badgeCls } = getStatusBadge(c.status || '');
+            return `<tr>
+                <td>${escHtml(c.complain_reg_no || '—')}</td>
+                <td>${escHtml(c.complain_type   || '—')}</td>
+                <td>${escHtml(c.address         || '—')}</td>
+                <td>${escHtml(c.date            || '—')}</td>
+                <td><span class="badge ${badgeCls}">${label}</span></td>
+            </tr>`;
+        }).join('');
+
+        wrap.innerHTML = `
+            <table class="recent-table">
+                <thead>
+                    <tr>
+                        <th>तक्रार क्रमांक</th>
+                        <th>प्रकार</th>
+                        <th>ठिकाण</th>
+                        <th>दिनांक</th>
+                        <th>स्थिती</th>
+                    </tr>
+                </thead>
+                <tbody>${tbody}</tbody>
+            </table>`;
+    } catch (e) {
+        wrap.innerHTML = `<p style="text-align:center;color:var(--text-light);padding:30px 0;">अलीकडील तक्रारी लोड होऊ शकल्या नाहीत.</p>`;
+        console.error('Recent complaints error:', e);
+    }
+}
+loadRecentComplaints();
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH BY ID
+═══════════════════════════════════════════════════════════════ */
+async function searchById() {
+    hideAlert();
+    clearResults();
+    const compId = document.getElementById('inputCompId').value.trim();
+    if (!compId) { showAlert('कृपया तक्रार क्रमांक टाका.'); return; }
+    setLoading('btnSearchId', true);
+    try {
+        const data = await fetchComplaints({ comp_id: compId, mobile_no: '', person_name: '' });
+        renderResults(data);
+    } catch (e) {
+        showAlert('सर्व्हरशी संपर्क होऊ शकला नाही. कृपया पुन्हा प्रयत्न करा.');
+        console.error(e);
+    } finally {
+        setLoading('btnSearchId', false);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH BY MOBILE + NAME
+═══════════════════════════════════════════════════════════════ */
+async function searchByMobile() {
+    hideAlert();
+    clearResults();
+    const mobile = document.getElementById('inputMobile').value.trim();
+    const name   = document.getElementById('inputName').value.trim();
+    if (!mobile || !name) { showAlert('कृपया मोबाईल नंबर आणि नाव दोन्ही टाका.'); return; }
+    if (!/^\d{10}$/.test(mobile)) { showAlert('कृपया १०-अंकी वैध मोबाईल नंबर टाका.'); return; }
+    setLoading('btnSearchMobile', true);
+    try {
+        const data = await fetchComplaints({ comp_id: '', mobile_no: mobile, person_name: name });
+        renderResults(data);
+    } catch (e) {
+        showAlert('सर्व्हरशी संपर्क होऊ शकला नाही. कृपया पुन्हा प्रयत्न करा.');
+        console.error(e);
+    } finally {
+        setLoading('btnSearchMobile', false);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER RESULTS
+═══════════════════════════════════════════════════════════════ */
+function renderResults(data) {
+    const area = document.getElementById('resultsArea');
+    if (data.status === 'error') {
+        showAlert('त्रुटी: ' + (data.message || 'अज्ञात त्रुटी'));
+        return;
+    }
+    const complains = data.complains || [];
+    if (!complains.length) {
+        area.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <p>कोणतीही तक्रार आढळली नाही.</p>
+                <p style="font-size:0.85rem;margin-top:6px;">तक्रार क्रमांक, मोबाईल नंबर किंवा नाव तपासा.</p>
+            </div>`;
+        return;
+    }
+    area.innerHTML = `
+        <div style="max-width:900px;margin:0 auto 10px;font-size:0.85rem;color:var(--text-light);">
+            <i class="fas fa-list-ul" style="color:var(--primary);margin-left:6px;"></i>
+            ${complains.length} तक्रार(ी) आढळल्या
+        </div>
+        <div class="complaints-list">
+            ${complains.map((c, i) => buildComplaintCard(c, i)).join('')}
+        </div>`;
+    if (complains.length === 1) toggleItem(0);
+    area.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUILD SINGLE COMPLAINT CARD
+═══════════════════════════════════════════════════════════════ */
+function buildComplaintCard(row, idx) {
+    const person_name   = row.person_name    || '';
+    const reg_no        = row.complain_reg_no || '';
+    const mobile_no     = row.mobile_no      || '';
+    const address       = row.address        || '';
+    const complain_type = row.complain_type  || '';
+    const description   = row.description    || '';
+    const photo_path    = row.photo_path     || '';
+    const status        = row.status         || '';
+
+    const { label, cls, steps } = getStatusInfo(status);
+
+    const stepsHtml = steps.map((s, i) => `
+        <div class="timeline-step">
+            <div class="tl-dot ${s.state}" style="position:relative;">
+                ${s.state === 'done'    ? '<i class="fas fa-check"></i>'
+                  : s.state === 'active' ? '<i class="fas fa-spinner fa-spin"></i>'
+                  :                        '<i class="fas fa-clock"></i>'}
+                ${i < steps.length - 1
+                    ? `<div class="tl-line" style="background:${s.state==='done'?'var(--accent)':'var(--border)'}"></div>`
+                    : ''}
+            </div>
+            <div class="tl-content"><strong>${s.label}</strong></div>
+        </div>`).join('');
+
+    const photoHtml = photo_path
+        ? `<a class="photo-link" href="${escHtml(photo_path)}" target="_blank"><i class="fas fa-image"></i> तक्रार फोटो पहा</a>`
+        : '';
+
+    return `
+        <div class="complaint-item">
+            <div class="complaint-item-header" onclick="toggleItem(${idx})">
+                <div>
+                    <div class="complaint-item-title">${escHtml(complain_type || '—')}</div>
+                    <div class="complaint-item-id">${escHtml(reg_no || '—')} &nbsp;|&nbsp; ${escHtml(person_name || '—')}</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span class="${cls}">${label}</span>
+                    <i class="fas fa-chevron-down" id="chevron-${idx}" style="color:var(--text-light);transition:var(--transition);"></i>
+                </div>
+            </div>
+            <div class="complaint-item-body" id="item-body-${idx}">
+                <div class="detail-grid">
+                    <div class="detail-cell"><label>तक्रार क्रमांक</label><span>${escHtml(reg_no||'—')}</span></div>
+                    <div class="detail-cell"><label>तक्रारदार</label><span>${escHtml(person_name||'—')}</span></div>
+                    <div class="detail-cell"><label>मोबाईल</label><span>${escHtml(mobile_no||'—')}</span></div>
+                    <div class="detail-cell"><label>पत्ता</label><span>${escHtml(address||'—')}</span></div>
+                    <div class="detail-cell"><label>तक्रार प्रकार</label><span>${escHtml(complain_type||'—')}</span></div>
+                    <div class="detail-cell"><label>स्थिती</label><span>${label}</span></div>
+                </div>
+                ${description ? `<div style="margin-top:14px;padding:14px;background:var(--bg-light);border-radius:var(--radius-sm);font-size:0.88rem;color:var(--text-medium);">
+                    <strong style="display:block;margin-bottom:4px;font-size:0.76rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.4px;">विवरण</strong>
+                    ${escHtml(description)}
+                </div>` : ''}
+                ${photoHtml}
+               
+            </div>
+        </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TOGGLE EXPAND
+═══════════════════════════════════════════════════════════════ */
+function toggleItem(idx) {
+    const body    = document.getElementById(`item-body-${idx}`);
+    const chevron = document.getElementById(`chevron-${idx}`);
+    if (!body) return;
+    const open = body.classList.toggle('open');
+    if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATUS HELPERS
+═══════════════════════════════════════════════════════════════ */
+function getStatusInfo(statusRaw) {
+    const s = (statusRaw || '').trim();
+
+    if (s === 'निराकरण') {
+        return {
+            label: '✅ निराकरण झाले', cls: 'status-resolved',
+            steps: [
+                { label: 'तक्रार नोंदणी',    state: 'done' },
+                { label: 'विभागाकडे पाठवणे', state: 'done' },
+                { label: 'पाहणी पूर्ण',       state: 'done' },
+                { label: 'काम सुरू',          state: 'done' },
+                { label: 'तक्रार निराकरण',    state: 'done' },
+            ]
+        };
+    }
+    if (s === 'प्रगतीपथावर') {
+        return {
+            label: '🔄 प्रगतीपथावर', cls: 'status-progress',
+            steps: [
+                { label: 'तक्रार नोंदणी',    state: 'done' },
+                { label: 'विभागाकडे पाठवणे', state: 'done' },
+                { label: 'पाहणी पूर्ण',       state: 'done' },
+                { label: 'काम सुरू',          state: 'active' },
+                { label: 'तक्रार निराकरण',    state: 'waiting' },
+            ]
+        };
+    }
+    if (s === 'स्वीकारलेले') {
+        return {
+            label: '👍 स्वीकारलेले', cls: 'status-progress',
+            steps: [
+                { label: 'तक्रार नोंदणी',    state: 'done' },
+                { label: 'विभागाकडे पाठवणे', state: 'active' },
+                { label: 'पाहणी पूर्ण',       state: 'waiting' },
+                { label: 'काम सुरू',          state: 'waiting' },
+                { label: 'तक्रार निराकरण',    state: 'waiting' },
+            ]
+        };
+    }
+    if (s === 'नाकारलेले') {
+        return {
+            label: '❌ नाकारलेले', cls: 'status-rejected',
+            steps: [
+                { label: 'तक्रार नोंदणी',    state: 'done' },
+                { label: 'विभागाकडे पाठवणे', state: 'done' },
+                { label: 'तक्रार तपासणी',    state: 'done' },
+                { label: 'नाकारण्यात आले',   state: 'done' },
+                { label: 'तक्रार बंद',        state: 'done' },
+            ]
+        };
+    }
+    // default → प्रलंबित
+    return {
+        label: '⏳ प्रलंबित', cls: 'status-pending',
+        steps: [
+            { label: 'तक्रार नोंदणी',    state: 'done' },
+            { label: 'विभागाकडे पाठवणे', state: 'active' },
+            { label: 'पाहणी पूर्ण',       state: 'waiting' },
+            { label: 'काम सुरू',          state: 'waiting' },
+            { label: 'तक्रार निराकरण',    state: 'waiting' },
+        ]
+    };
+}
+
+function getStatusBadge(statusRaw) {
+    const s = (statusRaw || '').trim();
+    if (s === 'निराकरण')     return { label: '✅ निराकरण',      badgeCls: 'badge-done'     };
+    if (s === 'प्रगतीपथावर') return { label: '🔄 प्रगतीपथावर', badgeCls: 'badge-prog'     };
+    if (s === 'स्वीकारलेले') return { label: '👍 स्वीकारलेले', badgeCls: 'badge-prog'     };
+    if (s === 'नाकारलेले')   return { label: '❌ नाकारलेले',    badgeCls: 'badge-rejected' };
+    return                           { label: '⏳ प्रलंबित',     badgeCls: 'badge-pend'     };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   XSS ESCAPE
+═══════════════════════════════════════════════════════════════ */
+function escHtml(str) {
+    return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENTER KEY SUPPORT
+═══════════════════════════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (document.activeElement.id === 'inputCompId') searchById();
+    if (['inputMobile','inputName'].includes(document.activeElement.id)) searchByMobile();
+});
+</script>
+</body>
+</html>

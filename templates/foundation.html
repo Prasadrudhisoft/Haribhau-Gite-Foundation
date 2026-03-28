@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – फाउंडेशन विषयी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E65100;
+            --primary-dark: #BF360C;
+            --primary-light: #FF8A65;
+            --secondary: #1565C0;
+            --secondary-dark: #0D47A1;
+            --saffron: #FF9933;
+            --white-flag: #FFFFFF;
+            --green-flag: #138808;
+            --accent: #2E7D32;
+            --accent-light: #66BB6A;
+            --bg-light: #F5F5F5;
+            --text-dark: #212121;
+            --text-medium: #424242;
+            --text-light: #757575;
+            --border: #E0E0E0;
+            --shadow: 0 2px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s ease;
+            --font-main: 'Noto Sans Devanagari', sans-serif;
+            --font-heading: 'Tiro Devanagari Marathi', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; overflow-x: hidden; }
+
+        /* TOP BAR */
+        .top-bar { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; padding: 6px 0; font-size: 0.82rem; font-weight: 500; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
+        .top-bar a:hover { opacity: 0.8; }
+        .top-bar-right { display: flex; align-items: center; gap: 10px; }
+
+        /* TRICOLOR */
+        .tricolor-stripe { height: 4px; background: linear-gradient(to right, var(--saffron) 33%, var(--white-flag) 33%, var(--white-flag) 66%, var(--green-flag) 66%); }
+
+        /* HEADER */
+        .header { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); }
+        .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
+        .logo-text p { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+
+        /* NAV */
+        .nav-toggle { display: none; background: var(--primary); color: white; border: none; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 1.3rem; cursor: pointer; }
+        .main-nav { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; }
+        .main-nav a { display: block; color: white; text-decoration: none; padding: 12px 16px; font-size: 0.85rem; font-weight: 500; transition: var(--transition); position: relative; white-space: nowrap; }
+        .main-nav a:hover, .main-nav a.active { background: rgba(255,255,255,0.15); }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--saffron); transition: var(--transition); border-radius: 3px 3px 0 0; }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 80%; }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; box-shadow: var(--shadow-lg); border-radius: 0 0 var(--radius-sm) var(--radius-sm); min-width: 220px; z-index: 100; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { color: var(--text-dark); padding: 10px 20px; border-bottom: 1px solid var(--border); font-size: 0.83rem; display: block; text-decoration: none; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
+
+        /* CONTAINER */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        /* PAGE BANNER */
+        .page-banner { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary), var(--primary)); color: white; padding: 50px 0; text-align: center; position: relative; overflow: hidden; }
+        .page-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>'); }
+        .page-banner .container { position: relative; z-index: 1; }
+        .page-banner h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px; text-shadow: 1px 1px 4px rgba(0,0,0,0.2); }
+        .page-banner p { font-size: 1rem; opacity: 0.92; }
+        .breadcrumb { display: flex; justify-content: center; gap: 8px; margin-top: 14px; font-size: 0.85rem; opacity: 0.82; flex-wrap: wrap; }
+        .breadcrumb a { color: white; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* SECTION */
+        .section { padding: 60px 0; }
+        .section-alt { background: white; }
+
+        /* SECTION HEADER */
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h2 { font-family: var(--font-heading); font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(to right, var(--saffron), var(--primary)); border-radius: 2px; }
+        .section-header p { color: var(--text-light); margin-top: 18px; font-size: 1rem; }
+
+        /* ABOUT LAYOUT */
+        .about-content { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+
+        /* ABOUT TEXT CARD */
+        .about-text { background: white; border-radius: var(--radius); padding: 35px; box-shadow: var(--shadow); }
+        .about-text h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .about-text h3 i { color: var(--primary); }
+        .about-text p { font-size: 0.95rem; color: var(--text-medium); margin-bottom: 15px; line-height: 1.9; }
+        .about-divider { height: 3px; background: linear-gradient(to right, var(--saffron), transparent); border-radius: 2px; margin: 25px 0; }
+
+        /* ACHIEVEMENTS LIST */
+        .rep-achievements { list-style: none; margin-top: 15px; }
+        .rep-achievements li { padding: 8px 0; font-size: 0.9rem; color: var(--text-medium); display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px dashed var(--border); }
+        .rep-achievements li:last-child { border-bottom: none; }
+        .rep-achievements li i { color: var(--accent); margin-top: 5px; flex-shrink: 0; font-size: 0.85rem; }
+
+        /* SIDEBAR */
+        .about-sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .about-side-card { background: white; border-radius: var(--radius); padding: 28px 22px; box-shadow: var(--shadow); text-align: center; transition: var(--transition); border-top: 4px solid var(--saffron); }
+        .about-side-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .about-side-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 12px; display: block; }
+        .about-side-card h4 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 7px; color: var(--text-dark); }
+        .about-side-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+
+        /* MISSION CARDS */
+        .mission-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 35px; }
+        .mission-card { background: white; border-radius: var(--radius); padding: 28px 22px; box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--saffron); transition: var(--transition); }
+        .mission-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .mission-card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 14px; display: block; }
+        .mission-card h4 { font-family: var(--font-heading); font-size: 1.05rem; margin-bottom: 8px; color: var(--text-dark); }
+        .mission-card p { font-size: 0.84rem; color: var(--text-light); line-height: 1.6; }
+
+        /* COUNTER STRIP */
+        .counter-strip { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); color: white; padding: 40px 0; }
+        .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .counter-item { padding: 15px; border-left: 1px solid rgba(255,255,255,0.15); }
+        .counter-item:first-child { border-left: none; }
+        .counter-num { font-size: 2.5rem; font-weight: 800; display: block; color: var(--saffron); }
+        .counter-label { font-size: 0.88rem; opacity: 0.9; margin-top: 4px; }
+
+        /* TIMELINE */
+        .timeline-section { background: white; }
+        .timeline { position: relative; padding: 20px 0; }
+        .timeline::before { content: ''; position: absolute; right: 30px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--saffron), var(--primary)); border-radius: 3px; }
+        .timeline-item { display: flex; gap: 20px; margin-bottom: 35px; position: relative; padding-right: 65px; }
+        .timeline-dot { position: absolute; right: 18px; top: 8px; width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron), var(--primary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; z-index: 1; box-shadow: 0 2px 8px rgba(230,81,0,0.3); flex-shrink: 0; }
+        .timeline-content { background: var(--bg-light); border-radius: var(--radius-sm); padding: 18px 20px; flex: 1; border-right: 4px solid var(--primary); transition: var(--transition); }
+        .timeline-content:hover { background: #FFF3E0; }
+        .timeline-year { font-size: 0.78rem; color: var(--primary); font-weight: 700; margin-bottom: 5px; letter-spacing: 1px; }
+        .timeline-content h4 { font-family: var(--font-heading); font-size: 1.05rem; margin-bottom: 5px; color: var(--text-dark); }
+        .timeline-content p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* TEAM SECTION */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
+        .team-card { background: white; border-radius: var(--radius); padding: 28px 20px; text-align: center; box-shadow: var(--shadow); transition: var(--transition); border-bottom: 4px solid transparent; }
+        .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-bottom-color: var(--saffron); }
+        .team-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron), var(--primary)); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin: 0 auto 14px; box-shadow: 0 4px 12px rgba(230,81,0,0.25); }
+        .team-card h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 5px; }
+        .team-card .role { font-size: 0.82rem; color: var(--primary); font-weight: 600; }
+
+        /* BTN */
+        .btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; font-family: var(--font-main); }
+        .btn-primary { background: var(--saffron); color: white; box-shadow: 0 4px 15px rgba(255,153,51,0.4); }
+        .btn-primary:hover { background: var(--primary); transform: translateY(-2px); }
+        .btn-secondary { background: var(--secondary); color: white; }
+        .btn-secondary:hover { background: var(--secondary-dark); transform: translateY(-2px); }
+        .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
+
+        /* CTA BANNER */
+        .cta-banner { background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--saffron)); color: white; padding: 50px 0; text-align: center; }
+        .cta-banner h2 { font-family: var(--font-heading); font-size: 1.9rem; margin-bottom: 12px; }
+        .cta-banner p { font-size: 1rem; opacity: 0.95; margin-bottom: 25px; }
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-white { background: white; color: var(--primary); }
+        .btn-white:hover { background: var(--bg-light); transform: translateY(-2px); }
+        .btn-white-outline { background: transparent; color: white; border: 2px solid white; }
+        .btn-white-outline:hover { background: white; color: var(--primary); transform: translateY(-2px); }
+
+        /* FOOTER */
+        .footer { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #CCC; padding: 50px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer h4 { color: white; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; }
+        .footer h4::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 3px; background: var(--saffron); border-radius: 2px; }
+        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .footer-links { list-style: none; }
+        .footer-links li { padding: 5px 0; }
+        .footer-links a { color: #CCC; text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--saffron); padding-right: 5px; }
+        .footer-bottom { background: rgba(0,0,0,0.3); padding: 15px 0; text-align: center; font-size: 0.82rem; }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
+
+        /* FLOATING */
+        .whatsapp-float { position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 60%{transform:translateY(-5px)} }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .scroll-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: none; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; z-index: 999; box-shadow: var(--shadow); transition: var(--transition); border: none; }
+        .scroll-top.show { display: flex; }
+        .scroll-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        /* FADE */
+        .fade-in { animation: fadeIn 0.6s ease; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .about-content { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .counter-grid { grid-template-columns: repeat(2, 1fr); }
+            .mission-cards { grid-template-columns: 1fr 1fr; }
+            .timeline::before { right: 20px; }
+            .timeline-item { padding-right: 55px; }
+            .timeline-dot { right: 8px; }
+        }
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .main-nav { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; }
+            .main-nav.show { display: block; }
+            .main-nav ul { flex-direction: column; }
+            .main-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .dropdown-menu { position: static; box-shadow: none; }
+            .page-banner h2 { font-size: 1.7rem; }
+            .mission-cards { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; }
+            .section { padding: 40px 0; }
+            .about-text { padding: 22px; }
+            .counter-grid { grid-template-columns: repeat(2, 1fr); }
+            .counter-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.15); }
+            .counter-item:first-child { border-top: none; }
+            .timeline::before { display: none; }
+            .timeline-item { padding-right: 0; }
+            .timeline-dot { display: none; }
+        }
+        @media (max-width: 480px) {
+            .logo-text h1 { font-size: 1.05rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div>
+                <i class="fas fa-phone-alt"></i> हेल्पलाइन: # &nbsp;&nbsp;|&nbsp;&nbsp;
+                <i class="fas fa-envelope"></i> info@haribhaugite.org
+            </div>
+            <div class="top-bar-right">
+                <a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a>
+                <a href="/emergency"><i class="fas fa-ambulance"></i> आपत्कालीन</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="tricolor-stripe"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon">ह</div>
+                <div class="logo-text">
+                    <h1>हरिभाऊ गिते फाउंडेशन</h1>
+                    <p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते</p>
+                </div>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav class="main-nav" id="mainNav">
+            <div class="container">
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li>
+                    <li><a href="/foundation" class="active">फाउंडेशन</a></li>
+                    <li><a href="/nagarsevak">नगरसेवक</a></li>
+                    <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                    <li><a href="/events">कार्यक्रम</a></li>
+                    <li><a href="/works">विकास कामे</a></li>
+                    <li class="dropdown">
+                        <a href="/grievance">तक्रार निवारण ▾</a>
+                        <div class="dropdown-menu">
+                            <a href="/grievance">तक्रार नोंदणी</a>
+                            <a href="/complaint-status">तक्रार स्थिती</a>
+                        </div>
+                    </li>
+                    <li><a href="/eservices">ई-सेवा</a></li>
+                    <li><a href="/gallery">फोटो गॅलरी</a></li>
+                    <li><a href="/news">बातम्या</a></li>
+                    <li><a href="/schemes">शासकीय योजना</a></li>
+                    <li><a href="/contact">संपर्क</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <div class="container">
+            <h2>हरिभाऊ गिते फाउंडेशन विषयी</h2>
+            <p>समाजसेवा, विकास आणि नागरिक कल्याणासाठी समर्पित</p>
+            <div class="breadcrumb">
+                <a href="/">मुख्यपृष्ठ</a>
+                <span>/</span>
+                <span>फाउंडेशन विषयी</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- COUNTER STRIP -->
+    <!-- <div class="counter-strip">
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <span class="counter-num">५०,०००+</span>
+                    <div class="counter-label">प्रभाग लोकसंख्या</div>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-num">१२०+</span>
+                    <div class="counter-label">पूर्ण विकास कामे</div>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-num">८५+</span>
+                    <div class="counter-label">सामाजिक कार्यक्रम</div>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-num">९५%</span>
+                    <div class="counter-label">तक्रार निवारण दर</div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- ABOUT MAIN SECTION -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="about-content fade-in">
+
+                <!-- LEFT: ABOUT TEXT -->
+                <div class="about-text">
+                    <h3><i class="fas fa-info-circle"></i> आमच्याबद्दल</h3>
+                    <p>हरिभाऊ गिते फाउंडेशनची स्थापना प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी करण्यात आली आहे. फाउंडेशन विविध सामाजिक उपक्रम, आरोग्य शिबिरे, शैक्षणिक कार्यक्रम आणि विकास कामे राबवते.</p>
+                    <p>नागरिकांना डिजिटल माध्यमातून माहिती आणि सेवा उपलब्ध करून देणे, पारदर्शकता राखणे आणि नगरसेवक कार्यालय व नागरिक यांच्यातील संवाद सुधारणे हे फाउंडेशनचे प्रमुख उद्दिष्ट आहे.</p>
+                    <p>आम्ही रक्तदान शिबिरे, वृक्षारोपण मोहिमा, मोफत आरोग्य तपासणी, महिला सबलीकरण कार्यक्रम, आणि अनेक समाजकल्याणकारी उपक्रम राबवतो. प्रत्येक नागरिकाला उत्तम सेवा मिळावी यासाठी फाउंडेशन अहोरात्र कार्यरत आहे.</p>
+
+                    <div class="about-divider"></div>
+
+                    <h3 style="margin-top:5px;"><i class="fas fa-bullseye"></i> आमची उद्दिष्टे</h3>
+                    <ul class="rep-achievements">
+                        <li><i class="fas fa-check-circle"></i> नागरिकांना अचूक प्रभाग माहिती उपलब्ध करणे</li>
+                        <li><i class="fas fa-check-circle"></i> सुरू आणि पूर्ण विकास कामे पारदर्शकपणे प्रदर्शित करणे</li>
+                        <li><i class="fas fa-check-circle"></i> सामाजिक कार्यक्रम व उपक्रमांचे नियमित आयोजन</li>
+                        <li><i class="fas fa-check-circle"></i> नागरिक सुविधांसाठी ई-सेवा व डिजिटल माध्यम उपलब्ध करणे</li>
+                        <li><i class="fas fa-check-circle"></i> तक्रार नोंदणी व निवारण प्रणाली सक्षम करणे</li>
+                        <li><i class="fas fa-check-circle"></i> महानगरपालिका कामकाजात पूर्ण पारदर्शकता राखणे</li>
+                        <li><i class="fas fa-check-circle"></i> महिला व युवकांच्या सबलीकरणासाठी विशेष कार्यक्रम राबवणे</li>
+                    </ul>
+                </div>
+
+                <!-- RIGHT: SIDEBAR CARDS -->
+                <div class="about-sidebar">
+                    <div class="about-side-card">
+                        <i class="fas fa-bullseye"></i>
+                        <h4>आमचे ध्येय</h4>
+                        <p>प्रत्येक नागरिकाला उत्तम सुविधा, जलद सेवा आणि पारदर्शक प्रशासन देणे.</p>
+                    </div>
+                    <div class="about-side-card" style="border-top-color: var(--secondary);">
+                        <i class="fas fa-eye" style="color: var(--secondary);"></i>
+                        <h4>आमची दृष्टी</h4>
+                        <p>स्वच्छ, सुंदर, विकसित आणि डिजिटल प्रभाग निर्माण करणे.</p>
+                    </div>
+                    <div class="about-side-card" style="border-top-color: var(--accent);">
+                        <i class="fas fa-handshake" style="color: var(--accent);"></i>
+                        <h4>आमची मूल्ये</h4>
+                        <p>सेवा, पारदर्शकता, प्रामाणिकपणा, जबाबदारी आणि सर्वांगीण विकास.</p>
+                    </div>
+                    <div class="about-side-card" style="border-top-color: #7B1FA2;">
+                        <i class="fas fa-award" style="color: #7B1FA2;"></i>
+                        <h4>आमची ओळख</h4>
+                        <p>नागरिकांचे विश्वासू प्रतिनिधी. समाजसेवेत अग्रेसर फाउंडेशन.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSION CARDS -->
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <i class="fas fa-users"></i>
+                    <h4>समाज सेवा</h4>
+                    <p>रक्तदान, आरोग्य शिबिर, वृक्षारोपण व इतर सामाजिक कार्य नियमितपणे राबवले जातात.</p>
+                </div>
+                <div class="mission-card" style="border-top-color: var(--secondary);">
+                    <i class="fas fa-road" style="color: var(--secondary);"></i>
+                    <h4>विकास कामे</h4>
+                    <p>रस्ते, ड्रेनेज, पथदिवे, सार्वजनिक पायाभूत सुविधांचा सातत्यपूर्ण विकास.</p>
+                </div>
+                <div class="mission-card" style="border-top-color: var(--accent);">
+                    <i class="fas fa-comments" style="color: var(--accent);"></i>
+                    <h4>नागरिक संवाद</h4>
+                    <p>तक्रार निवारण, WhatsApp सूचना, डिजिटल पोर्टल द्वारे नागरिकांशी थेट संवाद.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY / TIMELINE -->
+    <section class="section timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>आमचा प्रवास</h2>
+                <p>फाउंडेशनच्या महत्त्वाच्या टप्प्यांचा आढावा</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-flag"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">२०१५</div>
+                        <h4>फाउंडेशनची स्थापना</h4>
+                        <p>हरिभाऊ गिते फाउंडेशनची अधिकृत स्थापना. नागरिक सेवेचा शुभारंभ.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-tint"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">२०१७</div>
+                        <h4>पहिले रक्तदान शिबिर</h4>
+                        <p>प्रभागात पहिल्यांदा मोठ्या प्रमाणावर रक्तदान शिबिराचे यशस्वी आयोजन. २०० + रक्तदाते.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-road"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">२०१९</div>
+                        <h4>प्रमुख रस्ते विकास</h4>
+                        <p>प्रभागातील १५ किमी रस्त्यांचे डांबरीकरण पूर्ण. नागरिकांना मोठा दिलासा.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-laptop"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">२०२१</div>
+                        <h4>डिजिटल पोर्टल लॉन्च</h4>
+                        <p>नागरिक सेवा पोर्टलचे उद्घाटन. ऑनलाइन तक्रार नोंदणी प्रणाली सुरू.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-lightbulb"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">२०२३</div>
+                        <h4>LED पथदिवे योजना</h4>
+                        <p>संपूर्ण प्रभागात ऊर्जा-कार्यक्षम LED पथदिवे बसविण्याचा महत्त्वाकांक्षी प्रकल्प.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-star"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">२०२५</div>
+                        <h4>नवीन उपक्रम</h4>
+                        <p>GPS-आधारित तक्रार नोंदणी, WhatsApp सूचना प्रणाली, व अनेक नागरी सुविधांचा विस्तार.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>आमची टीम</h2>
+                <p>फाउंडेशनच्या कार्यात सहभागी समर्पित कार्यकर्ते</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fas fa-user"></i></div>
+                    <h4>गणेशभाऊ गिते</h4>
+                    <div class="role">अध्यक्ष / नगरसेवक</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #E91E63, #AD1457);"><i class="fas fa-user"></i></div>
+                    <h4>दीपालीताई गिते</h4>
+                    <div class="role">उपाध्यक्ष / नगरसेविका</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));"><i class="fas fa-user"></i></div>
+                    <h4>सामाजिक कार्यकर्ते</h4>
+                    <div class="role">सामाजिक उपक्रम विभाग</div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, var(--accent), #1B5E20);"><i class="fas fa-user"></i></div>
+                    <h4>विकास समिती</h4>
+                    <div class="role">प्रकल्प व्यवस्थापन</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>आपल्या सेवेसाठी सदैव तत्पर!</h2>
+            <p>तक्रार नोंदवा, सेवा मिळवा किंवा आमच्याशी संपर्क साधा.</p>
+            <div class="cta-buttons">
+                <a href="/grievance" class="btn btn-white"><i class="fas fa-edit"></i> तक्रार नोंदवा</a>
+                <a href="/contact" class="btn btn-white-outline"><i class="fas fa-phone-alt"></i> संपर्क करा</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>हरिभाऊ गिते फाउंडेशन</h4>
+                    <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी कटिबद्ध.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>द्रुत दुवे</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">मुख्यपृष्ठ</a></li>
+                        <li><a href="/foundation">फाउंडेशन विषयी</a></li>
+                        <li><a href="/nagarsevak">नगरसेवक</a></li>
+                        <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                        <li><a href="/events">कार्यक्रम</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>सेवा</h4>
+                    <ul class="footer-links">
+                        <li><a href="/grievance">तक्रार नोंदणी</a></li>
+                        <li><a href="/complaint-status">तक्रार स्थिती</a></li>
+                        <li><a href="/eservices">ई-सेवा</a></li>
+                        <li><a href="/schemes">शासकीय योजना</a></li>
+                        <li><a href="/news">बातम्या</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>संपर्क</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt" style="color:var(--saffron); margin-left:8px;"></i> नाशिक, महाराष्ट्र</li>
+                        <li><i class="fas fa-phone" style="color:var(--saffron); margin-left:8px;"></i> #</li>
+                        <li><i class="fas fa-envelope" style="color:var(--saffron); margin-left:8px;"></i> info@haribhaugite.org</li>
+                    </ul>
+                    <div style="margin-top:15px;">
+                        <a href="/emergency" class="btn btn-sm" style="background:#C62828; color:white; font-size:0.8rem;"><i class="fas fa-ambulance"></i> आपत्कालीन संपर्क</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव. | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        function toggleNav() { document.getElementById('mainNav').classList.toggle('show'); }
+        window.addEventListener('scroll', function() {
+            document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300);
+        });
+
+        // Animate counters on scroll
+        const counters = document.querySelectorAll('.counter-num');
+        let animated = false;
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animated) {
+                    animated = true;
+                    counters.forEach(el => {
+                        el.style.animation = 'fadeIn 0.8s ease forwards';
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        const strip = document.querySelector('.counter-strip');
+        if (strip) observer.observe(strip);
+    </script>
+</body>
+</html>

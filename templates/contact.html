@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हरिभाऊ गिते फाउंडेशन – संपर्क करा</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>
+
+        /* =====================================================
+           CSS VARIABLES
+        ===================================================== */
+        :root {
+            --primary:        #E65100;
+            --primary-dark:   #BF360C;
+            --secondary:      #1565C0;
+            --secondary-dark: #0D47A1;
+            --saffron:        #FF9933;
+            --green-flag:     #138808;
+            --accent:         #2E7D32;
+            --bg-light:       #F5F5F5;
+            --text-dark:      #212121;
+            --text-medium:    #424242;
+            --text-light:     #757575;
+            --border:         #E0E0E0;
+            --shadow:         0 2px 12px rgba(0,0,0,0.10);
+            --shadow-lg:      0 8px 32px rgba(0,0,0,0.15);
+            --radius:         12px;
+            --radius-sm:      8px;
+            --transition:     all 0.3s ease;
+            --font-main:     'Noto Sans Devanagari', sans-serif;
+            --font-heading:  'Tiro Devanagari Marathi', serif;
+        }
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* =====================================================
+           UTILITIES
+        ===================================================== */
+        .container   { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        .section     { padding: 60px 0; }
+        .section-alt { background: white; }
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+        .top-bar {
+            background: linear-gradient(135deg, var(--saffron), var(--primary));
+            color: white; padding: 6px 0;
+            font-size: 0.82rem; font-weight: 500;
+        }
+        .top-bar .container {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 8px;
+        }
+        .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
+        .top-bar a:hover { opacity: 0.8; }
+
+        /* =====================================================
+           TRICOLOR STRIPE
+        ===================================================== */
+        .tricolor-stripe {
+            height: 4px;
+            background: linear-gradient(
+                to right,
+                var(--saffron)    33%,
+                #ffffff           33%,
+                #ffffff           66%,
+                var(--green-flag) 66%
+            );
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+        .header {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .header .container {
+            display: flex; align-items: center;
+            justify-content: space-between; padding: 10px 20px;
+        }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--saffron), var(--primary));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.8rem; font-weight: 800;
+            font-family: var(--font-heading);
+            box-shadow: 0 4px 15px rgba(230,81,0,0.3);
+            flex-shrink: 0;
+        }
+        .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
+        .logo-text p  { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+
+        /* =====================================================
+           MOBILE NAV TOGGLE
+        ===================================================== */
+        .nav-toggle {
+            display: none; background: var(--primary); color: white;
+            border: none; padding: 10px 14px;
+            border-radius: var(--radius-sm); font-size: 1.3rem; cursor: pointer;
+        }
+
+        /* =====================================================
+           MAIN NAV
+        ===================================================== */
+        .main-nav { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); }
+        .main-nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; }
+        .main-nav a {
+            display: block; color: white; text-decoration: none;
+            padding: 12px 16px; font-size: 0.85rem; font-weight: 500;
+            transition: var(--transition); position: relative; white-space: nowrap;
+        }
+        .main-nav a:hover,
+        .main-nav a.active { background: rgba(255,255,255,0.15); }
+        .main-nav a::after {
+            content: ''; position: absolute; bottom: 0;
+            left: 50%; transform: translateX(-50%);
+            width: 0; height: 3px; background: var(--saffron);
+            transition: var(--transition); border-radius: 3px 3px 0 0;
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after { width: 80%; }
+
+        /* =====================================================
+           DROPDOWN
+        ===================================================== */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: white; box-shadow: var(--shadow-lg);
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            min-width: 220px; z-index: 100;
+        }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a {
+            color: var(--text-dark); padding: 10px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem; display: block; text-decoration: none;
+        }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
+
+        /* =====================================================
+           PAGE BANNER
+        ===================================================== */
+        .page-banner {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary), var(--primary));
+            color: white; padding: 50px 0; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .page-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.07)"/></svg>');
+        }
+        .page-banner .container { position: relative; z-index: 1; }
+        .page-banner h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 10px; }
+        .page-banner p  { font-size: 1rem; opacity: 0.92; }
+        .breadcrumb {
+            display: flex; justify-content: center; gap: 8px;
+            margin-top: 14px; font-size: 0.85rem; opacity: 0.82;
+        }
+        .breadcrumb a { color: white; text-decoration: none; }
+
+        /* =====================================================
+           SECTION HEADER
+        ===================================================== */
+        .section-header { text-align: center; margin-bottom: 45px; }
+        .section-header h2 {
+            font-family: var(--font-heading); font-size: 2rem;
+            color: var(--primary-dark); margin-bottom: 10px;
+            position: relative; display: inline-block;
+        }
+        .section-header h2::after {
+            content: ''; position: absolute;
+            bottom: -8px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 4px;
+            background: linear-gradient(to right, var(--saffron), var(--primary));
+            border-radius: 2px;
+        }
+        .section-header p { color: var(--text-light); margin-top: 18px; font-size: 1rem; }
+
+        /* =====================================================
+           SECTION 1 – REP CARDS
+        ===================================================== */
+        .rep-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+        .rep-contact-card {
+            background: white; border-radius: var(--radius); padding: 25px;
+            box-shadow: var(--shadow); text-align: center;
+            transition: var(--transition); border-top: 4px solid var(--saffron);
+        }
+        .rep-contact-card:hover       { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .rep-contact-card:nth-child(2){ border-top-color: #E91E63; }
+        .rep-av {
+            width: 80px; height: 80px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: white; margin: 0 auto 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .rep-contact-card h4   { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 4px; }
+        .rep-contact-card .role{ font-size: 0.82rem; color: var(--primary); font-weight: 600; margin-bottom: 14px; }
+        .rep-contact-card:nth-child(2) .role { color: #E91E63; }
+        .rep-btn-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .rep-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 7px 14px; border-radius: 25px;
+            font-size: 0.8rem; font-weight: 600;
+            text-decoration: none; transition: var(--transition);
+        }
+        .rep-btn-call            { background: #E3F2FD; color: var(--secondary); }
+        .rep-btn-call:hover      { background: var(--secondary); color: white; }
+        .rep-btn-wa              { background: #E8F5E9; color: #2E7D32; }
+        .rep-btn-wa:hover        { background: #25D366; color: white; }
+
+        /* =====================================================
+           SECTION 2 – CONTACT INFO GRID (info + hours)
+        ===================================================== */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Contact Details Card */
+        .contact-info-card {
+            background: white; border-radius: var(--radius);
+            padding: 30px; box-shadow: var(--shadow);
+        }
+        .contact-info-card h3 {
+            font-family: var(--font-heading); font-size: 1.2rem;
+            color: var(--primary-dark); margin-bottom: 20px;
+            padding-bottom: 12px; border-bottom: 2px solid var(--border);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .contact-item {
+            display: flex; gap: 15px;
+            padding: 15px 0; border-bottom: 1px solid var(--border);
+        }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-item-icon {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: white; flex-shrink: 0;
+        }
+        .contact-item h5 { font-size: 0.9rem; margin-bottom: 3px; font-weight: 700; }
+        .contact-item p  { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .contact-item a  { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .contact-item a:hover { text-decoration: underline; }
+
+        /* Hours Card */
+        .hours-card-full {
+            background: linear-gradient(160deg, #E3F2FD, #EDE7F6);
+            border-radius: var(--radius); padding: 30px;
+            border: 1px solid #90CAF9; box-shadow: var(--shadow);
+        }
+        .hours-card-full h3 {
+            font-family: var(--font-heading); font-size: 1.2rem;
+            color: var(--secondary-dark); margin-bottom: 22px;
+            padding-bottom: 12px; border-bottom: 2px solid #90CAF9;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .hours-row {
+            display: flex; justify-content: space-between;
+            padding: 11px 0; border-bottom: 1px dashed #90CAF9; font-size: 0.9rem;
+        }
+        .hours-row:last-child { border-bottom: none; }
+        .hours-row .day    { color: var(--text-medium); font-weight: 500; }
+        .hours-row .time   { font-weight: 700; color: var(--secondary-dark); }
+        .hours-row .closed { color: #C62828; font-weight: 700; }
+
+        /* =====================================================
+           SECTION 3 – MAP
+        ===================================================== */
+        #contactMap {
+            height: 420px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+        }
+
+        /* =====================================================
+           SOCIAL STRIP
+        ===================================================== */
+        .social-strip {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+            color: white; padding: 40px 0; text-align: center;
+        }
+        .social-strip h3 { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 8px; }
+        .social-strip p  { opacity: 0.85; margin-bottom: 22px; font-size: 0.92rem; }
+        .social-strip-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .soc-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 22px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 0.88rem;
+            transition: var(--transition);
+        }
+        .soc-btn:hover { transform: translateY(-3px); opacity: 0.92; }
+        .soc-fb { background: #1877F2; color: white; }
+        .soc-tw { background: #1DA1F2; color: white; }
+        .soc-ig { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); color: white; }
+        .soc-yt { background: #FF0000; color: white; }
+        .soc-wa { background: #25D366; color: white; }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #CCC; padding: 50px 0 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px; margin-bottom: 30px;
+        }
+        .footer h4 {
+            color: white; font-size: 1.05rem;
+            margin-bottom: 18px; position: relative; padding-bottom: 10px;
+        }
+        .footer h4::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 40px; height: 3px; background: var(--saffron); border-radius: 2px;
+        }
+        .footer p { font-size: 0.85rem; line-height: 1.8; }
+        .footer-links { list-style: none; }
+        .footer-links li { padding: 5px 0; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .footer-links a { color: #CCC; text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: var(--saffron); padding-left: 4px; }
+        .footer-links .fi { color: var(--saffron); width: 16px; text-align: center; flex-shrink: 0; }
+        .footer-bottom {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 0; text-align: center; font-size: 0.82rem;
+        }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links a {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); color: white;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); text-decoration: none;
+        }
+        .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
+        .btn-emergency {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; border-radius: 30px;
+            background: #C62828; color: white;
+            text-decoration: none; font-size: 0.82rem; font-weight: 600;
+            margin-top: 15px; transition: var(--transition);
+        }
+        .btn-emergency:hover { background: #B71C1C; transform: translateY(-2px); }
+
+        /* =====================================================
+           FLOATING BUTTONS
+        ===================================================== */
+        .whatsapp-float {
+            position: fixed; bottom: 25px; left: 25px;
+            width: 60px; height: 60px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 999; text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%,20%,50%,80%,100% { transform: translateY(0); }
+            40%                  { transform: translateY(-10px); }
+            60%                  { transform: translateY(-5px); }
+        }
+        .scroll-top {
+            position: fixed; bottom: 25px; right: 25px;
+            width: 50px; height: 50px; background: var(--primary);
+            border-radius: 50%; display: none; align-items: center; justify-content: center;
+            color: white; font-size: 1.2rem; cursor: pointer;
+            z-index: 999; border: none; box-shadow: var(--shadow); transition: var(--transition);
+        }
+        .scroll-top.show { display: flex; }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media (max-width: 1024px) {
+            .contact-info-grid { grid-template-columns: 1fr; }
+            .footer-grid       { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-toggle  { display: block; }
+            .main-nav    { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; }
+            .main-nav.show { display: block; }
+            .main-nav ul { flex-direction: column; }
+            .main-nav a  { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .dropdown-menu  { position: static; box-shadow: none; }
+            .rep-contact-grid { grid-template-columns: 1fr; }
+            .footer-grid  { grid-template-columns: 1fr; }
+            .section      { padding: 40px 0; }
+            .page-banner h2 { font-size: 1.7rem; }
+        }
+        @media (max-width: 480px) {
+            .logo-text h1 { font-size: 1.05rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+<div class="top-bar">
+    <div class="container">
+        <div>
+            <i class="fas fa-phone-alt"></i> हेल्पलाइन: #
+            &nbsp;|&nbsp;
+            <i class="fas fa-envelope"></i> info@haribhaugite.org
+        </div>
+        <div>
+            <a href="/admin"><i class="fas fa-user-shield"></i> ॲडमिन</a>
+            <a href="/emergency"><i class="fas fa-ambulance"></i> आपत्कालीन</a>
+        </div>
+    </div>
+</div>
+
+<div class="tricolor-stripe"></div>
+
+<!-- =====================================================
+     HEADER + NAV
+===================================================== -->
+<header class="header">
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-icon">ह</div>
+            <div class="logo-text">
+                <h1>हरिभाऊ गिते फाउंडेशन</h1>
+                <p>प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते &amp; दीपालीताई गिते</p>
+            </div>
+        </div>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu Toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i> मुख्यपृष्ठ</a></li>
+                <li><a href="/foundation">फाउंडेशन</a></li>
+                <li><a href="/nagarsevak">नगरसेवक</a></li>
+                <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                <li><a href="/events">कार्यक्रम</a></li>
+                <li><a href="/works">विकास कामे</a></li>
+                <li class="dropdown">
+                    <a href="/grievance">तक्रार निवारण ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/grievance">तक्रार नोंदणी</a>
+                        <a href="/complaint-status">तक्रार स्थिती</a>
+                    </div>
+                </li>
+                <li><a href="/eservices">ई-सेवा</a></li>
+                <li><a href="/gallery">फोटो गॅलरी</a></li>
+                <li><a href="/news">बातम्या</a></li>
+                <li><a href="/schemes">शासकीय योजना</a></li>
+                <li><a href="/contact" class="active">संपर्क</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- =====================================================
+     PAGE BANNER
+===================================================== -->
+<div class="page-banner">
+    <div class="container">
+        <h2>संपर्क करा</h2>
+        <p>आमच्याशी थेट संपर्क साधा – आम्ही नेहमी उपलब्ध आहोत</p>
+        <div class="breadcrumb">
+            <a href="/">मुख्यपृष्ठ</a>
+            <span>/</span>
+            <span>संपर्क</span>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     SECTION 1 – REPRESENTATIVE QUICK CONTACT
+===================================================== -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <h2>नगरसेवकांशी थेट संपर्क</h2>
+            <p>आपले प्रतिनिधी सदैव आपल्यासाठी उपलब्ध आहेत</p>
+        </div>
+        <div class="rep-contact-grid">
+
+            <div class="rep-contact-card">
+                <div class="rep-av" style="background: linear-gradient(135deg,#FF9933,#E65100)">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h4>गणेशभाऊ गिते</h4>
+                <div class="role">नगरसेवक – प्रभाग प्रतिनिधी</div>
+                <!-- <div class="rep-btn-row">
+                    <a href="tel:#" class="rep-btn rep-btn-call"><i class="fas fa-phone-alt"></i> कॉल करा</a>
+                    <a href="#"     class="rep-btn rep-btn-wa"  ><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div> -->
+            </div>
+
+            <div class="rep-contact-card">
+                <div class="rep-av" style="background: linear-gradient(135deg,#E91E63,#AD1457)">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h4>दीपालीताई गिते</h4>
+                <div class="role">नगरसेविका – सामाजिक उपक्रम प्रमुख</div>
+                <!-- <div class="rep-btn-row">
+                    <a href="tel:#" class="rep-btn rep-btn-call"><i class="fas fa-phone-alt"></i> कॉल करा</a>
+                    <a href="#"     class="rep-btn rep-btn-wa"  ><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     SECTION 2 – CONTACT DETAILS + OFFICE HOURS
+===================================================== -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>संपर्क माहिती</h2>
+            <p>खालील माध्यमातून आमच्याशी संपर्क साधा</p>
+        </div>
+
+        <div class="contact-info-grid">
+
+            <!-- Contact Details Card -->
+            <div class="contact-info-card">
+                <h3>
+                    <i class="fas fa-info-circle" style="color:var(--primary)"></i>
+                    संपर्क तपशील
+                </h3>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark))">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h5>कार्यालय पत्ता</h5>
+                        <p>हरिभाऊ गिते फाउंडेशन,<br>
+                           रिलायन्स पेट्रोल पंपाजवळ, दिंडोरी रोड,<br>
+                           म्हसरूळ, नाशिक – ४२२ ००४</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon" style="background:linear-gradient(135deg,var(--secondary),var(--secondary-dark))">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h5>दूरध्वनी</h5>
+                        <p>
+                            <a href="tel:#"># (कार्यालय)</a><br>
+                            <a href="tel:#"># (मोबाइल)</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon" style="background:linear-gradient(135deg,#25D366,#128C7E)">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h5>WhatsApp</h5>
+                        <p><a href="#"># वर WhatsApp करा</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon" style="background:linear-gradient(135deg,var(--primary),#FF8A65)">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>ई-मेल</h5>
+                        <p><a href="mailto:info@haribhaugite.org">info@haribhaugite.org</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon" style="background:linear-gradient(135deg,var(--accent),#1B5E20)">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <h5>वेबसाइट</h5>
+                        <p><a href="#">www.haribhaugite.org</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Office Hours Card -->
+            <div class="hours-card-full">
+                <h3>
+                    <i class="fas fa-clock" style="color:var(--secondary)"></i>
+                    कार्यालय वेळ
+                </h3>
+                <div class="hours-row">
+                    <span class="day">सोमवार – शुक्रवार</span>
+                    <span class="time">सकाळी १० – संध्याकाळी ६</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day">शनिवार</span>
+                    <span class="time">सकाळी १० – दुपारी २</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day">रविवार</span>
+                    <span class="closed">बंद</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day">शासकीय सुट्ट्या</span>
+                    <span class="closed">बंद</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     SECTION 3 – MAP
+===================================================== -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <h2>कार्यालयाचे ठिकाण</h2>
+            <p>रिलायन्स पेट्रोल पंपाजवळ, दिंडोरी रोड, म्हसरूळ, नाशिक</p>
+        </div>
+        <div id="contactMap"></div>
+    </div>
+</section>
+
+<!-- =====================================================
+     SOCIAL STRIP
+===================================================== -->
+<div class="social-strip">
+    <div class="container">
+        <h3>आमच्या सोशल मीडियावर जोडा</h3>
+        <p>ताज्या अपडेट्स, कार्यक्रम आणि सूचनांसाठी follow करा</p>
+        <div class="social-strip-links">
+            <a href="#" class="soc-btn soc-fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="#" class="soc-btn soc-tw"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#" class="soc-btn soc-ig"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#" class="soc-btn soc-yt"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="#" class="soc-btn soc-wa"><i class="fab fa-whatsapp"></i> WhatsApp Group</a>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <!-- About -->
+            <div>
+                <h4>हरिभाऊ गिते फाउंडेशन</h4>
+                <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी कटिबद्ध.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook" ><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"  ><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"  ><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="WhatsApp" ><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4>द्रुत दुवे</h4>
+                <ul class="footer-links">
+                    <li><a href="/">मुख्यपृष्ठ</a></li>
+                    <li><a href="/foundation">फाउंडेशन</a></li>
+                    <li><a href="/nagarsevak">नगरसेवक</a></li>
+                    <li><a href="/prabhag">प्रभाग माहिती</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h4>सेवा</h4>
+                <ul class="footer-links">
+                    <li><a href="/grievance">तक्रार नोंदणी</a></li>
+                    <li><a href="/eservices">ई-सेवा</a></li>
+                    <li><a href="/schemes">शासकीय योजना</a></li>
+                    <li><a href="/news">बातम्या</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4>संपर्क</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt fi"></i> म्हसरूळ, नाशिक – ४२२ ००४</li>
+                    <li><i class="fas fa-phone fi"></i> #</li>
+                    <li><i class="fas fa-envelope fi"></i> info@haribhaugite.org</li>
+                </ul>
+                <a href="/emergency" class="btn-emergency">
+                    <i class="fas fa-ambulance"></i> आपत्कालीन
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>© २०२५ हरिभाऊ गिते फाउंडेशन. सर्व हक्क राखीव.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- =====================================================
+     FLOATING: WHATSAPP + SCROLL TOP
+===================================================== -->
+<a href="#" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<button class="scroll-top" id="scrollTop"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Scroll to Top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+
+    /* Mobile nav toggle */
+    function toggleNav() {
+        document.getElementById('mainNav').classList.toggle('show');
+    }
+
+    /* Scroll-to-top button visibility */
+    window.addEventListener('scroll', function () {
+        document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300);
+    });
+
+    /* Leaflet Map – Reliance Petrol Pump, Mhasrul Road, Nashik */
+    const map = L.map('contactMap').setView([20.034963, 73.801436], 17);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const markerIcon = L.divIcon({
+        html: '<div style="background:#E65100;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>',
+        iconSize:   [26, 26],
+        iconAnchor: [13, 26],
+        className:  ''
+    });
+
+    L.marker([20.034963, 73.801436], { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(
+            '<b>हरिभाऊ गिते फाउंडेशन</b><br>' +
+            'रिलायन्स पेट्रोल पंपाजवळ, दिंडोरी रोड,<br>' +
+            'म्हसरूळ, नाशिक – ४२२ ००४'
+        )
+        .openPopup();
+
+</script>
+</body>
+</html>

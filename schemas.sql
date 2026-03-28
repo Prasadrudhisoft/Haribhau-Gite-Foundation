@@ -55,3 +55,16 @@ CREATE TABLE gov_schems (
     created_at timestamp,
     created_by varchar(200)
 );
+
+CREATE TABLE complains (
+    id VARCHAR(200) PRIMARY KEY,
+    person_name VARCHAR(200) NOT NULL,
+    complain_reg_no VARCHAR(200) UNIQUE,
+    mobile_no VARCHAR(100) NOT NULL,
+    address VARCHAR(200),
+    complain_type VARCHAR(100),
+    description TEXT,
+    photo_path VARCHAR(300),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(100)
+);

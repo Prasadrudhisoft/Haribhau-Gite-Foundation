@@ -497,7 +497,7 @@ def update_complain_status(comp:Update_complain_status,user=Depends(get_current_
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("update complains set status=%s where id=%s",(comp.comp_status,comp.comp_id))
+        cursor.execute("update complains set status=%s where complain_reg_no=%s",(comp.comp_status,comp.comp_id))
         conn.commit()
         
         return{

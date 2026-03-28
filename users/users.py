@@ -264,9 +264,14 @@ async def register_complain(
         if conn:
             conn.close()
 
+from fastapi import Query
 
 @user.get('/user_get_complains')
-def user_get_complains(user_com:User_complain):
+def user_get_complains(
+    comp_id: str = Query(None),
+    mobile_no: str = Query(None),
+    person_name: str = Query(None)
+):
     conn = None
     cursor = None
 
@@ -274,7 +279,7 @@ def user_get_complains(user_com:User_complain):
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("select person_name,complain_reg_no,mobile_no,address,complain_type, description,photo_path,status from complains where complain_reg_no=%s or mobile_no=%s AND person_name=%s",(user_com.comp_id,user_com.mobile_no,user_com.person_name))
+        cursor.execute("select person_name,complain_reg_no,mobile_no,address,complain_type, description,photo_path,status from complains where complain_reg_no=%s or mobile_no=%s AND person_name=%s",(comp_id,mobile_no,person_name))
         complains = cursor.fetchall()
 
         return{

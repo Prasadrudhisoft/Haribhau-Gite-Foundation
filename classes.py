@@ -33,3 +33,12 @@ class Gov_schems(BaseModel):
     description: str
     start_date: date
     end_date: date
+
+class Update_complain_status(BaseModel):
+    comp_id: str
+    comp_status: str
+
+class User_complain(BaseModel):
+    comp_id: str
+    person_name: str
+    mobile_no: str

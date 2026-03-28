@@ -4,6 +4,7 @@ import uuid
 from fastapi import UploadFile, File, Form
 import os
 from datetime import datetime
+from classes import User_complain
 
 
 
@@ -257,6 +258,35 @@ async def register_complain(
             'message': str(e)
         }
 
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+@user.get('/user_get_complains')
+def user_get_complains(user_com:User_complain):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("select person_name,complain_reg_no,mobile_no,address,complain_type, description,photo_path,status from complains where complain_reg_no=%s or mobile_no=%s AND person_name=%s",(user_com.comp_id,user_com.mobile_no,user_com.person_name))
+        complains = cursor.fetchall()
+
+        return{
+            'status':'success',
+            'message':'Your Registered Complains Fetched Successfully.',
+            'complains':complains
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
     finally:
         if cursor:
             cursor.close()

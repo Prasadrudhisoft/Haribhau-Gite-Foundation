@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, APIRouter,Depends
 from connector import get_connection
 from decorators import get_current_user
 from tokens import create_token
-from classes import Register,Logins,Events,Works,Update_work_status,Gov_schems
+from classes import Register,Logins,Events,Works,Update_work_status,Gov_schems,Update_complain_status
 import uuid
 import pymysql
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -430,4 +430,89 @@ def get_schems(user=Depends(get_current_user)):
         if conn:
             conn.close()
 
+
+@admin.get('/get_complains')
+def get_complains(user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("select person_name, complain_reg_no,mobile_no, address, complain_type,description,photo_path,status from complains")
+        complains = cursor.fetchall()
+
+        new_complains = []
+        swikarle = []
+        pralambit = []
+        pragatipathavr = []
+        nirakaran = []
+        nakarlele = []
+
+
+        for i in complains:
+            if i['status']=="Not Accepted Yet":
+                new_complains.append(i)
+            if i['status']=="प्रलंबित":
+                pralambit.append(i)
+            if i['status'] == "प्रगतीपथावर":
+                pragatipathavr.append(i)
+            if i['status']=="नाकारलेले":
+                nakarlele.append(i)
+            if i['status']=="स्वीकारलेले":
+                swikarle.append(i)
+            if i['status']=="निराकरण":
+                nirakaran.append(i)
+
+        return{
+            'status':'success',
+            'message':'All Complains Fetched Successfully',
+            'new_complains':new_complains,
+            'pralambit':pralambit,
+            'pragatipathavr':pragatipathavr,
+            'nakarlele':nakarlele,
+            'swikarlele':swikarle,
+            'nirakaran':nirakaran
+        }
+
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+@admin.post('/update_complain_status')
+def update_complain_status(comp:Update_complain_status,user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("update complains set status=%s where id=%s",(comp.comp_status,comp.comp_id))
+        conn.commit()
+        
+        return{
+            'status':'success',
+            'message':f'Complain Status Updated To {comp.comp_status} Successfully'
+        }
+    except Exception as e:
+        return{
+            'status':'error',
+            'message':str(e)
+        }
+    
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 

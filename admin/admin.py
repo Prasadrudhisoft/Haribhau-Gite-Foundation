@@ -516,3 +516,163 @@ def update_complain_status(comp:Update_complain_status,user=Depends(get_current_
         if conn:
             conn.close()
 
+
+##############DELETE API'S################################################
+@admin.delete('/delete_event/{event_id}')
+def delete_event(event_id: str, user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("DELETE FROM events WHERE id=%s", (event_id,))
+        conn.commit()
+
+        if cursor.rowcount == 0:
+            return {'status': 'fail', 'message': 'Event not found'}
+
+        return {
+            'status': 'success',
+            'message': 'Event deleted successfully'
+        }
+
+    except Exception as e:
+        return {'status': 'error', 'message': str(e)}
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+@admin.delete('/delete_work/{work_id}')
+def delete_work(work_id: str, user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("DELETE FROM works WHERE id=%s", (work_id,))
+        conn.commit()
+
+        if cursor.rowcount == 0:
+            return {'status': 'fail', 'message': 'Work not found'}
+
+        return {
+            'status': 'success',
+            'message': 'Work deleted successfully'
+        }
+
+    except Exception as e:
+        return {'status': 'error', 'message': str(e)}
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+@admin.delete('/delete_image/{image_id}')
+def delete_image(image_id: str, user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        # Get file path first
+        cursor.execute("SELECT photo_path FROM gallery WHERE id=%s", (image_id,))
+        image = cursor.fetchone()
+
+        if not image:
+            return {'status': 'fail', 'message': 'Image not found'}
+
+        file_path = image['photo_path'].replace("/", os.sep).lstrip(os.sep)
+
+        # Delete file from folder
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+        # Delete from DB
+        cursor.execute("DELETE FROM gallery WHERE id=%s", (image_id,))
+        conn.commit()
+
+        return {
+            'status': 'success',
+            'message': 'Image deleted successfully'
+        }
+
+    except Exception as e:
+        return {'status': 'error', 'message': str(e)}
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+@admin.delete('/delete_scheme/{scheme_id}')
+def delete_scheme(scheme_id: str, user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("DELETE FROM gov_schems WHERE id=%s", (scheme_id,))
+        conn.commit()
+
+        if cursor.rowcount == 0:
+            return {'status': 'fail', 'message': 'Scheme not found'}
+
+        return {
+            'status': 'success',
+            'message': 'Scheme deleted successfully'
+        }
+
+    except Exception as e:
+        return {'status': 'error', 'message': str(e)}
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+@admin.delete('/delete_complain/{complain_id}')
+def delete_complain(complain_id: str, user=Depends(get_current_user)):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("DELETE FROM complains WHERE id=%s", (complain_id,))
+        conn.commit()
+
+        if cursor.rowcount == 0:
+            return {'status': 'fail', 'message': 'Complain not found'}
+
+        return {
+            'status': 'success',
+            'message': 'Complain deleted successfully'
+        }
+
+    except Exception as e:
+        return {'status': 'error', 'message': str(e)}
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+

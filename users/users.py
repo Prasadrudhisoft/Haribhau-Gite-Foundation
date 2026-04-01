@@ -206,25 +206,7 @@ async def register_complain(
 
         id = str(uuid.uuid4())
 
-      
-        cursor.execute("""
-            SELECT complain_reg_no 
-            FROM complains 
-            ORDER BY created_at DESC 
-            LIMIT 1
-        """)
-        last_record = cursor.fetchone()
-
-        if last_record and last_record.get('complain_reg_no'):
-            last_no = last_record['complain_reg_no'].strip()
-            try:
-                number = int(last_no.split('-')[-1]) + 1
-            except:
-                number = 1
-        else:
-            number = 1
-
-        complain_no = f"HGF-{number:04d}"
+        complain_no = f"HGF-{uuid.uuid4().hex[:6]}"
 
         cursor.execute("""
             INSERT INTO complains(
@@ -253,6 +235,7 @@ async def register_complain(
         }
 
     except Exception as e:
+        conn.rollback()
         return {
             'status': 'error',
             'message': str(e)
@@ -279,7 +262,7 @@ def user_get_complains(
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("select person_name,complain_reg_no,mobile_no,address,complain_type, description,photo_path,status from complains where complain_reg_no=%s or mobile_no=%s AND person_name=%s",(comp_id,mobile_no,person_name))
+        cursor.execute("select person_name,complain_reg_no,mobile_no,address,complain_type, description,photo_path,status from complains where complain_reg_no=%s or (mobile_no=%s AND person_name=%s)",(comp_id,mobile_no,person_name))
         complains = cursor.fetchall()
 
         return{

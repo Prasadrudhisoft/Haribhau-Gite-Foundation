@@ -7,7 +7,7 @@ load_dotenv()
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ALGORITHM = "HS256"
-def create_token(data : dict, expires_delta : int = 1000):
+def create_token(data : dict, expires_delta : int = 300):
     to_encode = data.copy()
     expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=expires_delta)
     to_encode.update({"exp": expire})

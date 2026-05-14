@@ -180,12 +180,10 @@ async def register_complain(
     cursor = None
 
     try:
-
         os.makedirs(UPLOAD_DIR, exist_ok=True)
 
         conn = get_connection()
         cursor = conn.cursor()
-
 
         if file.content_type not in ["image/jpeg", "image/png", "image/jpg"]:
             return {
@@ -193,19 +191,24 @@ async def register_complain(
                 'message': 'Only jpg, jpeg, png image files allowed'
             }
 
-        file_ext = file.filename.split(".")[-1]
+        content = await file.read()
+
+        if len(content) > 2 * 1024 * 1024:
+            return {
+                'status': 'fail',
+                'message': 'File size exceeds 2MB limit'
+            }
+
+        file_ext = file.filename.split(".")[-1].lower()
         filename = f"{uuid.uuid4()}.{file_ext}"
         file_path = os.path.join(UPLOAD_DIR, filename)
 
         with open(file_path, "wb") as buffer:
-            content = await file.read()
             buffer.write(content)
 
         photo_path = f"/static/images/{filename}"
         status = "Not Accepted Yet"
-
         id = str(uuid.uuid4())
-
         complain_no = f"HGF-{uuid.uuid4().hex[:6]}"
 
         cursor.execute("""
@@ -235,6 +238,8 @@ async def register_complain(
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return {
             'status': 'error',
             'message': str(e)

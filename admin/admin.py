@@ -120,6 +120,8 @@ def events(events:Events, user=Depends(get_current_user)):
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return{
             'status':'error',
             'message':str(e)
@@ -179,6 +181,8 @@ def works(works:Works, user=Depends(get_current_user)):
             'message':'work added successfully'
         }
     except Exception as e:
+        if conn:
+            conn.rollback()
         return{
             'status':'error',
             'message':str(e)
@@ -265,6 +269,8 @@ def update_works_status(update_status:Update_work_status,user=Depends(get_curren
             'message':f'Status Updated To {update_status.status}'
         }
     except Exception as e:
+        if conn:
+            conn.rollback()
         return{
             'status':'error',
             'message':str(e)
@@ -280,6 +286,7 @@ def update_works_status(update_status:Update_work_status,user=Depends(get_curren
 UPLOAD_DIR = "static/images"
 
 
+
 @admin.post("/upload_image")
 async def upload_image(
     description: str = Form(...),
@@ -290,23 +297,33 @@ async def upload_image(
     cursor = None
 
     try:
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+
         conn = get_connection()
         cursor = conn.cursor()
 
         if file.content_type not in ["image/jpeg", "image/png", "image/jpg"]:
-            return{'status':'fail', 'message':'Only image files allowed'}
+            return {
+                'status': 'fail',
+                'message': 'Only jpg, jpeg, png image files allowed'
+            }
 
-    
-        file_ext = file.filename.split(".")[-1]
+        content = await file.read()
+
+        if len(content) > 2 * 1024 * 1024:
+            return {
+                'status': 'fail',
+                'message': 'File size exceeds 2MB limit'
+            }
+
+        file_ext = file.filename.split(".")[-1].lower()
         filename = f"{uuid.uuid4()}.{file_ext}"
         file_path = os.path.join(UPLOAD_DIR, filename)
 
         with open(file_path, "wb") as buffer:
-            content = await file.read()
             buffer.write(content)
 
         db_path = f"/static/images/{filename}"
-
         image_id = str(uuid.uuid4())
 
         cursor.execute(
@@ -328,11 +345,13 @@ async def upload_image(
         }
 
     except Exception as e:
-        return{
-            'status':'error',
-            'message':str(e)
+        if conn:
+            conn.rollback()
+        return {
+            'status': 'error',
+            'message': str(e)
         }
-    
+
     finally:
         if cursor:
             cursor.close()
@@ -389,6 +408,8 @@ def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
             'message':'government scheme uploads successfully.'
         }
     except Exception as e:
+        if conn:
+            conn.rollback()
         return{
             'status':'error',
             'message':str(e)
@@ -505,6 +526,8 @@ def update_complain_status(comp:Update_complain_status,user=Depends(get_current_
             'message':f'Complain Status Updated To {comp.comp_status} Successfully'
         }
     except Exception as e:
+        if conn:
+            conn.rollback()
         return{
             'status':'error',
             'message':str(e)
@@ -539,6 +562,8 @@ def delete_event(event_id: str, user=Depends(get_current_user)):
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return {'status': 'error', 'message': str(e)}
 
     finally:
@@ -569,6 +594,8 @@ def delete_work(work_id: str, user=Depends(get_current_user)):
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return {'status': 'error', 'message': str(e)}
 
     finally:
@@ -610,6 +637,8 @@ def delete_image(image_id: str, user=Depends(get_current_user)):
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return {'status': 'error', 'message': str(e)}
 
     finally:
@@ -639,6 +668,8 @@ def delete_scheme(scheme_id: str, user=Depends(get_current_user)):
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return {'status': 'error', 'message': str(e)}
 
     finally:
@@ -668,6 +699,8 @@ def delete_complain(complain_id: str, user=Depends(get_current_user)):
         }
 
     except Exception as e:
+        if conn:
+            conn.rollback()
         return {'status': 'error', 'message': str(e)}
 
     finally:

@@ -8,7 +8,7 @@ load_dotenv()
 # Create connection pool
 pool = PooledDB(
     creator=pymysql,
-    maxconnections=50,
+    maxconnections=20,
     mincached=5, 
     maxcached=10,
     blocking=True,

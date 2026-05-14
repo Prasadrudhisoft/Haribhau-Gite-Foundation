@@ -25,8 +25,7 @@ CREATE TABLE IF NOT EXISTS complains (
 
     INDEX idx_person_name (person_name),
     INDEX idx_mobile_no (mobile_no),
-    INDEX idx_status (status),
-    INDEX complain_reg_no (complain_reg_no)
+    INDEX idx_status (status)
 );
 
 

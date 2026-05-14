@@ -100,7 +100,7 @@ def user_works():
         if cursor:
             cursor.close()
         if conn:
-            cursor.close()
+            conn.close()
 
 
 @user.get('/user_get_gallery')
@@ -235,7 +235,6 @@ async def register_complain(
         }
 
     except Exception as e:
-        conn.rollback()
         return {
             'status': 'error',
             'message': str(e)

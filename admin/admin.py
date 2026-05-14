@@ -173,7 +173,7 @@ def works(works:Works, user=Depends(get_current_user)):
         cursor = conn.cursor()
         id = str(uuid.uuid4())
 
-        cursor.execute("INSERT INTO WORKS(id,work_title,work_description,start_date,end_date,status,created_at,created_by) values(%s,%s,%s,%s,%s,%s,NOW(),%s)",(id,works.work_title,works.work_description,works.start_date,works.end_date,works.status,user['id']))
+        cursor.execute("INSERT INTO works(id,work_title,work_description,start_date,end_date,status,created_at,created_by) values(%s,%s,%s,%s,%s,%s,NOW(),%s)",(id,works.work_title,works.work_description,works.start_date,works.end_date,works.status,user['id']))
         conn.commit()
 
         return{

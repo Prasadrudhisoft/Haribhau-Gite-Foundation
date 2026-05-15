@@ -38,7 +38,7 @@
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-main); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; overflow-x: hidden; }
 
-        /* ===== TOP BAR ===== */
+        /* TOP BAR */
         .top-bar { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; padding: 6px 0; font-size: 0.82rem; font-weight: 500; }
         .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
         .top-bar a { color: white; text-decoration: none; margin-left: 15px; transition: var(--transition); }
@@ -47,11 +47,11 @@
 
         .tricolor-stripe { height: 4px; background: linear-gradient(to right, var(--saffron) 33%, var(--white-flag) 33%, var(--white-flag) 66%, var(--green-flag) 66%); }
 
-        /* ===== HEADER ===== */
+        /* HEADER */
         .header { background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
         .header .container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
         .logo-section { display: flex; align-items: center; gap: 15px; }
-        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--saffron), var(--primary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 800; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(230,81,0,0.3); flex-shrink: 0; }
         .logo-text h1 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-dark); line-height: 1.3; }
         .logo-text p { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
 
@@ -70,7 +70,7 @@
 
         .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
-        /* ===== PAGE BANNER ===== */
+        /* PAGE BANNER */
         .page-banner {
             background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 45%, var(--primary) 100%);
             color: white; padding: 60px 0 80px; text-align: center; position: relative; overflow: hidden;
@@ -97,7 +97,7 @@
         .breadcrumb a { color: white; text-decoration: none; }
         .breadcrumb a:hover { text-decoration: underline; }
 
-        /* ===== SEARCH BAR ===== */
+        /* SEARCH BAR */
         .search-section { margin-top: -30px; position: relative; z-index: 10; padding: 0 0 10px; }
         .search-bar-wrapper {
             background: white; border-radius: 50px; box-shadow: var(--shadow-lg);
@@ -106,12 +106,12 @@
         }
         .search-bar-wrapper:focus-within { border-color: var(--primary-light); box-shadow: 0 8px 40px rgba(230,81,0,0.15); }
         .search-bar-wrapper i { color: var(--text-light); font-size: 1rem; flex-shrink: 0; }
-        .search-bar-wrapper input { flex: 1; border: none; outline: none; font-family: var(--font-main); font-size: 0.95rem; color: var(--text-dark); background: transparent; }
+        .search-bar-wrapper input { flex: 1; border: none; outline: none; font-family: var(--font-main); font-size: 0.95rem; color: var(--text-dark); background: transparent; min-width: 0; }
         .search-bar-wrapper input::placeholder { color: var(--text-light); }
-        .search-bar-wrapper button { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; border: none; border-radius: 40px; padding: 10px 22px; font-family: var(--font-main); font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .search-bar-wrapper button { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; border: none; border-radius: 40px; padding: 10px 22px; font-family: var(--font-main); font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; flex-shrink: 0; }
         .search-bar-wrapper button:hover { opacity: 0.9; transform: scale(1.03); }
 
-        /* ===== SECTION ===== */
+        /* SECTION */
         .section { padding: 55px 0; }
         .section-alt { background: white; }
         .section-header { text-align: center; margin-bottom: 40px; }
@@ -119,14 +119,14 @@
         .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 50px; height: 4px; background: linear-gradient(to right, var(--saffron), var(--primary)); border-radius: 2px; }
         .section-header p { color: var(--text-light); margin-top: 18px; font-size: 0.95rem; }
 
-        /* ===== CATEGORY FILTER ===== */
+        /* CATEGORY FILTER */
         .filter-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
         .filter-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 20px; border: 2px solid var(--border); border-radius: 30px; background: white; cursor: pointer; font-family: var(--font-main); font-size: 0.84rem; font-weight: 600; color: var(--text-medium); transition: var(--transition); }
         .filter-btn i { font-size: 0.9rem; }
         .filter-btn:hover { border-color: var(--primary-light); color: var(--primary); background: #FFF3E0; }
         .filter-btn.active { background: linear-gradient(135deg, var(--saffron), var(--primary)); color: white; border-color: transparent; box-shadow: 0 4px 14px rgba(230,81,0,0.28); }
 
-        /* ===== ESERVICE GRID ===== */
+        /* ESERVICE GRID */
         .eservice-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
 
         .eservice-card {
@@ -150,11 +150,9 @@
         .card-action i { font-size: 0.75rem; transition: transform 0.2s; }
         .eservice-card:hover .card-action i { transform: translateX(-4px); }
 
-        /* No results */
         .no-results { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-light); display: none; }
         .no-results i { font-size: 3rem; margin-bottom: 15px; display: block; opacity: 0.4; }
 
-        /* STAGGER */
         .eservice-card:nth-child(1){animation-delay:.04s}.eservice-card:nth-child(2){animation-delay:.08s}
         .eservice-card:nth-child(3){animation-delay:.12s}.eservice-card:nth-child(4){animation-delay:.16s}
         .eservice-card:nth-child(5){animation-delay:.20s}.eservice-card:nth-child(6){animation-delay:.24s}
@@ -162,7 +160,7 @@
         .eservice-card:nth-child(9){animation-delay:.36s}.eservice-card:nth-child(10){animation-delay:.40s}
         .eservice-card:nth-child(11){animation-delay:.44s}.eservice-card:nth-child(12){animation-delay:.48s}
 
-        /* ===== POPULAR STRIP ===== */
+        /* POPULAR STRIP */
         .popular-strip { background: linear-gradient(135deg, var(--secondary-dark), var(--secondary)); padding: 36px 0; color: white; }
         .popular-strip h3 { font-family: var(--font-heading); font-size: 1.3rem; text-align: center; margin-bottom: 24px; opacity: 0.95; }
         .popular-pills { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
@@ -170,7 +168,7 @@
         .popular-pill:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
         .popular-pill i { font-size: 0.9rem; opacity: 0.85; }
 
-        /* ===== STEPS ===== */
+        /* STEPS */
         .steps-section { background: white; }
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; counter-reset: step-counter; }
         .step-card { background: var(--bg-light); border-radius: var(--radius); padding: 28px 22px; text-align: center; position: relative; border: 1.5px solid var(--border); transition: var(--transition); counter-increment: step-counter; }
@@ -180,7 +178,7 @@
         .step-card h4 { font-family: var(--font-heading); font-size: 1rem; margin-bottom: 8px; }
         .step-card p { font-size: 0.83rem; color: var(--text-light); line-height: 1.6; }
 
-        /* ===== HELPLINE ===== */
+        /* HELPLINE */
         .helpline-banner { background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--saffron)); padding: 50px 0; text-align: center; color: white; position: relative; overflow: hidden; }
         .helpline-banner::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><circle cx="40" cy="40" r="1.8" fill="rgba(255,255,255,0.06)"/></svg>'); }
         .helpline-banner .container { position: relative; z-index: 1; }
@@ -194,7 +192,7 @@
         .btn-outline-white:hover { background: white; color: var(--primary); transform: translateY(-2px); }
         .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
 
-        /* ===== FOOTER ===== */
+        /* FOOTER */
         .footer { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #CCC; padding: 50px 0 0; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
         .footer h4 { color: white; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; }
@@ -205,7 +203,7 @@
         .footer-links a { color: #CCC; text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
         .footer-links a:hover { color: var(--saffron); padding-right: 5px; }
         .footer-bottom { background: rgba(0,0,0,0.3); padding: 15px 0; text-align: center; font-size: 0.82rem; }
-        .social-links { display: flex; gap: 10px; margin-top: 15px; }
+        .social-links { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
         .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none; }
         .social-links a:hover { background: var(--saffron); transform: translateY(-3px); }
 
@@ -243,13 +241,20 @@
         .modal-cta-btn { display: block; width: 100%; padding: 13px; border: none; border-radius: 50px; font-family: var(--font-main); font-size: 0.95rem; font-weight: 700; color: white; cursor: pointer; text-align: center; text-decoration: none; transition: var(--transition); }
         .modal-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
 
-        /* COMING SOON TOAST */
+        /* TOAST */
         .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a2e; color: white; padding: 12px 24px; border-radius: 50px; font-size: 0.88rem; font-weight: 600; z-index: 3000; opacity: 0; transition: all 0.35s ease; pointer-events: none; white-space: nowrap; box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .toast i { margin-left: 8px; color: var(--saffron); }
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        /* ===== RESPONSIVE ===== */
+
+        /* Large tablets */
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .eservice-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+        }
+
+        /* Tablets & small laptops */
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
             .main-nav { display: none; position: absolute; width: 100%; top: 100%; left: 0; z-index: 999; }
@@ -257,21 +262,56 @@
             .main-nav ul { flex-direction: column; }
             .main-nav a { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
             .dropdown-menu { position: static; box-shadow: none; }
+            .page-banner { padding: 40px 0 70px; }
             .page-banner h2 { font-size: 1.85rem; }
-            .eservice-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+            .page-banner p { font-size: 0.95rem; }
+            .eservice-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
             .section { padding: 40px 0; }
             .footer-grid { grid-template-columns: 1fr; }
-            .steps-grid { grid-template-columns: 1fr 1fr; }
+            .steps-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
             .helpline-btns { flex-direction: column; align-items: center; }
+            .helpline-banner h2 { font-size: 1.6rem; }
+            .logo-text h1 { font-size: 1.15rem; }
+            .logo-icon { width: 50px; height: 50px; font-size: 1.5rem; }
+            .search-bar-wrapper { padding: 6px 6px 6px 18px; }
+            .search-bar-wrapper button { padding: 8px 16px; font-size: 0.82rem; }
         }
+
+        /* Mobile phones */
         @media (max-width: 520px) {
-            .logo-text h1 { font-size: 1.05rem; }
-            .eservice-grid { grid-template-columns: 1fr; }
+            .logo-text h1 { font-size: 1rem; }
+            .logo-text p { font-size: 0.7rem; }
+            .logo-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+            .eservice-grid { grid-template-columns: 1fr; gap: 14px; }
             .steps-grid { grid-template-columns: 1fr; }
-            .page-banner h2 { font-size: 1.55rem; }
+            .page-banner h2 { font-size: 1.5rem; }
+            .page-banner p { font-size: 0.88rem; }
+            .page-banner { padding: 35px 0 65px; }
             .filter-row { gap: 7px; }
-            .filter-btn { padding: 7px 14px; font-size: 0.78rem; }
+            .filter-btn { padding: 7px 13px; font-size: 0.78rem; gap: 5px; }
+            .section-header h2 { font-size: 1.5rem; }
             .toast { font-size: 0.78rem; padding: 10px 18px; white-space: normal; text-align: center; max-width: 90vw; }
+            .helpline-banner { padding: 35px 0; }
+            .helpline-banner h2 { font-size: 1.4rem; }
+            .popular-pill { padding: 7px 14px; font-size: 0.8rem; }
+            .modal { border-radius: var(--radius-sm); }
+            .modal-body { padding: 18px; }
+            .card-inner { padding: 20px 18px 16px; }
+            .card-footer { padding: 12px 18px; }
+            .footer-grid { gap: 20px; }
+            .footer-bottom { padding: 12px 0; font-size: 0.75rem; }
+            .top-bar { font-size: 0.75rem; }
+            .search-bar-wrapper input { font-size: 0.85rem; }
+            .search-bar-wrapper button { padding: 7px 14px; font-size: 0.8rem; }
+        }
+
+        /* Very small phones */
+        @media (max-width: 360px) {
+            .logo-text h1 { font-size: 0.9rem; }
+            .logo-text p { display: none; }
+            .page-banner h2 { font-size: 1.3rem; }
+            .filter-btn { padding: 6px 10px; font-size: 0.74rem; }
+            .section-header h2 { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -279,9 +319,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-    <div class="container" id="topBarContent">
-        <!-- Rendered by JS from SITE_CONFIG -->
-    </div>
+    <div class="container" id="topBarContent"></div>
 </div>
 
 <div class="tricolor-stripe"></div>
@@ -289,16 +327,12 @@
 <!-- HEADER -->
 <header class="header">
     <div class="container">
-        <div class="logo-section" id="logoSection">
-            <!-- Rendered by JS -->
-        </div>
+        <div class="logo-section" id="logoSection"></div>
         <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
     </div>
     <nav class="main-nav" id="mainNav">
         <div class="container">
-            <ul id="mainNavList">
-                <!-- Rendered by JS -->
-            </ul>
+            <ul id="mainNavList"></ul>
         </div>
     </nav>
 </header>
@@ -335,12 +369,8 @@
 <!-- MAIN SERVICES -->
 <section class="section" style="padding-top: 28px;">
     <div class="container">
-        <div class="filter-row" id="filterRow">
-            <!-- Rendered by JS -->
-        </div>
-        <div class="eservice-grid" id="servicesGrid">
-            <!-- Rendered by JS -->
-        </div>
+        <div class="filter-row" id="filterRow"></div>
+        <div class="eservice-grid" id="servicesGrid"></div>
         <div class="no-results" id="noResults">
             <i class="fas fa-search"></i>
             <p>कोणतीही सेवा सापडली नाही. वेगळे शब्द वापरून पुन्हा शोधा.</p>
@@ -352,9 +382,7 @@
 <div class="popular-strip">
     <div class="container">
         <h3>⚡ सर्वाधिक वापरल्या जाणाऱ्या सेवा</h3>
-        <div class="popular-pills" id="popularPills">
-            <!-- Rendered by JS -->
-        </div>
+        <div class="popular-pills" id="popularPills"></div>
     </div>
 </div>
 
@@ -365,30 +393,22 @@
             <h2>ई-सेवा कशी वापरावी?</h2>
             <p>चार सोप्या पायऱ्यांमध्ये आपली सेवा मिळवा</p>
         </div>
-        <div class="steps-grid" id="stepsGrid">
-            <!-- Rendered by JS -->
-        </div>
+        <div class="steps-grid" id="stepsGrid"></div>
     </div>
 </section>
 
 <!-- HELPLINE -->
 <div class="helpline-banner">
-    <div class="container" id="helplineBanner">
-        <!-- Rendered by JS -->
-    </div>
+    <div class="container" id="helplineBanner"></div>
 </div>
 
 <!-- FOOTER -->
 <footer class="footer">
     <div class="container">
-        <div class="footer-grid" id="footerGrid">
-            <!-- Rendered by JS -->
-        </div>
+        <div class="footer-grid" id="footerGrid"></div>
     </div>
     <div class="footer-bottom">
-        <div class="container">
-            <p id="footerBottom"></p>
-        </div>
+        <div class="container" id="footerBottomContainer"></div>
     </div>
 </footer>
 
@@ -430,49 +450,27 @@
 </div>
 
 <script>
-/* =====================================================================
-   SITE CONFIG — Edit everything here. No hardcoded values elsewhere.
-   ===================================================================== */
 const SITE_CONFIG = {
     foundation: {
         name: 'हरिभाऊ गिते फाउंडेशन',
         logoChar: 'ह',
-        tagline: 'प्रभाग नागरिक सेवा पोर्टल | नगरसेवक: गणेशभाऊ गिते & दीपालीताई गिते',
-        phone: '',               // e.g. '0253-123456'
+        tagline: 'प्रभाग नागरिक सेवा पोर्टल | नगरसेविका: दीपालीताई गिते | स्थायी समिती माजी अध्यक्ष: गणेशभाऊ गिते',
+        phone: '',
         email: 'info@haribhaugite.org',
-        whatsapp: '',            // e.g. '919876543210'
+        whatsapp: '',
         address: 'नाशिक, महाराष्ट्र',
         copyrightYear: '२०२५',
-        nagarsevak: 'गणेशभाऊ गिते & दीपालीताई गिते',
-        social: {
-            facebook: '#',
-            twitter: '#',
-            instagram: '#',
-            youtube: '#',
-            whatsapp: '#'
-        }
+        social: { facebook: '#', twitter: '#', instagram: '#', youtube: '#', whatsapp: '#' }
     },
 
-    /* Internal routes — set to '#' for pages not yet built */
-  routes : {
-    home:            '/',
-    foundation:      '/foundation',
-    nagarsevak:      '/nagarsevak',
-    prabhag:         '/prabhag',
-    events:          '/events',
-    works:           '/works',
-    grievance:       '/grievance',
-    complaintStatus: '/complaint-status',
-    eservices:       '/eservices',
-    gallery:         '/gallery',
-    news:            '/news',
-    schemes:         '/schemes',
-    contact:         '/contact',
-    admin:           '/admin',
-    emergency:       '/emergency',
-},
+    routes: {
+        home: '/', foundation: '/foundation', nagarsevak: '/nagarsevak',
+        prabhag: '/prabhag', events: '/events', works: '/works',
+        grievance: '/grievance', complaintStatus: '/complaint-status',
+        eservices: '/eservices', gallery: '/gallery', news: '/news',
+        schemes: '/schemes', contact: '/contact', admin: '/admin', emergency: '/emergency',
+    },
 
-    /* Nav items */
     navItems: [
         { label: 'मुख्यपृष्ठ', icon: 'fas fa-home', route: 'home' },
         { label: 'फाउंडेशन', route: 'foundation' },
@@ -480,13 +478,10 @@ const SITE_CONFIG = {
         { label: 'प्रभाग माहिती', route: 'prabhag' },
         { label: 'कार्यक्रम', route: 'events' },
         { label: 'विकास कामे', route: 'works' },
-        {
-            label: 'तक्रार निवारण',
-            dropdown: [
-                { label: 'तक्रार नोंदणी', route: 'grievance' },
-                { label: 'तक्रार स्थिती', route: 'complaintStatus' }
-            ]
-        },
+        { label: 'तक्रार निवारण', dropdown: [
+            { label: 'तक्रार नोंदणी', route: 'grievance' },
+            { label: 'तक्रार स्थिती', route: 'complaintStatus' }
+        ]},
         { label: 'ई-सेवा', route: 'eservices', active: true },
         { label: 'फोटो गॅलरी', route: 'gallery' },
         { label: 'बातम्या', route: 'news' },
@@ -494,217 +489,29 @@ const SITE_CONFIG = {
         { label: 'संपर्क', route: 'contact' }
     ],
 
-    /* Filter categories */
     categories: [
-        { key: 'all',        label: 'सर्व सेवा',   icon: 'fas fa-th' },
-        { key: 'कर',         label: 'कर व बिले',   icon: 'fas fa-receipt' },
-        { key: 'प्रमाणपत्र', label: 'प्रमाणपत्रे', icon: 'fas fa-certificate' },
-        { key: 'परवाना',     label: 'परवाने',       icon: 'fas fa-id-card' },
+        { key: 'all',        label: 'सर्व सेवा',      icon: 'fas fa-th' },
+        { key: 'कर',         label: 'कर व बिले',      icon: 'fas fa-receipt' },
+        { key: 'प्रमाणपत्र', label: 'प्रमाणपत्रे',    icon: 'fas fa-certificate' },
+        { key: 'परवाना',     label: 'परवाने',          icon: 'fas fa-id-card' },
         { key: 'अर्ज',      label: 'अर्ज व तक्रारी', icon: 'fas fa-file-alt' }
     ],
 
-    /* ----------------------------------------------------------------
-       SERVICES — The single source of truth for every card + modal.
-       ctaUrl:   external URL → opens in new tab
-                 internal route key (e.g. 'grievance') → uses routes map
-                 '#' → shows "coming soon" toast
-    ---------------------------------------------------------------- */
     services: [
-        {
-            key: 'tax',
-            cat: 'कर',
-            title: 'मालमत्ता कर भरणा',
-            icon: 'fas fa-home',
-            color: '#E65100',
-            bgColor: '#FFF3E0',
-            gradient: 'linear-gradient(90deg, #E65100, #FF8A65)',
-            cardDesc: 'ऑनलाइन मालमत्ता कर (Property Tax) भरण्याची सुविधा. थकबाकी तपासा, पावती मिळवा.',
-            modalDesc: 'महानगरपालिकेचा मालमत्ता कर ऑनलाइन भरा. पावती त्वरित मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['मालमत्ता क्रमांक टाका', 'देय रक्कम तपासा', 'ऑनलाइन पेमेंट करा', 'पावती डाउनलोड करा'],
-            docs: ['Property ID', 'मोबाइल नंबर'],
-            ctaUrl: 'https://nmctax.in/',
-            popular: true
-        },
-        {
-            key: 'water',
-            cat: 'कर',
-            title: 'पाणी बिल भरणा',
-            icon: 'fas fa-tint',
-            color: '#1565C0',
-            bgColor: '#E3F2FD',
-            gradient: 'linear-gradient(90deg, #1565C0, #42A5F5)',
-            cardDesc: 'पाणीपट्टी ऑनलाइन भरा. बिल इतिहास पाहा, डिजिटल पावती डाउनलोड करा.',
-            modalDesc: 'पाणीपट्टी ऑनलाइन भरा आणि पावती मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['ग्राहक क्रमांक टाका', 'बिल तपासा', 'पेमेंट करा', 'पावती डाउनलोड करा'],
-            docs: ['Consumer Number'],
-            ctaUrl: 'https://water.nmc.gov.in/',
-            popular: true
-        },
-        {
-            key: 'birth',
-            cat: 'प्रमाणपत्र',
-            title: 'जन्म प्रमाणपत्र',
-            icon: 'fas fa-baby',
-            color: '#E91E63',
-            bgColor: '#FCE4EC',
-            gradient: 'linear-gradient(90deg, #E91E63, #F48FB1)',
-            cardDesc: 'नवजात शिशूची जन्म नोंदणी करा व प्रमाणपत्र मिळवा. जुन्या नोंदींची प्रत काढा.',
-            modalDesc: 'जन्म नोंदणी व प्रमाणपत्र मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['अर्ज भरा', 'कागदपत्रे अपलोड करा', 'सबमिट करा', 'प्रमाणपत्र मिळवा'],
-            docs: ['Hospital Certificate', 'Parents Aadhaar'],
-            ctaUrl: 'https://crsorgi.gov.in/web/index.php/auth/login',
-            popular: true
-        },
-        {
-            key: 'death',
-            cat: 'प्रमाणपत्र',
-            title: 'मृत्यू प्रमाणपत्र',
-            icon: 'fas fa-file-medical-alt',
-            color: '#455A64',
-            bgColor: '#ECEFF1',
-            gradient: 'linear-gradient(90deg, #424242, #78909C)',
-            cardDesc: 'मृत्यूची अधिकृत नोंदणी व प्रमाणपत्र. कायदेशीर कामांसाठी आवश्यक दस्तऐवज.',
-            modalDesc: 'मृत्यू प्रमाणपत्र मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['नोंदणी करा', 'कागदपत्रे अपलोड करा', 'अर्ज सबमिट करा', 'प्रमाणपत्र डाउनलोड करा'],
-            docs: ['Death Certificate'],
-            ctaUrl: 'https://crsorgi.gov.in/web/index.php/auth/login',
-            popular: false
-        },
-        {
-            key: 'domicile',
-            cat: 'प्रमाणपत्र',
-            title: 'रहिवासी प्रमाणपत्र',
-            icon: 'fas fa-id-card',
-            color: '#7B1FA2',
-            bgColor: '#F3E5F5',
-            gradient: 'linear-gradient(90deg, #7B1FA2, #CE93D8)',
-            cardDesc: 'रहिवासी दाखला मिळवा. नोकरी, शिष्यवृत्ती व शासकीय योजनांसाठी आवश्यक.',
-            modalDesc: 'रहिवासी दाखला मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['ऑनलाइन अर्ज भरा', 'पुरावे अपलोड करा', 'सबमिट करा', 'प्रमाणपत्र मिळवा'],
-            docs: ['Aadhaar', 'Address Proof'],
-            ctaUrl: 'https://aaplesarkar.mahaonline.gov.in/en/Login/Login',
-            popular: true
-        },
-        {
-            key: 'construction',
-            cat: 'परवाना',
-            title: 'बांधकाम परवाना',
-            icon: 'fas fa-building',
-            color: '#2E7D32',
-            bgColor: '#E8F5E9',
-            gradient: 'linear-gradient(90deg, #2E7D32, #66BB6A)',
-            cardDesc: 'नवीन बांधकाम किंवा विस्ताराकरिता परवाना अर्ज. नकाशा मंजुरी व स्थिती तपासा.',
-            modalDesc: 'बांधकाम परवान्यासाठी अर्ज करा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['अर्ज भरा', 'नकाशा अपलोड करा', 'शुल्क भरा', 'मंजुरी मिळवा'],
-            docs: ['7/12', 'Building Plan'],
-            ctaUrl: 'https://mahabhumi.gov.in/',
-            popular: false
-        },
-        {
-            key: 'trade',
-            cat: 'परवाना',
-            title: 'व्यापार परवाना',
-            icon: 'fas fa-store',
-            color: '#00695C',
-            bgColor: '#E0F2F1',
-            gradient: 'linear-gradient(90deg, #00695C, #4DB6AC)',
-            cardDesc: 'दुकान, व्यवसाय किंवा उद्योगासाठी परवाना नोंदणी. नूतनीकरण ऑनलाइन करा.',
-            modalDesc: 'व्यवसाय परवाना मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['व्यवसाय माहिती भरा', 'कागदपत्रे अपलोड करा', 'पेमेंट करा', 'परवाना मिळवा'],
-            docs: ['PAN', 'Address Proof'],
-            ctaUrl: 'https://udyamregistration.gov.in/',
-            popular: false
-        },
-        {
-            key: 'noc',
-            cat: 'प्रमाणपत्र',
-            title: 'ना-हरकत प्रमाणपत्र (NOC)',
-            icon: 'fas fa-file-invoice',
-            color: '#FF6F00',
-            bgColor: '#FFF8E1',
-            gradient: 'linear-gradient(90deg, #FF6F00, #FFB74D)',
-            cardDesc: 'विविध कामांसाठी महानगरपालिकेचे ना-हरकत प्रमाणपत्र. जलद ऑनलाइन प्रक्रिया.',
-            modalDesc: 'ना-हरकत प्रमाणपत्र मिळवा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['अर्ज भरा', 'कागदपत्रे द्या', 'शुल्क भरा', 'NOC मिळवा'],
-            docs: ['ID Proof'],
-            ctaUrl: 'https://aaplesarkar.mahaonline.gov.in/',
-            popular: true
-        },
-        {
-            key: 'grievance',
-            cat: 'अर्ज',
-            title: 'तक्रार नोंदणी',
-            icon: 'fas fa-exclamation-circle',
-            color: '#C62828',
-            bgColor: '#FFEBEE',
-            gradient: 'linear-gradient(90deg, #C62828, #EF5350)',
-            cardDesc: 'रस्ते, पाणी, ड्रेनेज, कचरा वा इतर समस्यांसाठी GPS-आधारित तक्रार दाखल करा.',
-            modalDesc: 'GPS-आधारित तक्रार नोंदणी प्रणाली.',
-            actionLabel: 'तक्रार नोंदवा',
-            steps: ['समस्या निवडा', 'फोटो काढा', 'स्थान द्या', 'तक्रार सबमिट करा'],
-            docs: ['मोबाइल नंबर'],
-            ctaUrl: 'grievance',   // internal route key
-            popular: true
-        },
-        {
-            key: 'complaintStatus',
-            cat: 'अर्ज',
-            title: 'तक्रार स्थिती तपासा',
-            icon: 'fas fa-search-location',
-            color: '#0D47A1',
-            bgColor: '#E3F2FD',
-            gradient: 'linear-gradient(90deg, #1565C0, #0D47A1)',
-            cardDesc: 'दाखल केलेल्या तक्रारीची सद्यस्थिती जाणून घ्या. तक्रार क्रमांक किंवा मोबाइलने शोधा.',
-            modalDesc: 'तक्रारीची सद्यस्थिती तपासा.',
-            actionLabel: 'स्थिती पाहा',
-            steps: ['तक्रार क्रमांक टाका', 'मोबाइल नंबर टाका', 'शोधा', 'स्थिती पाहा'],
-            docs: ['तक्रार क्रमांक किंवा मोबाइल नंबर'],
-            ctaUrl: 'complaintStatus',  // internal route key
-            popular: false
-        },
-        {
-            key: 'property',
-            cat: 'अर्ज',
-            title: 'मालमत्ता नोंदणी अर्ज',
-            icon: 'fas fa-map-marked-alt',
-            color: '#4527A0',
-            bgColor: '#EDE7F6',
-            gradient: 'linear-gradient(90deg, #4527A0, #7E57C2)',
-            cardDesc: 'नवीन मालमत्ता नोंदणी, नाव बदल किंवा वारस नोंदणीसाठी अर्ज करा.',
-            modalDesc: 'मालमत्ता नोंदणी अर्ज करा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['अर्ज भरा', 'कागदपत्रे अपलोड करा', 'शुल्क भरा', 'नोंदणी पूर्ण'],
-            docs: ['Sale Deed'],
-            ctaUrl: 'https://igrmaharashtra.gov.in/',
-            popular: false
-        },
-        {
-            key: 'sanitation',
-            cat: 'अर्ज',
-            title: 'स्वच्छता सेवा अर्ज',
-            icon: 'fas fa-broom',
-            color: '#00838F',
-            bgColor: '#E0F7FA',
-            gradient: 'linear-gradient(90deg, #00838F, #4DD0E1)',
-            cardDesc: 'कचरा संकलन, सार्वजनिक स्वच्छतागृह, ड्रेनेज साफसफाईसाठी विनंती अर्ज करा.',
-            modalDesc: 'स्वच्छता सेवा अर्ज करा.',
-            actionLabel: 'अर्ज करा',
-            steps: ['सेवा निवडा', 'तपशील भरा', 'सबमिट करा', 'कार्यवाही होईल'],
-            docs: ['मोबाइल नंबर'],
-            ctaUrl: 'grievance',   // routes through grievance
-            popular: false
-        }
+        { key: 'tax', cat: 'कर', title: 'मालमत्ता कर भरणा', icon: 'fas fa-home', color: '#E65100', bgColor: '#FFF3E0', gradient: 'linear-gradient(90deg, #E65100, #FF8A65)', cardDesc: 'ऑनलाइन मालमत्ता कर (Property Tax) भरण्याची सुविधा. थकबाकी तपासा, पावती मिळवा.', modalDesc: 'महानगरपालिकेचा मालमत्ता कर ऑनलाइन भरा. पावती त्वरित मिळवा.', actionLabel: 'अर्ज करा', steps: ['मालमत्ता क्रमांक टाका', 'देय रक्कम तपासा', 'ऑनलाइन पेमेंट करा', 'पावती डाउनलोड करा'], docs: ['Property ID', 'मोबाइल नंबर'], ctaUrl: 'https://nmctax.in/', popular: true },
+        { key: 'water', cat: 'कर', title: 'पाणी बिल भरणा', icon: 'fas fa-tint', color: '#1565C0', bgColor: '#E3F2FD', gradient: 'linear-gradient(90deg, #1565C0, #42A5F5)', cardDesc: 'पाणीपट्टी ऑनलाइन भरा. बिल इतिहास पाहा, डिजिटल पावती डाउनलोड करा.', modalDesc: 'पाणीपट्टी ऑनलाइन भरा आणि पावती मिळवा.', actionLabel: 'अर्ज करा', steps: ['ग्राहक क्रमांक टाका', 'बिल तपासा', 'पेमेंट करा', 'पावती डाउनलोड करा'], docs: ['Consumer Number'], ctaUrl: 'https://water.nmc.gov.in/', popular: true },
+        { key: 'birth', cat: 'प्रमाणपत्र', title: 'जन्म प्रमाणपत्र', icon: 'fas fa-baby', color: '#E91E63', bgColor: '#FCE4EC', gradient: 'linear-gradient(90deg, #E91E63, #F48FB1)', cardDesc: 'नवजात शिशूची जन्म नोंदणी करा व प्रमाणपत्र मिळवा. जुन्या नोंदींची प्रत काढा.', modalDesc: 'जन्म नोंदणी व प्रमाणपत्र मिळवा.', actionLabel: 'अर्ज करा', steps: ['अर्ज भरा', 'कागदपत्रे अपलोड करा', 'सबमिट करा', 'प्रमाणपत्र मिळवा'], docs: ['Hospital Certificate', 'Parents Aadhaar'], ctaUrl: 'https://crsorgi.gov.in/web/index.php/auth/login', popular: true },
+        { key: 'death', cat: 'प्रमाणपत्र', title: 'मृत्यू प्रमाणपत्र', icon: 'fas fa-file-medical-alt', color: '#455A64', bgColor: '#ECEFF1', gradient: 'linear-gradient(90deg, #424242, #78909C)', cardDesc: 'मृत्यूची अधिकृत नोंदणी व प्रमाणपत्र. कायदेशीर कामांसाठी आवश्यक दस्तऐवज.', modalDesc: 'मृत्यू प्रमाणपत्र मिळवा.', actionLabel: 'अर्ज करा', steps: ['नोंदणी करा', 'कागदपत्रे अपलोड करा', 'अर्ज सबमिट करा', 'प्रमाणपत्र डाउनलोड करा'], docs: ['Death Certificate'], ctaUrl: 'https://crsorgi.gov.in/web/index.php/auth/login', popular: false },
+        { key: 'domicile', cat: 'प्रमाणपत्र', title: 'रहिवासी प्रमाणपत्र', icon: 'fas fa-id-card', color: '#7B1FA2', bgColor: '#F3E5F5', gradient: 'linear-gradient(90deg, #7B1FA2, #CE93D8)', cardDesc: 'रहिवासी दाखला मिळवा. नोकरी, शिष्यवृत्ती व शासकीय योजनांसाठी आवश्यक.', modalDesc: 'रहिवासी दाखला मिळवा.', actionLabel: 'अर्ज करा', steps: ['ऑनलाइन अर्ज भरा', 'पुरावे अपलोड करा', 'सबमिट करा', 'प्रमाणपत्र मिळवा'], docs: ['Aadhaar', 'Address Proof'], ctaUrl: 'https://aaplesarkar.mahaonline.gov.in/en/Login/Login', popular: true },
+        { key: 'construction', cat: 'परवाना', title: 'बांधकाम परवाना', icon: 'fas fa-building', color: '#2E7D32', bgColor: '#E8F5E9', gradient: 'linear-gradient(90deg, #2E7D32, #66BB6A)', cardDesc: 'नवीन बांधकाम किंवा विस्ताराकरिता परवाना अर्ज. नकाशा मंजुरी व स्थिती तपासा.', modalDesc: 'बांधकाम परवान्यासाठी अर्ज करा.', actionLabel: 'अर्ज करा', steps: ['अर्ज भरा', 'नकाशा अपलोड करा', 'शुल्क भरा', 'मंजुरी मिळवा'], docs: ['7/12', 'Building Plan'], ctaUrl: 'https://mahabhumi.gov.in/', popular: false },
+        { key: 'trade', cat: 'परवाना', title: 'व्यापार परवाना', icon: 'fas fa-store', color: '#00695C', bgColor: '#E0F2F1', gradient: 'linear-gradient(90deg, #00695C, #4DB6AC)', cardDesc: 'दुकान, व्यवसाय किंवा उद्योगासाठी परवाना नोंदणी. नूतनीकरण ऑनलाइन करा.', modalDesc: 'व्यवसाय परवाना मिळवा.', actionLabel: 'अर्ज करा', steps: ['व्यवसाय माहिती भरा', 'कागदपत्रे अपलोड करा', 'पेमेंट करा', 'परवाना मिळवा'], docs: ['PAN', 'Address Proof'], ctaUrl: 'https://udyamregistration.gov.in/', popular: false },
+        { key: 'noc', cat: 'प्रमाणपत्र', title: 'ना-हरकत प्रमाणपत्र (NOC)', icon: 'fas fa-file-invoice', color: '#FF6F00', bgColor: '#FFF8E1', gradient: 'linear-gradient(90deg, #FF6F00, #FFB74D)', cardDesc: 'विविध कामांसाठी महानगरपालिकेचे ना-हरकत प्रमाणपत्र. जलद ऑनलाइन प्रक्रिया.', modalDesc: 'ना-हरकत प्रमाणपत्र मिळवा.', actionLabel: 'अर्ज करा', steps: ['अर्ज भरा', 'कागदपत्रे द्या', 'शुल्क भरा', 'NOC मिळवा'], docs: ['ID Proof'], ctaUrl: 'https://aaplesarkar.mahaonline.gov.in/', popular: true },
+        { key: 'grievance', cat: 'अर्ज', title: 'तक्रार नोंदणी', icon: 'fas fa-exclamation-circle', color: '#C62828', bgColor: '#FFEBEE', gradient: 'linear-gradient(90deg, #C62828, #EF5350)', cardDesc: 'रस्ते, पाणी, ड्रेनेज, कचरा वा इतर समस्यांसाठी GPS-आधारित तक्रार दाखल करा.', modalDesc: 'GPS-आधारित तक्रार नोंदणी प्रणाली.', actionLabel: 'तक्रार नोंदवा', steps: ['समस्या निवडा', 'फोटो काढा', 'स्थान द्या', 'तक्रार सबमिट करा'], docs: ['मोबाइल नंबर'], ctaUrl: 'grievance', popular: true },
+        { key: 'complaintStatus', cat: 'अर्ज', title: 'तक्रार स्थिती तपासा', icon: 'fas fa-search-location', color: '#0D47A1', bgColor: '#E3F2FD', gradient: 'linear-gradient(90deg, #1565C0, #0D47A1)', cardDesc: 'दाखल केलेल्या तक्रारीची सद्यस्थिती जाणून घ्या. तक्रार क्रमांक किंवा मोबाइलने शोधा.', modalDesc: 'तक्रारीची सद्यस्थिती तपासा.', actionLabel: 'स्थिती पाहा', steps: ['तक्रार क्रमांक टाका', 'मोबाइल नंबर टाका', 'शोधा', 'स्थिती पाहा'], docs: ['तक्रार क्रमांक किंवा मोबाइल नंबर'], ctaUrl: 'complaintStatus', popular: false },
+        { key: 'property', cat: 'अर्ज', title: 'मालमत्ता नोंदणी अर्ज', icon: 'fas fa-map-marked-alt', color: '#4527A0', bgColor: '#EDE7F6', gradient: 'linear-gradient(90deg, #4527A0, #7E57C2)', cardDesc: 'नवीन मालमत्ता नोंदणी, नाव बदल किंवा वारस नोंदणीसाठी अर्ज करा.', modalDesc: 'मालमत्ता नोंदणी अर्ज करा.', actionLabel: 'अर्ज करा', steps: ['अर्ज भरा', 'कागदपत्रे अपलोड करा', 'शुल्क भरा', 'नोंदणी पूर्ण'], docs: ['Sale Deed'], ctaUrl: 'https://igrmaharashtra.gov.in/', popular: false },
+        { key: 'sanitation', cat: 'अर्ज', title: 'स्वच्छता सेवा अर्ज', icon: 'fas fa-broom', color: '#00838F', bgColor: '#E0F7FA', gradient: 'linear-gradient(90deg, #00838F, #4DD0E1)', cardDesc: 'कचरा संकलन, सार्वजनिक स्वच्छतागृह, ड्रेनेज साफसफाईसाठी विनंती अर्ज करा.', modalDesc: 'स्वच्छता सेवा अर्ज करा.', actionLabel: 'अर्ज करा', steps: ['सेवा निवडा', 'तपशील भरा', 'सबमिट करा', 'कार्यवाही होईल'], docs: ['मोबाइल नंबर'], ctaUrl: 'grievance', popular: false }
     ],
 
-    /* How-to steps */
     howToSteps: [
         { icon: 'fas fa-mouse-pointer', color: 'var(--primary)', title: 'सेवा निवडा', desc: 'वरील यादीतून हवी ती सेवा निवडा आणि त्यावर क्लिक करा.' },
         { icon: 'fas fa-file-alt', color: 'var(--secondary)', title: 'अर्ज भरा', desc: 'आवश्यक माहिती भरा आणि लागणारी कागदपत्रे अपलोड करा.' },
@@ -712,7 +519,6 @@ const SITE_CONFIG = {
         { icon: 'fas fa-download', color: '#7B1FA2', title: 'प्रमाणपत्र मिळवा', desc: 'मंजुरीनंतर डिजिटल प्रमाणपत्र SMS व ई-मेलवर मिळेल. पोर्टलवरून डाउनलोड करा.' }
     ],
 
-    /* Footer quick links */
     footerLinks: {
         quickLinks: [
             { label: 'मुख्यपृष्ठ', route: 'home' },
@@ -731,34 +537,24 @@ const SITE_CONFIG = {
     }
 };
 
-/* =====================================================================
-   UTILITIES
-   ===================================================================== */
-
-/** Resolve a ctaUrl: external URL, internal route key, or '#' */
+/* UTILITIES */
 function resolveUrl(ctaUrl) {
     if (!ctaUrl || ctaUrl === '#') return null;
     if (ctaUrl.startsWith('http')) return { url: ctaUrl, external: true };
     const resolved = SITE_CONFIG.routes[ctaUrl];
     if (resolved && resolved !== '#') return { url: resolved, external: false };
-    return null;           // route exists but not built yet
+    return null;
 }
 
-/** Navigate safely — shows toast for unbuilt pages */
 function safeNavigate(ctaUrl) {
     const resolved = resolveUrl(ctaUrl);
     if (resolved) {
-        if (resolved.external) {
-            window.open(resolved.url, '_blank', 'noopener,noreferrer');
-        } else {
-            window.location.href = resolved.url;
-        }
+        resolved.external ? window.open(resolved.url, '_blank', 'noopener,noreferrer') : (window.location.href = resolved.url);
     } else {
         showToast('ही सेवा लवकरच उपलब्ध होईल! 🚧');
     }
 }
 
-/** Toast notification */
 let toastTimer;
 function showToast(msg) {
     const t = document.getElementById('toast');
@@ -768,18 +564,12 @@ function showToast(msg) {
     toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-/** Get route href — returns '#' for unbuilt pages */
-function routeHref(key) {
-    return SITE_CONFIG.routes[key] || '#';
-}
+function routeHref(key) { return SITE_CONFIG.routes[key] || '#'; }
 
-/* =====================================================================
-   RENDER FUNCTIONS
-   ===================================================================== */
-
+/* RENDER FUNCTIONS */
 function renderTopBar() {
     const cfg = SITE_CONFIG.foundation;
-    const r   = SITE_CONFIG.routes;
+    const r = SITE_CONFIG.routes;
     document.getElementById('topBarContent').innerHTML = `
         <div>
             <i class="fas fa-phone-alt"></i> हेल्पलाइन: ${cfg.phone || 'लवकरच'}
@@ -787,12 +577,8 @@ function renderTopBar() {
             <i class="fas fa-envelope"></i> ${cfg.email}
         </div>
         <div class="top-bar-right">
-            <a href="${r.admin}" ${r.admin !== '#' ? '' : 'onclick="showToast(\'लवकरच उपलब्ध!\');return false;"'}>
-                <i class="fas fa-user-shield"></i> ॲडमिन
-            </a>
-            <a href="${r.emergency}" ${r.emergency !== '#' ? '' : 'onclick="showToast(\'लवकरच उपलब्ध!\');return false;"'}>
-                <i class="fas fa-ambulance"></i> आपत्कालीन
-            </a>
+            <a href="${r.admin}"><i class="fas fa-user-shield"></i> ॲडमिन</a>
+            <a href="${r.emergency}"><i class="fas fa-ambulance"></i> आपत्कालीन</a>
         </div>`;
 }
 
@@ -807,24 +593,18 @@ function renderLogo() {
 }
 
 function renderNav() {
-    const items = SITE_CONFIG.navItems;
-    const r = SITE_CONFIG.routes;
-    document.getElementById('mainNavList').innerHTML = items.map(item => {
+    document.getElementById('mainNavList').innerHTML = SITE_CONFIG.navItems.map(item => {
         if (item.dropdown) {
-            const ddLinks = item.dropdown.map(d =>
-                `<a href="${routeHref(d.route)}">${d.label}</a>`
-            ).join('');
             return `<li class="dropdown">
                 <a href="#">${item.label} ▾</a>
-                <div class="dropdown-menu">${ddLinks}</div>
+                <div class="dropdown-menu">
+                    ${item.dropdown.map(d => `<a href="${routeHref(d.route)}">${d.label}</a>`).join('')}
+                </div>
             </li>`;
         }
-        const href = routeHref(item.route);
-        return `<li>
-            <a href="${href}" ${item.active ? 'class="active"' : ''}>
-                ${item.icon ? `<i class="${item.icon}"></i> ` : ''}${item.label}
-            </a>
-        </li>`;
+        return `<li><a href="${routeHref(item.route)}" ${item.active ? 'class="active"' : ''}>
+            ${item.icon ? `<i class="${item.icon}"></i> ` : ''}${item.label}
+        </a></li>`;
     }).join('');
 }
 
@@ -850,7 +630,7 @@ function renderServiceCards() {
                 <p>${svc.cardDesc}</p>
             </div>
             <div class="card-footer">
-                <span class="card-tag" style="background:${svc.bgColor}; color:${svc.color};">${svc.cat === 'all' ? 'सेवा' : svc.cat}</span>
+                <span class="card-tag" style="background:${svc.bgColor}; color:${svc.color};">${svc.cat}</span>
                 <span class="card-action" style="color:${svc.color};">
                     ${svc.actionLabel} <i class="fas fa-arrow-left"></i>
                 </span>
@@ -860,8 +640,7 @@ function renderServiceCards() {
 }
 
 function renderPopularPills() {
-    const popular = SITE_CONFIG.services.filter(s => s.popular);
-    document.getElementById('popularPills').innerHTML = popular.map(svc =>
+    document.getElementById('popularPills').innerHTML = SITE_CONFIG.services.filter(s => s.popular).map(svc =>
         `<span class="popular-pill" onclick="handleCardClick('${svc.key}')">
             <i class="${svc.icon}"></i> ${svc.title}
         </span>`
@@ -879,39 +658,30 @@ function renderSteps() {
 }
 
 function renderHelpline() {
-    const r = SITE_CONFIG.routes;
     document.getElementById('helplineBanner').innerHTML = `
-        <h2>🆘 मदत हवी आहे?</h2>
+        <h2> मदत हवी आहे?</h2>
         <p>ई-सेवा वापरताना काही अडचण आल्यास आमच्याशी संपर्क साधा. आम्ही सदैव मदतीसाठी तयार आहोत.</p>
         <div class="helpline-btns">
-            <a href="${routeHref('contact')}" class="btn btn-white">
-                <i class="fas fa-phone-alt"></i> संपर्क करा
-            </a>
-            <a href="${routeHref('grievance')}" class="btn btn-outline-white">
-                <i class="fas fa-edit"></i> तक्रार नोंदवा
-            </a>
+            <a href="${routeHref('contact')}" class="btn btn-white"><i class="fas fa-phone-alt"></i> संपर्क करा</a>
+            <a href="${routeHref('grievance')}" class="btn btn-outline-white"><i class="fas fa-edit"></i> तक्रार नोंदवा</a>
         </div>`;
 }
 
 function renderFooter() {
     const cfg = SITE_CONFIG.foundation;
-    const fl  = SITE_CONFIG.footerLinks;
-    const r   = SITE_CONFIG.routes;
-
-    const makeLinks = (arr) => arr.map(l =>
-        `<li><a href="${routeHref(l.route)}">${l.label}</a></li>`
-    ).join('');
+    const fl = SITE_CONFIG.footerLinks;
+    const makeLinks = (arr) => arr.map(l => `<li><a href="${routeHref(l.route)}">${l.label}</a></li>`).join('');
 
     document.getElementById('footerGrid').innerHTML = `
         <div>
             <h4>${cfg.name}</h4>
             <p>प्रभागातील नागरिकांच्या सर्वांगीण विकासासाठी आणि समाजसेवेसाठी कटिबद्ध.</p>
             <div class="social-links">
-                <a href="${cfg.social.facebook}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                <a href="${cfg.social.twitter}" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-                <a href="${cfg.social.instagram}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-                <a href="${cfg.social.youtube}" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-                <a href="${cfg.social.whatsapp}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                <a href="${cfg.social.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="${cfg.social.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="${cfg.social.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="${cfg.social.youtube}" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="${cfg.social.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
         <div>
@@ -930,22 +700,24 @@ function renderFooter() {
                 <li><i class="fas fa-envelope" style="color:var(--saffron);margin-left:8px;"></i> ${cfg.email}</li>
             </ul>
             <div style="margin-top:15px;">
-                <a href="${routeHref('emergency')}"
-                   class="btn btn-sm"
-                   style="background:#C62828;color:white;font-size:0.8rem;">
+                <a href="${routeHref('emergency')}" class="btn btn-sm" style="background:#C62828;color:white;font-size:0.8rem;">
                     <i class="fas fa-ambulance"></i> आपत्कालीन संपर्क
                 </a>
             </div>
         </div>`;
 
-    document.getElementById('footerBottom').textContent =
-        `© ${cfg.copyrightYear} ${cfg.name}. सर्व हक्क राखीव. | नगरसेवक: ${cfg.nagarsevak}`;
+    /* ✅ Updated footer bottom with correct titles + Rudhisoft credit */
+    document.getElementById('footerBottomContainer').innerHTML = `
+        <p>© ${cfg.copyrightYear} ${cfg.name}. सर्व हक्क राखीव. | नगरसेविका: दीपालीताई गिते | स्थायी समिती माजी अध्यक्ष: गणेशभाऊ गिते</p>
+        <p style="margin-top: 6px; font-size: 0.78rem; color: #aaa;">
+            Developed by <a href="https://rudhisoft.com" target="_blank" style="color: var(--saffron); text-decoration: none; font-weight: 600;">Rudhisoft</a>
+        </p>`;
 }
 
 function renderWhatsApp() {
     const cfg = SITE_CONFIG.foundation;
     const el = document.getElementById('whatsappFloat');
-    if (cfg.whatsapp) {
+    if (cfg.whatsapp && cfg.whatsapp !== '#') {
         el.href = `https://wa.me/${cfg.whatsapp}`;
     } else {
         el.href = '#';
@@ -953,73 +725,43 @@ function renderWhatsApp() {
     }
 }
 
-/* =====================================================================
-   CARD CLICK — Modal for services with external URLs; navigate for internal
-   ===================================================================== */
+/* CARD CLICK & MODAL */
 function handleCardClick(key) {
     const svc = SITE_CONFIG.services.find(s => s.key === key);
     if (!svc) return;
-
     const resolved = resolveUrl(svc.ctaUrl);
-
-    // Direct-navigate services (internal routes or external URL without modal)
-    if (!resolved) {
-        // Not yet built
-        showToast('ही सेवा लवकरच उपलब्ध होईल! 🚧');
-        return;
-    }
-
-    // Show modal for all services
+    if (!resolved) { showToast('ही सेवा लवकरच उपलब्ध होईल! 🚧'); return; }
     openModal(key);
 }
 
-/* =====================================================================
-   MODAL
-   ===================================================================== */
 function openModal(key) {
     const svc = SITE_CONFIG.services.find(s => s.key === key);
     if (!svc) return;
-
     document.getElementById('modalHeader').style.background = svc.gradient;
     document.getElementById('modalTitle').textContent = svc.title;
     document.getElementById('modalIconBig').style.background = svc.bgColor;
     document.getElementById('modalIconBig').innerHTML = `<i class="${svc.icon}" style="color:${svc.color};font-size:2rem;"></i>`;
     document.getElementById('modalServiceName').textContent = svc.title;
     document.getElementById('modalDesc').textContent = svc.modalDesc;
-
     document.getElementById('modalStepsList').innerHTML = svc.steps.map((step, i) =>
-        `<div class="modal-step-item">
-            <span class="modal-step-num">${i + 1}</span>
-            <span>${step}</span>
-        </div>`
+        `<div class="modal-step-item"><span class="modal-step-num">${i + 1}</span><span>${step}</span></div>`
     ).join('');
-
-    document.getElementById('modalDocsList').innerHTML = svc.docs.map(doc =>
-        `<li>${doc}</li>`
-    ).join('');
-
-    // CTA button
+    document.getElementById('modalDocsList').innerHTML = svc.docs.map(doc => `<li>${doc}</li>`).join('');
     const ctaBtn = document.getElementById('modalCTA');
     ctaBtn.style.background = svc.gradient;
     const resolved = resolveUrl(svc.ctaUrl);
-
     if (resolved) {
-        ctaBtn.href    = resolved.url;
-        ctaBtn.target  = resolved.external ? '_blank' : '_self';
-        ctaBtn.rel     = resolved.external ? 'noopener noreferrer' : '';
+        ctaBtn.href = resolved.url;
+        ctaBtn.target = resolved.external ? '_blank' : '_self';
+        ctaBtn.rel = resolved.external ? 'noopener noreferrer' : '';
         ctaBtn.onclick = null;
         ctaBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> ऑनलाइन अर्ज करा`;
     } else {
-        ctaBtn.href    = '#';
-        ctaBtn.target  = '_self';
-        ctaBtn.rel     = '';
-        ctaBtn.onclick = (e) => {
-            e.preventDefault();
-            showToast('ही सेवा लवकरच उपलब्ध होईल! 🚧');
-        };
+        ctaBtn.href = '#';
+        ctaBtn.target = '_self'; ctaBtn.rel = '';
+        ctaBtn.onclick = (e) => { e.preventDefault(); showToast('ही सेवा लवकरच उपलब्ध होईल! 🚧'); };
         ctaBtn.innerHTML = `<i class="fas fa-clock"></i> लवकरच उपलब्ध`;
     }
-
     document.getElementById('serviceModal').classList.add('show');
     document.body.style.overflow = 'hidden';
 }
@@ -1033,9 +775,7 @@ document.getElementById('serviceModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
 });
 
-/* =====================================================================
-   FILTER + SEARCH
-   ===================================================================== */
+/* FILTER + SEARCH */
 let activeFilter = 'all';
 
 function setFilter(cat, btn) {
@@ -1045,31 +785,21 @@ function setFilter(cat, btn) {
     applyFilters();
 }
 
-function filterServices() {
-    applyFilters();
-}
+function filterServices() { applyFilters(); }
 
 function applyFilters() {
     const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
     const cards = document.querySelectorAll('#servicesGrid .eservice-card');
     let visible = 0;
-
     cards.forEach(card => {
-        const cat   = card.getAttribute('data-cat');
+        const cat = card.getAttribute('data-cat');
         const title = (card.getAttribute('data-title') || '').toLowerCase();
-        const text  = card.innerText.toLowerCase();
-
-        const matchCat    = activeFilter === 'all' || cat === activeFilter;
+        const text = card.innerText.toLowerCase();
+        const matchCat = activeFilter === 'all' || cat === activeFilter;
         const matchSearch = !query || title.includes(query) || text.includes(query);
-
-        if (matchCat && matchSearch) {
-            card.classList.remove('hidden');
-            visible++;
-        } else {
-            card.classList.add('hidden');
-        }
+        if (matchCat && matchSearch) { card.classList.remove('hidden'); visible++; }
+        else card.classList.add('hidden');
     });
-
     document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
 }
 
@@ -1077,31 +807,15 @@ document.getElementById('searchInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') filterServices();
 });
 
-/* =====================================================================
-   NAV + SCROLL
-   ===================================================================== */
-function toggleNav() {
-    document.getElementById('mainNav').classList.toggle('show');
-}
-
+function toggleNav() { document.getElementById('mainNav').classList.toggle('show'); }
 window.addEventListener('scroll', () => {
     document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300);
 });
 
-/* =====================================================================
-   INIT — render everything on page load
-   ===================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    renderTopBar();
-    renderLogo();
-    renderNav();
-    renderFilters();
-    renderServiceCards();
-    renderPopularPills();
-    renderSteps();
-    renderHelpline();
-    renderFooter();
-    renderWhatsApp();
+    renderTopBar(); renderLogo(); renderNav(); renderFilters();
+    renderServiceCards(); renderPopularPills(); renderSteps();
+    renderHelpline(); renderFooter(); renderWhatsApp();
 });
 </script>
 </body>

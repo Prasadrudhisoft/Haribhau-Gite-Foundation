@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import StreamingResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from cache import init_cache
 
 
 
@@ -17,6 +18,9 @@ from users.users import user
 app.include_router(admin)
 app.include_router(user)
 
+@app.on_event("startup")
+def startup():
+    init_cache()
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):

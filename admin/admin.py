@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from fastapi import UploadFile, File, Form
 import os
 from datetime import datetime
+from cache import delete_cache
 
 admin = APIRouter(tags=["Admin"])
 
@@ -114,6 +115,8 @@ def events(events:Events, user=Depends(get_current_user)):
 
         cursor.execute("insert into events(id,event_title,event_description,event_date,event_location,event_type, created_at, created_by) values(%s,%s,%s,%s,%s,%s,NOW(),%s)",(event_id,events.event_title, events.description, events.event_date, events.event_location, events.event_type,id))
         conn.commit()
+
+        delete_cache("events")
         return{
             'status':'success',
             'message':'Event Added Successfully.'
@@ -176,6 +179,7 @@ def works(works:Works, user=Depends(get_current_user)):
         cursor.execute("INSERT INTO works(id,work_title,work_description,start_date,end_date,status,created_at,created_by) values(%s,%s,%s,%s,%s,%s,NOW(),%s)",(id,works.work_title,works.work_description,works.start_date,works.end_date,works.status,user['id']))
         conn.commit()
 
+        delete_cache("works")
         return{
             'status':'success',
             'message':'work added successfully'
@@ -264,6 +268,8 @@ def update_works_status(update_status:Update_work_status,user=Depends(get_curren
 
         cursor.execute("update works set status=%s where id = %s",(update_status.status,update_status.id))
         conn.commit()
+
+        delete_cache("works")
         return{
             'status':'success',
             'message':f'Status Updated To {update_status.status}'
@@ -335,6 +341,8 @@ async def upload_image(
 
         conn.commit()
 
+        delete_cache("gallery")
+
         return {
             "status": "success",
             "message": "Image uploaded successfully",
@@ -403,6 +411,8 @@ def gov_schems(gov_schems:Gov_schems,user=Depends(get_current_user)):
 
         cursor.execute("insert into gov_schems(id,title,description,start_date,end_date,created_at,created_by) values(%s,%s,%s,%s,%s,NOW(),%s)",(scm_id,gov_schems.title, gov_schems.description,gov_schems.start_date,gov_schems.end_date,user['id']))
         conn.commit()
+
+        delete_cache("gov_scheme")
         return{
             'status':'success',
             'message':'government scheme uploads successfully.'
@@ -556,6 +566,7 @@ def delete_event(event_id: str, user=Depends(get_current_user)):
         if cursor.rowcount == 0:
             return {'status': 'fail', 'message': 'Event not found'}
 
+        delete_cache("events")
         return {
             'status': 'success',
             'message': 'Event deleted successfully'
@@ -587,6 +598,8 @@ def delete_work(work_id: str, user=Depends(get_current_user)):
 
         if cursor.rowcount == 0:
             return {'status': 'fail', 'message': 'Work not found'}
+        
+        delete_cache("works")
 
         return {
             'status': 'success',
@@ -631,6 +644,8 @@ def delete_image(image_id: str, user=Depends(get_current_user)):
         cursor.execute("DELETE FROM gallery WHERE id=%s", (image_id,))
         conn.commit()
 
+        delete_cache("gallery")
+
         return {
             'status': 'success',
             'message': 'Image deleted successfully'
@@ -661,6 +676,8 @@ def delete_scheme(scheme_id: str, user=Depends(get_current_user)):
 
         if cursor.rowcount == 0:
             return {'status': 'fail', 'message': 'Scheme not found'}
+        
+        delete_cache("gov_scheme")
 
         return {
             'status': 'success',

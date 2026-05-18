@@ -5,6 +5,7 @@ from fastapi import UploadFile, File, Form
 import os
 from datetime import datetime
 from classes import User_complain
+from cache import get_cache, set_cache, delete_cache
 
 
 
@@ -16,17 +17,26 @@ def user_get_events():
     cursor = None
 
     try:
+        cached = get_cache("events")
+        if cached:
+            return cached
+        
         conn = get_connection()
         cursor = conn.cursor()
 
         cursor.execute("select event_title,event_description,event_date, event_location, event_type from events")
         events = cursor.fetchall()
 
-        return{
+        result = {
             'status':'success',
             'message':'Events Fetched Successfully.',
             'events':events
         }
+
+        set_cache("events",result, ttl = 300)
+
+        return result
+    
     except Exception as e:
         return{
             'status':'error',
@@ -46,6 +56,10 @@ def user_works():
     cursor = None
 
     try:
+        cached = get_cache("works")
+        if cached:
+            return cached
+        
         conn = get_connection()
         cursor = conn.cursor()
 
@@ -79,7 +93,7 @@ def user_works():
             if i['status']=="इतर":
                 other.append(i)
 
-        return{
+        result = {
             'status':'success',
             'message':'Development Works Fetched Successfully',
             'pragatipathavr':pragatipathavar,
@@ -89,6 +103,9 @@ def user_works():
             'nakarlele':nakarlele,
             'other':other
         }
+
+        set_cache("works",result, ttl=300)
+        return result
 
     except Exception as e:
         return{
@@ -109,18 +126,25 @@ def user_get_gallery():
     cursor = None
 
     try:
+        cached = get_cache("gallery")
+        if cached:
+            return cached
+        
         conn = get_connection()
         cursor = conn.cursor()
 
         cursor.execute("SELECT id, photo_path, description, uploaded_at, uploaded_by FROM gallery ORDER BY uploaded_at DESC")
         images = cursor.fetchall()
 
-        return {
+        result =  {
             'status': 'success',
             'message': 'Gallery Fetched Successfully',
             'total': len(images),
             'images': images
         }
+
+        set_cache("gallery", result, ttl=300)
+        return result
 
     except Exception as e:
         return {
@@ -141,17 +165,26 @@ def user_gov_schem():
     cursor = None
 
     try:
+        cached = get_cache("gov_scheme")
+        if cached:
+            return cached
+        
         conn = get_connection()
         cursor = conn.cursor()
 
+        
         cursor.execute("select title,description,start_date,end_date from gov_schems")
         gov_schem = cursor.fetchall()
 
-        return{
+        result = {
             'status':'success',
             'message':'Government Schems Fetched Successfully',
             'gov_scheme':gov_schem
         }
+
+        set_cache("gov_scheme",result, ttl = 300)
+
+        return result
     except Exception as e:
         return{
             'status':'error',

@@ -10,8 +10,12 @@ from fastapi import UploadFile, File, Form
 import os
 from datetime import datetime
 from cache import delete_cache
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 
 admin = APIRouter(tags=["Admin"])
+
+limiter = Limiter(key_func=get_remote_address)
 
 @admin.post('/register_admin')
 def register_admin(register:Register, request:Request):
@@ -54,7 +58,8 @@ def register_admin(register:Register, request:Request):
 
 
 @admin.post('/login')
-def login(log:Logins):
+@limiter.limit("5/minute")
+def login(request:Request, log:Logins):
     conn = None
     cursor = None
 

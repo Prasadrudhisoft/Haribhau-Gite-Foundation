@@ -1,9 +1,11 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import StreamingResponse, HTMLResponse
+from fastapi.responses import StreamingResponse, HTMLResponse,JSONResponse
 from fastapi.staticfiles import StaticFiles
 from cache import init_cache
-
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from slowapi import Limiter
 
 
 app = FastAPI()
@@ -17,6 +19,28 @@ from users.users import user
 
 app.include_router(admin)
 app.include_router(user)
+
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+
+@app.exception_handler(RateLimitExceeded)
+async def custom_error_handler(request:Request, exc:RateLimitExceeded):
+    limit_string = str(exc.detail)
+    path = request.url.path
+
+    messages={
+        '/login':f"Too many login attempts! You've reached the limit of {limit_string}. Please wait 1 minute and try again.",
+        '/register_admin':f"Too many register admin attempts! You've reached the limit of {limit_string}.Please wait for few minutes"
+    }
+    msg = messages.get(path, f"Too many requests! You've hit the rate limit ({limit_string}). Please wait and try again.")
+
+    return JSONResponse(
+        status_code=429,
+        content={
+            'status':"fail",
+            "message":msg
+        }
+    )
 
 @app.on_event("startup")
 def startup():
